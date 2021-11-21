@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <vector>
 #include <iostream>
+#include <stdexcept>
 
 namespace marsvin {
 
@@ -15,7 +16,7 @@ class Matrix {
         Matrix();                                               // Default empty matrix.
         Matrix(std::size_t n);                                  // Square matrix
         // Methods
-        void SetValue(std::size_t row,std::vector<T> data);     // Matrix is filled by rows.
+        void SetRow(std::size_t row,std::vector<T> data);     // Matrix is filled by rows.
         std::size_t GetNumberOfRows();                          // Get matrix number of rows
         std::size_t GetNumberOfColumns();                       // Get matrix number of columns
         void Print();                                           // Print Matrix values
@@ -33,8 +34,11 @@ template<typename T> marsvin::Matrix<T>::Matrix():Matrix(0,0) {}
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n):Matrix(n,n){}
 
 // Methods
-template<typename T> void marsvin::Matrix<T>::SetValue(std::size_t row, std::vector<T> data) {
-//    data_.erase(data_.begin()+row*(column_-1),data_.begin()+row*column_+ row_);
+template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vector<T> data) {
+    if (column_ != data.size() ) {
+        std::cerr << "Wrong Row Matrix size. It must be:" << column_  << std::endl;
+        throw std::invalid_argument("Wrong length of row vector.");
+    } 
     data_.insert(data_.begin()+row*column_-column_,data.begin(),data.end());
     data_.erase(data_.begin()+(row+1)*column_-column_,data_.begin()+(row+1)*column_);
 }
