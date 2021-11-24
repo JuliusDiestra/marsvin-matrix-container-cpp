@@ -16,7 +16,7 @@ class Matrix {
         Matrix();                                               // Default empty matrix.
         Matrix(std::size_t n);                                  // Square matrix
         // Methods
-        void SetRow(std::size_t row,std::vector<T> data);     // Matrix is filled by rows.
+        void SetRow(std::size_t row,std::vector<T> data);       // Matrix is filled by rows.
         std::size_t GetNumberOfRows();                          // Get matrix number of rows
         std::size_t GetNumberOfColumns();                       // Get matrix number of columns
         void Print();                                           // Print Matrix values
@@ -24,6 +24,8 @@ class Matrix {
         std::size_t row_;
         std::size_t column_;
         std::vector<T> data_;
+        std::size_t Transform2dTo1d(std::size_t,std::size_t);
+        std::vector<std::size_t> Transform1dTo12(std::size_t);
 };
 
 // Implementation

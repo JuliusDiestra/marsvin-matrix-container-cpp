@@ -18,5 +18,6 @@ int main() {
     matrix.SetRow(4, row4);
     std::cout << "Matrix with Values: " << std::endl;
     matrix.Print();
+    std::cout << "Is Square matrix? :" << matrix.IsSquare() << std::endl;
 }
 
