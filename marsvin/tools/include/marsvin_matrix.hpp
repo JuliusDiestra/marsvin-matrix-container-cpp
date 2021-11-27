@@ -18,6 +18,7 @@ class Matrix {
         // Methods
         void SetEntry(T entry, std::size_t row, std::size_t column);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by rows.
+        void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by rows.
         std::size_t GetNumberOfRows();                                      // Get matrix number of rows
         std::size_t GetNumberOfColumns();                                   // Get matrix number of columns
         void Print();                                                       // Print Matrix values
@@ -41,8 +42,7 @@ template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n):Matrix(n,n){}
 
 template<typename T> void marsvin::Matrix<T>::SetEntry(T entry, std::size_t row,std::size_t column) {
     std::size_t k = Transform2dTo1d(row,column);
-    data_.insert(data_.begin()+k,entry);
-    data_.erase(data_.begin()+k+1);
+    data_.at(k) = entry;
 }
 
 template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vector<T> data) {
@@ -56,6 +56,16 @@ template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vecto
     data_.erase(data_.begin() + k,data_.begin() + k + n_columns_);
 }
 
+
+template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std::vector<T> data) {
+    if (n_rows_ != data.size() ) {
+        std::cerr << "Wrong Column Matrix size. It must be:" << n_columns_  << std::endl;
+        throw std::invalid_argument("Wrong length of column vector :(");
+    }
+    for (int j = 0;j<n_rows_;j++) {
+        SetEntry(data.at(j),j+1,column);
+    }
+}
 template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() {
     return n_rows_;
 }
