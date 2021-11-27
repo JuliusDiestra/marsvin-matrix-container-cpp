@@ -45,15 +45,15 @@ template<typename T> void marsvin::Matrix<T>::SetEntry(T entry, std::size_t row,
     data_.erase(data_.begin()+k+1);
 }
 
-
-
 template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vector<T> data) {
     if (n_columns_ != data.size() ) {
         std::cerr << "Wrong Row Matrix size. It must be:" << n_columns_  << std::endl;
         throw std::invalid_argument("Wrong length of row vector :(");
     } 
-    data_.insert(data_.begin()+row*n_columns_-n_columns_,data.begin(),data.end());
-    data_.erase(data_.begin()+(row+1)*n_columns_-n_columns_,data_.begin()+(row+1)*n_columns_);
+    std::size_t k = Transform2dTo1d(row,1);
+    data_.insert(data_.begin()+k,data.begin(),data.end());
+    k = Transform2dTo1d(row+1,1);
+    data_.erase(data_.begin() + k,data_.begin() + k + n_columns_);
 }
 
 template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() {
@@ -74,10 +74,10 @@ template<typename T> void marsvin::Matrix<T>::Print() {
     };
 }
 
-// (r-1,c-1)    :   Matrix coordinate for C++. The users set r,c like in books
-//  k           :   1d index
-template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t r,std::size_t c) {
-    std::size_t k = c-1 + n_columns_*(r-1);
+// (row-1,column-1)     :   Matrix coordinate for C++. The users set (row,column) like in books
+//  k                   :   1d index
+template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) {
+    std::size_t k = column-1 + n_columns_*(row-1);
     return k;
 }
 
