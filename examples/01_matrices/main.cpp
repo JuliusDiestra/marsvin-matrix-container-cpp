@@ -18,5 +18,13 @@ int main() {
     matrix.SetRow(4, row4);
     std::cout << "Matrix with Values: " << std::endl;
     matrix.Print();
+    std::cout << "Is Square matrix? :" << matrix.IsSquare() << std::endl;
+    matrix.SetEntry(3,2,99);
+    matrix.Print();
+    // Set matrix with values per row
+    std::vector<float> column2(4,77);
+    matrix.SetColumn(2,column2);
+    std::cout << "Matrix after inserting column in row 2" << std::endl;
+    matrix.Print();
 }
 
