@@ -19,5 +19,7 @@ int main() {
     std::cout << "Matrix with Values: " << std::endl;
     matrix.Print();
     std::cout << "Is Square matrix? :" << matrix.IsSquare() << std::endl;
+    matrix.SetEntry(99,3,2);
+    matrix.Print();
 }
 
