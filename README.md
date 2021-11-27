@@ -28,9 +28,9 @@ Current implemented classes:
 - **marsvin::Matrix :** Matrix class.
     -  **marsvin::Matrix::Matrix :** Matrix constructor. Helps to initiate the matrix. The matrix is initiated as a matrix with zeros.
 
-             **marsvin::Matrix::Matrix(std::size_t n) :** Initiates an Square Matrix with zeros. 
+             marsvin::Matrix::Matrix(std::size_t n) : Initiates an Square Matrix with zeros. 
 
-             **marsvin::Matrix::Matrix(std::size_t n_rows,std::size_t n_columns) :** Initiates a Matrix with n_rows number of rows and n_columns number of columns.
+             marsvin::Matrix::Matrix(std::size_t n_rows,std::size_t n_columns) : Initiates a Matrix with n_rows number of rows and n_columns number of columns.
 
     -  **marsvin::Matrix::SetEntry(std::size_t row, std::size_t column, T entry):** Set an entry in the (row,column) matrix position.
     -  **marsvin::Matrix::SetRow(std::size_t row, T row_vector):** Set a row vector in a define row.
