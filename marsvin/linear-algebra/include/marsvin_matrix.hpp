@@ -74,7 +74,7 @@ template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfColumns() const 
     return n_columns_;
 }
 
-template<typename T> void marsvin::Matrix<T>::Print() {
+template<typename T> void marsvin::Matrix<T>::Print() const {
     for (std::size_t j = 0; j < data_.size(); j++) {
         if ( (j+1) % n_columns_ == 0) { 
             std::cout << data_.at(j) << '\n';
@@ -95,7 +95,7 @@ template<typename T> std::vector<std::size_t> marsvin::Matrix<T>::Transform1dTo2
     return std::vector<std::size_t>(2,0); 
 }
 
-template<typename T> bool marsvin::Matrix<T>::IsSquare() {
+template<typename T> bool marsvin::Matrix<T>::IsSquare() const {
     bool is_square_ = false;
     if (n_rows_ == n_columns_) {
         is_square_ = true;
