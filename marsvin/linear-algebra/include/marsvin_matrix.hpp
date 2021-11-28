@@ -19,10 +19,10 @@ class Matrix {
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by rows.
         void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by rows.
-        std::size_t GetNumberOfRows();                                      // Get matrix number of rows
-        std::size_t GetNumberOfColumns();                                   // Get matrix number of columns
-        void Print();                                                       // Print Matrix values
-        bool IsSquare();                                                    // Return 1 if Matrix is square
+        std::size_t GetNumberOfRows() const;                                      // Get matrix number of rows
+        std::size_t GetNumberOfColumns() const;                                   // Get matrix number of columns
+        void Print() const;                                                       // Print Matrix values
+        bool IsSquare() const;                                                    // Return 1 if Matrix is square
     private:
         std::size_t n_rows_;
         std::size_t n_columns_;
@@ -66,11 +66,11 @@ template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std:
         SetEntry(j+1,column,data.at(j));
     }
 }
-template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() {
+template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() const {
     return n_rows_;
 }
 
-template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfColumns() {
+template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfColumns() const {
     return n_columns_;
 }
 
