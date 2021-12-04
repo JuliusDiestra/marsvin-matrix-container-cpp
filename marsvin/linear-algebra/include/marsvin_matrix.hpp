@@ -19,6 +19,9 @@ class Matrix {
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by rows.
         void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by rows.
+        T GetEntry(std::size_t row, std::size_t column) const;
+        std::vector<T> GetRow(std::size_t row) const;
+        std::vector<T> GetColumn(std::size_t column) const;
         std::size_t GetNumberOfRows() const;                                      // Get matrix number of rows
         std::size_t GetNumberOfColumns() const;                                   // Get matrix number of columns
         void Print() const;                                                       // Print Matrix values
