@@ -27,9 +27,15 @@ template<typename T> marsvin::Matrix<T> marsvin::matrix::BasicOperations::Additi
     }
     // Initialize result matrix
     marsvin::Matrix<T> m_result(m1.GetNumberOfRows(),m1.GetNumberOfColumns());
+    T sum;
+    for (std::size_t i=1;i<=m1.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m1.GetNumberOfColumns();j++) {
+            sum = m1.GetEntry(i,j) + m2.GetEntry(i,j);
+            m_result.SetEntry(i,j,sum);
+        }
+    }
     return m_result;
 }
-
 
 template<typename T> bool marsvin::matrix::BasicOperations::CheckSameDimentions(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
     bool check = false;

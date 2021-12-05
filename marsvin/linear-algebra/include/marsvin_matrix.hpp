@@ -59,8 +59,6 @@ template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vecto
     data_.erase(data_.begin() + k,data_.begin() + k + n_columns_);
 }
 
-
-
 template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std::vector<T> data) {
     if (n_rows_ != data.size() ) {
         std::cerr << "Wrong Column Matrix size. It must be:" << n_rows_  << std::endl;
