@@ -30,8 +30,8 @@ class Matrix {
         std::size_t n_rows_;
         std::size_t n_columns_;
         std::vector<T> data_;
-        std::size_t Transform2dTo1d(std::size_t,std::size_t);
-        std::vector<std::size_t> Transform1dTo2d(std::size_t);
+        std::size_t Transform2dTo1d(std::size_t,std::size_t) const;
+        std::vector<std::size_t> Transform1dTo2d(std::size_t) const;
 };
 
 // Implementation
@@ -60,6 +60,7 @@ template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vecto
 }
 
 
+
 template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std::vector<T> data) {
     if (n_rows_ != data.size() ) {
         std::cerr << "Wrong Column Matrix size. It must be:" << n_rows_  << std::endl;
@@ -69,6 +70,24 @@ template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std:
         SetEntry(j+1,column,data.at(j));
     }
 }
+
+template<typename T> T marsvin::Matrix<T>::GetEntry(std::size_t row, std::size_t column) const {
+    return data_.at(Transform2dTo1d(row,column));
+}
+
+template<typename T> std::vector<T> marsvin::Matrix<T>::GetRow(std::size_t row) const {
+    std::size_t k = Transform2dTo1d(row,1);
+    return std::vector<T>(data_.begin() + k,data_.begin()+ k + n_columns_);
+}
+
+template<typename T> std::vector<T> marsvin::Matrix<T>::GetColumn(std::size_t column) const {
+    std::vector<T> vec = std::vector<T>(n_rows_,0);
+    for (int j = 0;j<n_rows_;j++) {
+        vec.at(j) = GetEntry(j+1,column);
+    }
+    return vec;
+}
+
 template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() const {
     return n_rows_;
 }
@@ -89,12 +108,12 @@ template<typename T> void marsvin::Matrix<T>::Print() const {
 
 // (row-1,column-1)     :   Matrix coordinate for C++. The users set (row,column) like in books
 //  k                   :   1d index
-template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) {
+template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) const {
     std::size_t k = column-1 + n_columns_*(row-1);
     return k;
 }
 
-template<typename T> std::vector<std::size_t> marsvin::Matrix<T>::Transform1dTo2d(std::size_t k) {
+template<typename T> std::vector<std::size_t> marsvin::Matrix<T>::Transform1dTo2d(std::size_t k) const {
     return std::vector<std::size_t>(2,0); 
 }
 

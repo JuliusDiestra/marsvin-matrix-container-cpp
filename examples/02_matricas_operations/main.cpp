@@ -22,5 +22,16 @@ int main() {
     marsvin::Matrix<float> m3 = marsvin::matrix::BasicOperations::Addition(m1,m2);
     std::cout << "m3: " << std::endl;
     m3.Print(); 
+    // Get row for m1
+    std::cout << "### Reading rows for m1 ##" << std::endl;
+    std::cout << "m1 (1,1) : " << m1.GetEntry(1,1) << std::endl;
+    std::vector<float> vec = m1.GetRow(1);
+    std::cout << "row 1 size: " << vec.size() << std::endl;
+    std::cout << "m1 (1,1) : " << vec.at(0) << std::endl;
+    std::cout << "m1 (1,2) : " << vec.at(1) << std::endl;
+    std::cout << "row 2 size: " << vec.size() << std::endl;
+    vec = m1.GetRow(2);
+    std::cout << "m2 (1,1) : " << vec.at(0) << std::endl;
+    std::cout << "m2 (1,2) : " << vec.at(1) << std::endl;   
 }
 
