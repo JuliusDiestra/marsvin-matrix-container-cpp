@@ -18,10 +18,6 @@ int main() {
     m2.SetRow(2, row5);
     std::cout << "m2: " << std::endl;
     m2.Print();
-    // Adding
-    marsvin::Matrix<float> m3 = marsvin::matrix::BasicOperations::Addition(m1,m2);
-    std::cout << "m3: " << std::endl;
-    m3.Print(); 
     // Get row for m1
     std::cout << "### Reading rows for m1 ##" << std::endl;
     std::cout << "m1 (1,1) : " << m1.GetEntry(1,1) << std::endl;
@@ -33,5 +29,13 @@ int main() {
     vec = m1.GetRow(2);
     std::cout << "m2 (1,1) : " << vec.at(0) << std::endl;
     std::cout << "m2 (1,2) : " << vec.at(1) << std::endl;   
+    // Adding
+    marsvin::Matrix<float> m3 = marsvin::matrix::Operations::Addition(m1,m2);
+    std::cout << "m3: m1 + m2 " << std::endl;
+    m3.Print();
+    // Multiplication
+    marsvin::Matrix<float> m4 = marsvin::matrix::Operations::Multiplication(m1,m2);
+    std::cout << "m4: m1*m2 " << std::endl;
+    m4.Print();
 }
 

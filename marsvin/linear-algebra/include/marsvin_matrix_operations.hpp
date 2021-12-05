@@ -1,5 +1,5 @@
-#ifndef MARSVIN_MATRIX_BASIC_OPERATIONS_HPP_
-#define MARSVIN_MATRIX_BASIC_OPERATIONS_HPP_
+#ifndef MARSVIN_MATRIX_OPERATIONS_HPP_
+#define MARSVIN_MATRIX_OPERATIONS_HPP_
 
 #include "marsvin_matrix.hpp"
 #include <algorithm>
@@ -8,12 +8,13 @@ namespace marsvin {
 
 namespace matrix {
 
-class BasicOperations {
+class Operations {
     public:
-        BasicOperations();
+        Operations();
         template<typename T> static marsvin::Matrix<T> Addition(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static marsvin::Matrix<T> Substraction(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static marsvin::Matrix<T> Multiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
+    private:
         template<typename T> static bool CheckSameDimentions(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static bool CheckMultiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
 };
@@ -21,7 +22,7 @@ class BasicOperations {
 }
 }
 
-template<typename T> marsvin::Matrix<T> marsvin::matrix::BasicOperations::Addition(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
+template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Addition(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
     if (!CheckSameDimentions(m1,m2)) {
         throw std::invalid_argument("Mismatch in matrices dimensions :(");
     }
@@ -37,7 +38,7 @@ template<typename T> marsvin::Matrix<T> marsvin::matrix::BasicOperations::Additi
     return m_result;
 }
 
-template<typename T> marsvin::Matrix<T> marsvin::matrix::BasicOperations::Substraction(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
+template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Substraction(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
     if (!CheckSameDimentions(m1,m2)) {
         throw std::invalid_argument("Mismatch in matrices dimensions :(");
     }
@@ -53,7 +54,7 @@ template<typename T> marsvin::Matrix<T> marsvin::matrix::BasicOperations::Substr
     return m_result;
 }
 
-template<typename T> marsvin::Matrix<T> marsvin::matrix::BasicOperations::Multiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
+template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Multiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
     if (!CheckMultiplication(m1,m2)) {
         throw std::invalid_argument("Mismatch in matrices dimensions for multiplication");
     }
@@ -74,7 +75,7 @@ template<typename T> marsvin::Matrix<T> marsvin::matrix::BasicOperations::Multip
 }
 
 
-template<typename T> bool marsvin::matrix::BasicOperations::CheckSameDimentions(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
+template<typename T> bool marsvin::matrix::Operations::CheckSameDimentions(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
     bool check = false;
     if ( (m1.GetNumberOfRows() == m2.GetNumberOfRows()) && (m1.GetNumberOfColumns() == m2.GetNumberOfColumns())) {
         check = true;
@@ -82,12 +83,12 @@ template<typename T> bool marsvin::matrix::BasicOperations::CheckSameDimentions(
     return check;
 }
 
-template<typename T> bool marsvin::matrix::BasicOperations::CheckMultiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
+template<typename T> bool marsvin::matrix::Operations::CheckMultiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
     bool check = false;
-    if (m1.GetNumberofColumns() == m2.GetNumberOfRows()) {
+    if (m1.GetNumberOfColumns() == m2.GetNumberOfRows()) {
         check = true;
     }
     return check;
 }
 
-#endif // MARSVIN_MATRIX_BASIC_OPERATIONS_SHPP_
+#endif // MARSVIN_MATRIX_OPERATIONS_SHPP_
