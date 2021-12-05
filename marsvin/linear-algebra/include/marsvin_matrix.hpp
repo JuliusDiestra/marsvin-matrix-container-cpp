@@ -19,16 +19,19 @@ class Matrix {
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by rows.
         void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by rows.
-        std::size_t GetNumberOfRows();                                      // Get matrix number of rows
-        std::size_t GetNumberOfColumns();                                   // Get matrix number of columns
-        void Print();                                                       // Print Matrix values
-        bool IsSquare();                                                    // Return 1 if Matrix is square
+        T GetEntry(std::size_t row, std::size_t column) const;
+        std::vector<T> GetRow(std::size_t row) const;
+        std::vector<T> GetColumn(std::size_t column) const;
+        std::size_t GetNumberOfRows() const;                                      // Get matrix number of rows
+        std::size_t GetNumberOfColumns() const;                                   // Get matrix number of columns
+        void Print() const;                                                       // Print Matrix values
+        bool IsSquare() const;                                                    // Return 1 if Matrix is square
     private:
         std::size_t n_rows_;
         std::size_t n_columns_;
         std::vector<T> data_;
-        std::size_t Transform2dTo1d(std::size_t,std::size_t);
-        std::vector<std::size_t> Transform1dTo2d(std::size_t);
+        std::size_t Transform2dTo1d(std::size_t,std::size_t) const;
+        std::vector<std::size_t> Transform1dTo2d(std::size_t) const;
 };
 
 // Implementation
@@ -56,7 +59,6 @@ template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vecto
     data_.erase(data_.begin() + k,data_.begin() + k + n_columns_);
 }
 
-
 template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std::vector<T> data) {
     if (n_rows_ != data.size() ) {
         std::cerr << "Wrong Column Matrix size. It must be:" << n_rows_  << std::endl;
@@ -66,15 +68,33 @@ template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std:
         SetEntry(j+1,column,data.at(j));
     }
 }
-template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() {
+
+template<typename T> T marsvin::Matrix<T>::GetEntry(std::size_t row, std::size_t column) const {
+    return data_.at(Transform2dTo1d(row,column));
+}
+
+template<typename T> std::vector<T> marsvin::Matrix<T>::GetRow(std::size_t row) const {
+    std::size_t k = Transform2dTo1d(row,1);
+    return std::vector<T>(data_.begin() + k,data_.begin()+ k + n_columns_);
+}
+
+template<typename T> std::vector<T> marsvin::Matrix<T>::GetColumn(std::size_t column) const {
+    std::vector<T> vec = std::vector<T>(n_rows_,0);
+    for (int j = 0;j<n_rows_;j++) {
+        vec.at(j) = GetEntry(j+1,column);
+    }
+    return vec;
+}
+
+template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() const {
     return n_rows_;
 }
 
-template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfColumns() {
+template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfColumns() const {
     return n_columns_;
 }
 
-template<typename T> void marsvin::Matrix<T>::Print() {
+template<typename T> void marsvin::Matrix<T>::Print() const {
     for (std::size_t j = 0; j < data_.size(); j++) {
         if ( (j+1) % n_columns_ == 0) { 
             std::cout << data_.at(j) << '\n';
@@ -86,16 +106,16 @@ template<typename T> void marsvin::Matrix<T>::Print() {
 
 // (row-1,column-1)     :   Matrix coordinate for C++. The users set (row,column) like in books
 //  k                   :   1d index
-template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) {
+template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) const {
     std::size_t k = column-1 + n_columns_*(row-1);
     return k;
 }
 
-template<typename T> std::vector<std::size_t> marsvin::Matrix<T>::Transform1dTo2d(std::size_t k) {
+template<typename T> std::vector<std::size_t> marsvin::Matrix<T>::Transform1dTo2d(std::size_t k) const {
     return std::vector<std::size_t>(2,0); 
 }
 
-template<typename T> bool marsvin::Matrix<T>::IsSquare() {
+template<typename T> bool marsvin::Matrix<T>::IsSquare() const {
     bool is_square_ = false;
     if (n_rows_ == n_columns_) {
         is_square_ = true;
