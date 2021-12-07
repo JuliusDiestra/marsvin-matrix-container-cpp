@@ -75,12 +75,11 @@ template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Multiplicat
     return m_result;
 }
 
-
 template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Transpose(const marsvin::Matrix<T>& m1) {
     // Initialize matrix
     marsvin::Matrix<T> m_result(m1.GetNumberOfColumns(),m1.GetNumberOfRows());
     for (std::size_t i=1; i<= m1.GetNumberOfRows();i++) {
-        m_result.SetColum(i,m1.GetRow(i));
+        m_result.SetColumn(i,m1.GetRow(i));
     }
     return m_result;
 }

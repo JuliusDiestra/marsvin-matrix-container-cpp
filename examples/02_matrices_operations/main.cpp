@@ -37,5 +37,11 @@ int main() {
     marsvin::Matrix<float> m4 = marsvin::matrix::Operations::Multiplication(m1,m2);
     std::cout << "m4: m1*m2 " << std::endl;
     m4.Print();
+    // Get Transpose
+    marsvin::Matrix<float> m5 = marsvin::matrix::Operations::Transpose(m1);
+    std::cout << "m1 :" << std::endl;
+    m1.Print();
+    std::cout << "m1 transpose: " << std::endl;
+    m5.Print();
 }
 
