@@ -14,6 +14,7 @@ class Operations {
         template<typename T> static marsvin::Matrix<T> Addition(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static marsvin::Matrix<T> Substraction(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static marsvin::Matrix<T> Multiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
+        template<typename T> static marsvin::Matrix<T> Transpose(const marsvin::Matrix<T>& m1);
     private:
         template<typename T> static bool CheckSameDimentions(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static bool CheckMultiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
@@ -74,6 +75,14 @@ template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Multiplicat
     return m_result;
 }
 
+template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Transpose(const marsvin::Matrix<T>& m1) {
+    // Initialize matrix
+    marsvin::Matrix<T> m_result(m1.GetNumberOfColumns(),m1.GetNumberOfRows());
+    for (std::size_t i=1; i<= m1.GetNumberOfRows();i++) {
+        m_result.SetColumn(i,m1.GetRow(i));
+    }
+    return m_result;
+}
 
 template<typename T> bool marsvin::matrix::Operations::CheckSameDimentions(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
     bool check = false;
