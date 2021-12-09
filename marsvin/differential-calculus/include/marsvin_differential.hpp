@@ -8,14 +8,14 @@ namespace marsvin {
 class Differential {
     public:
         Differential();
-        template<typename T> static T Derivative(std::function<T(T)> f,T x, T dx);
-        template<typename T> static T DoubleDerivative(std::function<T(T)> f,T x, T dx);
+        template<typename T> static T FirstDerivative(std::function<T(T)> f,T x, T dx);
+        template<typename T> static T SecondDerivative(std::function<T(T)> f,T x, T dx);
 };
 
 }
 
 
-template<typename T> T marsvin::Differential::Derivative(std::function<T(T)> f,T x, T dx) {
+template<typename T> T marsvin::Differential::FirstDerivative(std::function<T(T)> f,T x, T dx) {
     // f'(x) = 
     T df;
     T m1 = (f(x+dx) - f(x-dx))/(2*dx);
@@ -25,7 +25,7 @@ template<typename T> T marsvin::Differential::Derivative(std::function<T(T)> f,T
     return df;
 }
 
-template<typename T> T marsvin::Differential::Derivative(std::function<T(T)> f,T x, T dx) {
+template<typename T> T marsvin::Differential::SecondDerivative(std::function<T(T)> f,T x, T dx) {
     // f''(x) = [ f(x+dx) - 2*f(x) + f(x-dx) ]/dx^2  
     T ddf = (f(x+dx) - 2*f(x) + f(x-dx))/(dx*dx);
     return ddf;

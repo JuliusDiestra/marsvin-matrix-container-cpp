@@ -7,6 +7,7 @@ Current implementations:
 
 * Matrix Class
 * Basic matrices operations: Addition, Substraction and Multiplication.
+* Numerical differentiation: First and Second derivative.
 
 .... More coming soon ... I guess ...
 
@@ -48,8 +49,14 @@ Current implemented classes:
     -  **marsvin::Matrix::IsSquare():** Set boolean. True if the matrix object is square. False if not.
 
 - **marsvin::Matrix::Operations :** Class with matrices operations.
-    -  **marsvin::Matrix::Operations::Operations :** Class constructor of matrices operations.
+    -  **marsvin::Matrix::Operations::Operations() :** Class constructor of matrices operations.
     -  **marsvin::Matrix::Operations::Addition(marsvin::Matrix m1,marsvin::Matrix m2) :** Method to add two matrices.
     -  **marsvin::Matrix::Operations::Substraction(marsvin::Matrix m1,marsvin::Matrix m2) :** Method to substract two matrices.
     -  **marsvin::Matrix::Operations::Multiplication(marsvin::Matrix m1,marsvin::Matrix m2) :** Method to multiply two matrices.
+    -  **marsvin::Matrix::Operations::Transpose(marsvin::Matrix m1) :** Method to multiply two matrices.
+
+- **marsvin::Differential :** Class with differential calculus methods.
+    -  **marsvin::Differential::Differential() :** Class constructor of differential calculus.
+    -  **marsvin::Differential::FirstDerivative(std::function<T(T)> f, T x, T dx) :** Numerical first derivative.
+    -  **marsvin::Differential::SecondDerivative(std::function<T(T)> f, T x, T dx) :** Numerical second derivative.
 
