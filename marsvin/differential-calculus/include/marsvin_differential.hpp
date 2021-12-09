@@ -9,6 +9,7 @@ class Differential {
     public:
         Differential();
         template<typename T> static T Derivative(std::function<T(T)> f,T x, T dx);
+        template<typename T> static T DoubleDerivative(std::function<T(T)> f,T x, T dx);
 };
 
 }
@@ -22,6 +23,12 @@ template<typename T> T marsvin::Differential::Derivative(std::function<T(T)> f,T
     T m3 = (f(x+3*dx) - f(x-3*dx))/(6*dx);
     df = (3/2)*m1 - (3/5)*m2 +(1/10)*m3;
     return df;
+}
+
+template<typename T> T marsvin::Differential::Derivative(std::function<T(T)> f,T x, T dx) {
+    // f''(x) = [ f(x+dx) - 2*f(x) + f(x-dx) ]/dx^2  
+    T ddf = (f(x+dx) - 2*f(x) + f(x-dx))/(dx*dx);
+    return ddf;
 }
 
 #endif // MARSVIN_DIFFERENTIAL_HPP_
