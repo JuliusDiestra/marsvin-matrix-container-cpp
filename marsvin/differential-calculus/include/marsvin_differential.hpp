@@ -13,7 +13,7 @@ class Differential {
         template<typename T> static T FirstDerivative(std::function<T(T)> f,T x, T dx);
         template<typename T> static T SecondDerivative(std::function<T(T)> f,T x, T dx);
         template<typename T> static std::vector<T> Gradient(std::function<T(std::vector<T>)> f,std::vector<T> Xv, T dx);
-        template<typename T> static marsvin::Matrix<T> Jacobian(std::vector<std::fuction<T(std::vector<T>)>> F, std::vector<T> X, T dx);
+        template<typename T> static marsvin::Matrix<T> Jacobian(std::vector<std::function<T(std::vector<T>)>> F, std::vector<T> X, T dx);
 };
 }
 
@@ -55,14 +55,14 @@ template<typename T> std::vector<T> marsvin::Differential::Gradient(std::functio
     return grad_f;
 }
 
-template<typename T> marsvin::Matrix<T> marsvin::Differential::Jacobian(std::vector<std::fuction<T(std::vector<T>)>> F, std::vector<T> Xv, T dx) {
+template<typename T> marsvin::Matrix<T> marsvin::Differential::Jacobian(std::vector<std::function<T(std::vector<T>)>> F, std::vector<T> Xv, T dx) {
     std::size_t n = Xv.size();
     std::size_t m = F.size();
     marsvin::Matrix<T> jacobian(m,n);
     std::function<T(std::vector<T>)> f_j;
     for (int j = 0; j < m; j++) {
         f_j = F.at(j);
-        jacobian.SetRow(j+1;Gradient(f_j,Xv,dx));
+        jacobian.SetRow(j+1,Gradient(f_j,Xv,dx));
     }
     return jacobian;
 }
