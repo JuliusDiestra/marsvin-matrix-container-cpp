@@ -2,6 +2,7 @@
 #define MARSVIN_DIFFERENTIAL_HPP_
 
 #include <functional>
+#include <vector>
 
 namespace marsvin {
 
@@ -10,10 +11,11 @@ class Differential {
         Differential();
         template<typename T> static T FirstDerivative(std::function<T(T)> f,T x, T dx);
         template<typename T> static T SecondDerivative(std::function<T(T)> f,T x, T dx);
+        template<typename T> static std::vector<T> Gradient(std::function<T(std::vector<T>)> f,std::vector<T> x, T dx);
 };
-
 }
 
+// Implementation
 
 template<typename T> T marsvin::Differential::FirstDerivative(std::function<T(T)> f,T x, T dx) {
     // f'(x) = 
@@ -29,6 +31,26 @@ template<typename T> T marsvin::Differential::SecondDerivative(std::function<T(T
     // f''(x) = [ f(x+dx) - 2*f(x) + f(x-dx) ]/dx^2  
     T ddf = (f(x+dx) - 2*f(x) + f(x-dx))/(dx*dx);
     return ddf;
+}
+
+template<typename T> std::vector<T> marsvin::Differential::Gradient(std::function<T(std::vector<T>)> f,std::vector<T> Xv, T dx) {
+    std::vector<T> X_vj;
+    std::function<T(T)> g;
+    std::vector<T> grad_f;
+    for (int j = 0; j < Xv.size(); j++) {
+        X_vj.clear();
+        X_vj = Xv;
+        // Set g(xj) = f(X_vj)
+        g = [f,Xv,j](T x_j){
+            std::vector<T> X_vj;
+            X_vj = Xv;
+            X_vj.at(j) = x_j;
+            return f(X_vj);
+        };
+        // Store grad_f
+        grad_f.push_back(FirstDerivative(g,Xv.at(j),dx));
+    }
+    return grad_f;
 }
 
 #endif // MARSVIN_DIFFERENTIAL_HPP_
