@@ -7,24 +7,43 @@ Current implementations:
 
 * Matrix Class
 * Basic matrices operations: Addition, Substraction and Multiplication.
-* Numerical differentiation: First and Second derivative.
+* Numerical differentiation: First, Second derivative, Gradient and Jacobian.
 
 .... More coming soon ... I guess ...
 
 The **MARSVIN** library depends only on standard libraries and a lot of coffee.
-
-## How to use it
+## How to build library
 
 1. Clone repository
-2. In CMakeListst.txt : Add marsvin subdirectory.
+2. Run bash script
 ```
-add_subdirectory(${PATH_TO_MARSVIN_DIRECTORY}/marsvin)
+bash build-code.sh
 ```
-3. In CMakeListst.txt : Link marsvin library to your target
+
+## How to use it as a submodule
+
+1. Add repository as submodule
+
+```
+git submodule add git@github.com:MarsvinTech/marsvin-library-cpp.git
+```
+
+2. Initiate submodule
+```
+git submodule update --init --recursive
+```
+
+3. In CMakeListst.txt : Add marsvin subdirectory.
+```
+add_subdirectory(${PATH_TO_MARSVIN_DIRECTORY}/marsvin-library-cpp)
+```
+
+4. In CMakeListst.txt : Link marsvin library to your target
 ```
 target_link_libraries(${YOUR_TARGET_NAME} marsvin)
 ```
-4. Include header file in your code:
+
+5. Include header file in your code:
 ```
 #include "marsvin.hpp"
 ```
@@ -59,4 +78,6 @@ Current implemented classes:
     -  **marsvin::Differential::Differential() :** Class constructor of differential calculus.
     -  **marsvin::Differential::FirstDerivative(std::function<T(T)> f, T x, T dx) :** Numerical first derivative.
     -  **marsvin::Differential::SecondDerivative(std::function<T(T)> f, T x, T dx) :** Numerical second derivative.
+    -  **marsvin::Differential::Gradient(std::function<T(std::vector<T>)> f, std::vector<T> Xv, T dx) :** Numerical gradient.
+    -  **marsvin::Differential::Jacobian(std::vector<std::function<T(std::vector<T>)>> f, std::vector<T> Xv, T dx) :** Numerical jacobian.
 
