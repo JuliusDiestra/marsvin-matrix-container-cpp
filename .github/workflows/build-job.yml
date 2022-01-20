@@ -1,0 +1,13 @@
+name: Build job
+on: [push,pull_request]
+jobs:
+  build-projects:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build project
+        run: |
+          rm -rf build
+          bash build-code.sh
+          cd ..
+
