@@ -1,0 +1,19 @@
+name: Build job
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+      - releases/*
+jobs:
+  build-projects:
+    name: Build project using build-code.sh
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build project
+        run: |
+          rm -rf build
+          bash build-code.sh
+          cd ..
+
