@@ -26,5 +26,19 @@ int main() {
     matrix.SetColumn(2,column2);
     std::cout << "Matrix after inserting column in row 2" << std::endl;
     matrix.Print();
+    // Set matrix diagonal
+    marsvin::Matrix<float> matrixSquare(4);
+    std::cout << "Square Matrix 4x4" << std::endl;
+    matrixSquare.Print();
+    std::vector<float> diagonal_{1,2,3,4};
+    std::cout << "Diagonal length: " << diagonal_.size() << std::endl;
+    matrixSquare.SetDiagonal(diagonal_);
+    std::cout << "Square Matrix 4x4. Diagonal Set:" << std::endl;
+    matrixSquare.Print();
+    std::vector<float> vec = matrixSquare.GetDiagonal();
+    std::cout << "Diagonal vector size: " << vec.size() << std::endl;
+    std::cout << "Diagonal vector third element: " << vec.at(2) << std::endl;
+    vec = matrix.GetDiagonal();
+    std::cout << "Diagonal vector size of non square matrix: " << vec.size() << std::endl;
 }
 
