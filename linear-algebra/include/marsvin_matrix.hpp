@@ -17,11 +17,13 @@ class Matrix {
         Matrix(std::size_t n);                                  // Square matrix
         // Methods
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
-        void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by rows.
-        void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by rows.
+        void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by a row
+        void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by a column
+        void SetDiagonal(std::vector<T> data);                              // Matrix is filled by a diagonal
         T GetEntry(std::size_t row, std::size_t column) const;
         std::vector<T> GetRow(std::size_t row) const;
         std::vector<T> GetColumn(std::size_t column) const;
+        std::vector<T> GetDiagonal() const;
         std::size_t GetNumberOfRows() const;                                      // Get matrix number of rows
         std::size_t GetNumberOfColumns() const;                                   // Get matrix number of columns
         void Print() const;                                                       // Print Matrix values
@@ -69,6 +71,20 @@ template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std:
     }
 }
 
+template<typename T> void marsvin::Matrix<T>::SetDiagonal(std::vector<T> data) {
+    if ( !IsSquare() ) {
+        std::cerr << "Matrix should be square nxn. Where n = " << n_rows_  << std::endl;
+        throw std::invalid_argument("Matrix should be square");
+    }
+    if (data.size() != n_rows_) {
+        std::cerr << "Wrong diagonal length. Length must be: " << n_rows_  << std::endl;
+        throw std::invalid_argument("Wrong diagonal length");
+    }
+    for (int j = 0;j<n_rows_;j++) {
+        SetEntry(j+1,j+1,data.at(j));
+    }
+}
+
 template<typename T> T marsvin::Matrix<T>::GetEntry(std::size_t row, std::size_t column) const {
     return data_.at(Transform2dTo1d(row,column));
 }
@@ -82,6 +98,16 @@ template<typename T> std::vector<T> marsvin::Matrix<T>::GetColumn(std::size_t co
     std::vector<T> vec = std::vector<T>(n_rows_,0);
     for (int j = 0;j<n_rows_;j++) {
         vec.at(j) = GetEntry(j+1,column);
+    }
+    return vec;
+}
+
+template<typename T> std::vector<T> marsvin::Matrix<T>::GetDiagonal() const {
+    std::vector<T> vec; 
+    if (IsSquare()) {
+        for (int j = 0;j<n_rows_;j++) {
+            vec.push_back(GetEntry(j+1,j+1));
+        }
     }
     return vec;
 }
