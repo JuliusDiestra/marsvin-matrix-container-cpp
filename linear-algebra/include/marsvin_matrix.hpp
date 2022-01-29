@@ -15,6 +15,7 @@ class Matrix {
         Matrix(std::size_t row, std::size_t column);            // Any matrix
         Matrix();                                               // Default empty matrix.
         Matrix(std::size_t n);                                  // Square matrix
+        Matrix(std::vector<T> diagonal);                        // Diagonal Matrix
         // Methods
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by a row
@@ -42,6 +43,7 @@ class Matrix {
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n_rows, std::size_t n_columns): n_rows_{ n_rows }, n_columns_{ n_columns }, data_{ std::vector<T>(n_rows*n_columns,0) } {}
 template<typename T> marsvin::Matrix<T>::Matrix():Matrix(0,0) {}
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n):Matrix(n,n){}
+template<typename T> marsvin::Matrix<T>::Matrix(std::vector<T> diagonal):Matrix(diagonal.size()){SetDiagonal(diagonal);}
 
 // Methods
 
