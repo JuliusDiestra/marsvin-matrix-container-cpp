@@ -40,5 +40,9 @@ int main() {
     std::cout << "Diagonal vector third element: " << vec.at(2) << std::endl;
     vec = matrix.GetDiagonal();
     std::cout << "Diagonal vector size of non square matrix: " << vec.size() << std::endl;
+    // Initialize Diagonal Matrix
+    std::vector<float> diag_{10,20,30,40};
+    marsvin::Matrix<float> matrixDiagonal(diag_);
+    matrixDiagonal.Print();
 }
 
