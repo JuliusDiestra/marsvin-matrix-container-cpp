@@ -14,6 +14,7 @@ class Operations {
         template<typename T> static marsvin::Matrix<T> Addition(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static marsvin::Matrix<T> Substraction(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static marsvin::Matrix<T> Multiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
+        template<typename T> static marsvin::Matrix<T> ScalarMultiplication(const marsvin::Matrix<T>& m1, const T scalar);
         template<typename T> static marsvin::Matrix<T> Transpose(const marsvin::Matrix<T>& m1);
     private:
         template<typename T> static bool CheckSameDimentions(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
@@ -70,6 +71,16 @@ template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Multiplicat
                 sum += m1.GetEntry(i,k)*m2.GetEntry(k,j);
             }
             m_result.SetEntry(i,j,sum);
+        }
+    }
+    return m_result;
+}
+
+template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::ScalarMultiplication(const marsvin::Matrix<T>& m1, const T scalar) {
+    marsvin::Matrix<T> m_result(m1.GetNumberOfRows(),m1.GetNumberOfColumns());
+    for (std::size_t i=1;i<=m1.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m1.GetNumberOfColumns();j++) {
+            m_result.SetEntry(i,j,m1.GetEntry(i,j)*scalar);
         }
     }
     return m_result;
