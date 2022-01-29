@@ -29,6 +29,7 @@ class Matrix {
         std::size_t GetNumberOfColumns() const;                                   // Get matrix number of columns
         void Print() const;                                                       // Print Matrix values
         bool IsSquare() const;                                                    // Return 1 if Matrix is square
+        void ScalarMultiplication(T scalar);                                 // Matrix element multiply by constant
     private:
         std::size_t n_rows_;
         std::size_t n_columns_;
@@ -151,6 +152,11 @@ template<typename T> bool marsvin::Matrix<T>::IsSquare() const {
     return is_square_; 
 }
 
+template<typename T> void marsvin::Matrix<T>::ScalarMultiplication(T scalar) {
+    for (std::size_t j = 0; j < data_.size(); j++) {
+        data_.at(j) = data_.at(j)*scalar;
+    }
+}
 }
 #endif // MARSVIN_MATRIX_HPP_
 
