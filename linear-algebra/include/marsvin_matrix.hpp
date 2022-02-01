@@ -21,6 +21,7 @@ class Matrix {
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by a row
         void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by a column
         void SetDiagonal(std::vector<T> data);                              // Matrix is filled by a diagonal
+        void SwapRows(std::size_t i, std::size_t j);                        // Swap two rows in matrix.
         T GetEntry(std::size_t row, std::size_t column) const;
         std::vector<T> GetRow(std::size_t row) const;
         std::vector<T> GetColumn(std::size_t column) const;
@@ -85,6 +86,19 @@ template<typename T> void marsvin::Matrix<T>::SetDiagonal(std::vector<T> data) {
     }
     for (int j = 0;j<n_rows_;j++) {
         SetEntry(j+1,j+1,data.at(j));
+    }
+}
+
+template<typename T> void marsvin::Matrix<T>::SwapRows(std::size_t i, std::size_t j) {
+    if ( i > n_rows_ || j > n_rows_  ) {
+        std::cerr << "The number of rows is: " << n_rows_ << std::endl;
+        throw std::invalid_argument("Row numbers out of limits");
+    }
+    if (i != j) {
+        std::vector<T> temp_row_i = GetRow(i);
+        std::vector<T> temp_row_j = GetRow(j);
+        SetRow(j,temp_row_i);
+        SetRow(i,temp_row_j);
     }
 }
 

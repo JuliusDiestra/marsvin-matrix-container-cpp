@@ -21,8 +21,8 @@ class Operations {
         template<typename T> static bool CheckMultiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
 };
 
-}
-}
+}   // namespace matrix
+}   // namespace marsvin
 
 template<typename T> marsvin::Matrix<T> marsvin::matrix::Operations::Addition(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2) {
     if (!CheckSameDimentions(m1,m2)) {
