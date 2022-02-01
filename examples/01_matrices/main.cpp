@@ -44,5 +44,8 @@ int main() {
     std::vector<float> diag_{10,20,30,40};
     marsvin::Matrix<float> matrixDiagonal(diag_);
     matrixDiagonal.Print();
+    matrixDiagonal.SwapRows(1,2);
+    std::cout << "Swap Rows 1 and 2" << std::endl; 
+    matrixDiagonal.Print();
 }
 
