@@ -42,8 +42,11 @@ template<typename T> std::vector<marsvin::Matrix<T>> marsvin::LUDecomposition::P
             // Update L
             std::vector<T> new_L_column_j { L.GetColumn(j).begin(),L.GetColumn(j.begin()+j-1) };
             std::vector<T> L_sub_column = std::transform(U.GetColumn(j).begin(),U.GetColumn(j).end(),[U,j](T &c){return c/U.GetEntry(j,j)});
+            new_L_column_j.insert(new_L.column_j.end(),L_sub_column.begin()+j,L_sub_column.end());
+            L.SetColumn(j,new_L_column_j);
             // Ref: https://slaystudy.com/c-divide-vector-by-scalar/
             // Update U
+            
         }
     }
 }

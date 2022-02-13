@@ -47,5 +47,9 @@ int main() {
     matrixDiagonal.SwapRows(1,2);
     std::cout << "Swap Rows 1 and 2" << std::endl; 
     matrixDiagonal.Print();
+    // Initialize using another matrix
+    marsvin::Matrix<float> matrixCopied(matrixDiagonal);
+    std::cout << "Initialize new matrix using another :" << std::endl; 
+    matrixCopied.Print();
 }
 

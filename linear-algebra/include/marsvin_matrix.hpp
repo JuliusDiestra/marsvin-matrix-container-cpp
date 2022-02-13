@@ -16,6 +16,7 @@ class Matrix {
         Matrix();                                               // Default empty matrix.
         Matrix(std::size_t n);                                  // Square matrix
         Matrix(std::vector<T> diagonal);                        // Diagonal Matrix
+        Matrix(marsvin::Matrix<T>& matrix);                             // Initalize using information from another matrix.
         // Methods
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by a row
@@ -26,11 +27,12 @@ class Matrix {
         std::vector<T> GetRow(std::size_t row) const;
         std::vector<T> GetColumn(std::size_t column) const;
         std::vector<T> GetDiagonal() const;
-        std::size_t GetNumberOfRows() const;                                      // Get matrix number of rows
-        std::size_t GetNumberOfColumns() const;                                   // Get matrix number of columns
-        void Print() const;                                                       // Print Matrix values
-        bool IsSquare() const;                                                    // Return 1 if Matrix is square
-        void ScalarMultiplication(T scalar);                                 // Matrix element multiply by constant
+        std::vector<T> GetVectorData() const;                                   // Get Matrix information as a 1D vector
+        std::size_t GetNumberOfRows() const;                                    // Get matrix number of rows
+        std::size_t GetNumberOfColumns() const;                                 // Get matrix number of columns
+        void Print() const;                                                     // Print Matrix values
+        bool IsSquare() const;                                                  // Return 1 if Matrix is square
+        void ScalarMultiplication(T scalar);                                    // Matrix element multiply by constant
     private:
         std::size_t n_rows_;
         std::size_t n_columns_;
@@ -46,6 +48,7 @@ template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n_rows, std::size_t 
 template<typename T> marsvin::Matrix<T>::Matrix():Matrix(0,0) {}
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n):Matrix(n,n){}
 template<typename T> marsvin::Matrix<T>::Matrix(std::vector<T> diagonal):Matrix(diagonal.size()){SetDiagonal(diagonal);}
+template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix): n_rows_{ matrix.GetNumberOfRows() }, n_columns_{ matrix.GetNumberOfColumns() }, data_{ matrix.GetVectorData() } {}
 
 // Methods
 
@@ -127,6 +130,11 @@ template<typename T> std::vector<T> marsvin::Matrix<T>::GetDiagonal() const {
         }
     }
     return vec;
+}
+
+
+template<typename T> std::vector<T> marsvin::Matrix<T>::GetVectorData() const {
+    return data_;
 }
 
 template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() const {
