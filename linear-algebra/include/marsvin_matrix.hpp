@@ -16,7 +16,8 @@ class Matrix {
         Matrix();                                               // Default empty matrix.
         Matrix(std::size_t n);                                  // Square matrix
         Matrix(std::vector<T> diagonal);                        // Diagonal Matrix
-        Matrix(marsvin::Matrix<T>& matrix);                             // Initalize using information from another matrix.
+        Matrix(marsvin::Matrix<T>& matrix);                                                                                 // Initalize using information from another matrix.
+        Matrix(marsvin::Matrix<T>& matrix,std::size_t row_i,std::size_t column_i,std::size_t row_j,std::size_t column_j);   // Initalize using a submatrix from another matrix.
         // Methods
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by a row
@@ -49,6 +50,22 @@ template<typename T> marsvin::Matrix<T>::Matrix():Matrix(0,0) {}
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n):Matrix(n,n){}
 template<typename T> marsvin::Matrix<T>::Matrix(std::vector<T> diagonal):Matrix(diagonal.size()){SetDiagonal(diagonal);}
 template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix): n_rows_{ matrix.GetNumberOfRows() }, n_columns_{ matrix.GetNumberOfColumns() }, data_{ matrix.GetVectorData() } {}
+template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix,std::size_t row_i,std::size_t column_i,std::size_t row_j,std::size_t column_j) {
+    if ( row_i > row_j) {
+        throw std::invalid_argument("Second row index should be greater than first row index");
+    }
+    if ( column_i > column_j) {
+        throw std::invalid_argument("Second column index should be greater than first column index");
+    }
+    n_rows_ = row_j - row_i + 1;
+    n_columns_ = column_j - column_i + 1;
+    data_ = std::vector<T>(n_rows_*n_columns_,0);
+    std::vector<T> vec_temp;
+    for (std::size_t j = 1; j <= n_rows_ ;j++) {
+        vec_temp = matrix.GetRow(j + row_i - 1);
+        SetRow(j,std::vector<T>(vec_temp.begin()+column_i-1,vec_temp.begin()+column_j));
+    }
+}
 
 // Methods
 
