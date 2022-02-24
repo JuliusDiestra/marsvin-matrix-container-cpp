@@ -34,6 +34,8 @@ class Matrix {
         void Print() const;                                                     // Print Matrix values
         bool IsSquare() const;                                                  // Return 1 if Matrix is square
         void ScalarMultiplication(T scalar);                                    // Matrix element multiply by constant
+        // Operators
+        Matrix<T> operator+(const Matrix<T>& m2);
     private:
         std::size_t n_rows_;
         std::size_t n_columns_;
@@ -195,6 +197,23 @@ template<typename T> void marsvin::Matrix<T>::ScalarMultiplication(T scalar) {
     for (std::size_t j = 0; j < data_.size(); j++) {
         data_.at(j) = data_.at(j)*scalar;
     }
+}
+
+// Operator
+template<typename T> marsvin::Matrix<T> operator+(const marsvin::Matrix<T>& m2) {
+    if (!((marsvin::Matrix<T>::GetNumberOfRows() == m2.GetNumberOfRows()) && (marsvin::Matrix<T>::GetNumberOfColumns() == m2.GetNumberOfColumns()))) {
+        throw std::invalid_argument("Mismatch in matrices dimensions :(");
+    }
+    // Initialize result matrix
+    marsvin::Matrix<T> m_result(marsvin::Matrix<T>::GetNumberOfRows(),marsvin::Matrix<T>::GetNumberOfColumns());
+    T sum;
+    for (std::size_t i=1;i<=marsvin::Matrix<T>::GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= marsvin::Matrix<T>::GetNumberOfColumns();j++) {
+            sum = marsvin::Matrix<T>::GetEntry(i,j) + m2.GetEntry(i,j);
+            m_result.SetEntry(i,j,sum);
+        }
+    }
+    return m_result; 
 }
 }
 #endif // MARSVIN_MATRIX_HPP_
