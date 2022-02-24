@@ -16,20 +16,24 @@ class Matrix {
         Matrix();                                               // Default empty matrix.
         Matrix(std::size_t n);                                  // Square matrix
         Matrix(std::vector<T> diagonal);                        // Diagonal Matrix
+        Matrix(marsvin::Matrix<T>& matrix);                                                                                 // Initalize using information from another matrix.
+        Matrix(marsvin::Matrix<T>& matrix,std::size_t row_i,std::size_t column_i,std::size_t row_j,std::size_t column_j);   // Initalize using a submatrix from another matrix.
         // Methods
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by a row
         void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by a column
         void SetDiagonal(std::vector<T> data);                              // Matrix is filled by a diagonal
+        void SwapRows(std::size_t i, std::size_t j);                        // Swap two rows in matrix.
         T GetEntry(std::size_t row, std::size_t column) const;
         std::vector<T> GetRow(std::size_t row) const;
         std::vector<T> GetColumn(std::size_t column) const;
         std::vector<T> GetDiagonal() const;
-        std::size_t GetNumberOfRows() const;                                      // Get matrix number of rows
-        std::size_t GetNumberOfColumns() const;                                   // Get matrix number of columns
-        void Print() const;                                                       // Print Matrix values
-        bool IsSquare() const;                                                    // Return 1 if Matrix is square
-        void ScalarMultiplication(T scalar);                                 // Matrix element multiply by constant
+        std::vector<T> GetVectorData() const;                                   // Get Matrix information as a 1D vector
+        std::size_t GetNumberOfRows() const;                                    // Get matrix number of rows
+        std::size_t GetNumberOfColumns() const;                                 // Get matrix number of columns
+        void Print() const;                                                     // Print Matrix values
+        bool IsSquare() const;                                                  // Return 1 if Matrix is square
+        void ScalarMultiplication(T scalar);                                    // Matrix element multiply by constant
     private:
         std::size_t n_rows_;
         std::size_t n_columns_;
@@ -45,6 +49,23 @@ template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n_rows, std::size_t 
 template<typename T> marsvin::Matrix<T>::Matrix():Matrix(0,0) {}
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n):Matrix(n,n){}
 template<typename T> marsvin::Matrix<T>::Matrix(std::vector<T> diagonal):Matrix(diagonal.size()){SetDiagonal(diagonal);}
+template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix): n_rows_{ matrix.GetNumberOfRows() }, n_columns_{ matrix.GetNumberOfColumns() }, data_{ matrix.GetVectorData() } {}
+template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix,std::size_t row_i,std::size_t column_i,std::size_t row_j,std::size_t column_j) {
+    if ( row_i > row_j) {
+        throw std::invalid_argument("Second row index should be greater than first row index");
+    }
+    if ( column_i > column_j) {
+        throw std::invalid_argument("Second column index should be greater than first column index");
+    }
+    n_rows_ = row_j - row_i + 1;
+    n_columns_ = column_j - column_i + 1;
+    data_ = std::vector<T>(n_rows_*n_columns_,0);
+    std::vector<T> vec_temp;
+    for (std::size_t j = 1; j <= n_rows_ ;j++) {
+        vec_temp = matrix.GetRow(j + row_i - 1);
+        SetRow(j,std::vector<T>(vec_temp.begin()+column_i-1,vec_temp.begin()+column_j));
+    }
+}
 
 // Methods
 
@@ -88,6 +109,19 @@ template<typename T> void marsvin::Matrix<T>::SetDiagonal(std::vector<T> data) {
     }
 }
 
+template<typename T> void marsvin::Matrix<T>::SwapRows(std::size_t i, std::size_t j) {
+    if ( i > n_rows_ || j > n_rows_  ) {
+        std::cerr << "The number of rows is: " << n_rows_ << std::endl;
+        throw std::invalid_argument("Row numbers out of limits");
+    }
+    if (i != j) {
+        std::vector<T> temp_row_i = GetRow(i);
+        std::vector<T> temp_row_j = GetRow(j);
+        SetRow(j,temp_row_i);
+        SetRow(i,temp_row_j);
+    }
+}
+
 template<typename T> T marsvin::Matrix<T>::GetEntry(std::size_t row, std::size_t column) const {
     return data_.at(Transform2dTo1d(row,column));
 }
@@ -113,6 +147,11 @@ template<typename T> std::vector<T> marsvin::Matrix<T>::GetDiagonal() const {
         }
     }
     return vec;
+}
+
+
+template<typename T> std::vector<T> marsvin::Matrix<T>::GetVectorData() const {
+    return data_;
 }
 
 template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfRows() const {

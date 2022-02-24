@@ -44,5 +44,16 @@ int main() {
     std::vector<float> diag_{10,20,30,40};
     marsvin::Matrix<float> matrixDiagonal(diag_);
     matrixDiagonal.Print();
+    matrixDiagonal.SwapRows(1,2);
+    std::cout << "Swap Rows 1 and 2" << std::endl; 
+    matrixDiagonal.Print();
+    // Initialize using another matrix
+    marsvin::Matrix<float> matrixCopied(matrixDiagonal);
+    std::cout << "Initialize new matrix using another :" << std::endl; 
+    matrixCopied.Print();
+    // Initialize using sub matrix
+    marsvin::Matrix<float> subMatrix(matrixDiagonal,1,1,3,2);
+    std::cout << "Initialize as a submatrix from anoter matrix :" << std::endl; 
+    subMatrix.Print();
 }
 
