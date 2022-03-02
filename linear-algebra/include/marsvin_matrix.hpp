@@ -25,7 +25,7 @@ class Matrix {
         void SetDiagonal(std::vector<T> data);                              // Matrix is filled by a diagonal
         void SetVectorData(std::vector<T> data);
         void SwapRows(std::size_t i, std::size_t j);                        // Swap two rows in matrix.
-        // Methods: Read matrix value
+        // Methods: Read matrix values
         T GetEntry(std::size_t row, std::size_t column) const;
         std::vector<T> GetRow(std::size_t row) const;
         std::vector<T> GetColumn(std::size_t column) const;
@@ -37,6 +37,8 @@ class Matrix {
         void Print() const;                                                     // Print Matrix values
         bool IsSquare() const;                                                  // Return 1 if Matrix is square
         void ScalarMultiplication(T scalar);                                    // Matrix element multiply by constant
+        // Matrix operations
+        Matrix<T> Transpose() const;
         // Operators
         template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
         template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const U& scalar);
@@ -202,6 +204,15 @@ template<typename T> void marsvin::Matrix<T>::ScalarMultiplication(T scalar) {
     for (std::size_t j = 0; j < data_.size(); j++) {
         data_.at(j) = data_.at(j)*scalar;
     }
+}
+
+// Matrix operations
+template<typename T> marsvin::Matrix<T> marsvin::Matrix<T>::Transpose() const {
+    marsvin::Matrix<T> m_result(GetNumberOfColumns(),GetNumberOfRows());
+    for (std::size_t i=1; i<= GetNumberOfRows();i++) {
+        m_result.SetColumn(i,GetRow(i));
+    }
+    return m_result;
 }
 
 // Operators
