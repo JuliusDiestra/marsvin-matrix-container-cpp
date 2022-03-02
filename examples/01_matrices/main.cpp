@@ -55,5 +55,11 @@ int main() {
     marsvin::Matrix<float> subMatrix(matrixDiagonal,1,1,3,2);
     std::cout << "Initialize as a submatrix from anoter matrix :" << std::endl; 
     subMatrix.Print();
+    // Set values using vector
+    marsvin::Matrix<float> newMatrix(2,2);
+    std::vector<float> vec_new_{1,2,3,4};
+    newMatrix.SetVectorData(vec_new_);
+    std::cout << "New matrix" << std::endl;
+    newMatrix.Print();
 }
 

@@ -18,12 +18,14 @@ class Matrix {
         Matrix(std::vector<T> diagonal);                        // Diagonal Matrix
         Matrix(marsvin::Matrix<T>& matrix);                                                                                 // Initalize using information from another matrix.
         Matrix(marsvin::Matrix<T>& matrix,std::size_t row_i,std::size_t column_i,std::size_t row_j,std::size_t column_j);   // Initalize using a submatrix from another matrix.
-        // Methods
+        // Methods : Modify matrix values
         void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
         void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by a row
         void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by a column
         void SetDiagonal(std::vector<T> data);                              // Matrix is filled by a diagonal
+        void SetVectorData(std::vector<T> data);
         void SwapRows(std::size_t i, std::size_t j);                        // Swap two rows in matrix.
+        // Methods: Read matrix value
         T GetEntry(std::size_t row, std::size_t column) const;
         std::vector<T> GetRow(std::size_t row) const;
         std::vector<T> GetColumn(std::size_t column) const;
@@ -31,11 +33,16 @@ class Matrix {
         std::vector<T> GetVectorData() const;                                   // Get Matrix information as a 1D vector
         std::size_t GetNumberOfRows() const;                                    // Get matrix number of rows
         std::size_t GetNumberOfColumns() const;                                 // Get matrix number of columns
+        // Others
         void Print() const;                                                     // Print Matrix values
         bool IsSquare() const;                                                  // Return 1 if Matrix is square
         void ScalarMultiplication(T scalar);                                    // Matrix element multiply by constant
         // Operators
-        Matrix<T> operator+(const Matrix<T>& m2);
+        template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
+        template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const U& scalar);
+        template<typename U> friend Matrix<U> operator+(const U& scalar, const Matrix<U>& m_rhs);
+        static bool CheckSameDimentions(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
+        static bool CheckMultiplication(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
     private:
         std::size_t n_rows_;
         std::size_t n_columns_;
@@ -111,6 +118,15 @@ template<typename T> void marsvin::Matrix<T>::SetDiagonal(std::vector<T> data) {
     }
 }
 
+
+template<typename T> void marsvin::Matrix<T>::SetVectorData(std::vector<T> data) {
+    if (data.size() != data_.size()) {
+        std::cerr << "Wrong data length. Length must be: " << n_rows_*n_columns_  << std::endl;
+        throw std::invalid_argument("Wrong data length");       
+    }
+    data_ = data;
+}
+
 template<typename T> void marsvin::Matrix<T>::SwapRows(std::size_t i, std::size_t j) {
     if ( i > n_rows_ || j > n_rows_  ) {
         std::cerr << "The number of rows is: " << n_rows_ << std::endl;
@@ -174,17 +190,6 @@ template<typename T> void marsvin::Matrix<T>::Print() const {
     };
 }
 
-// (row-1,column-1)     :   Matrix coordinate for C++. The users set (row,column) like in books
-//  k                   :   1d index
-template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) const {
-    std::size_t k = column-1 + n_columns_*(row-1);
-    return k;
-}
-
-template<typename T> std::vector<std::size_t> marsvin::Matrix<T>::Transform1dTo2d(std::size_t k) const {
-    return std::vector<std::size_t>(2,0); 
-}
-
 template<typename T> bool marsvin::Matrix<T>::IsSquare() const {
     bool is_square_ = false;
     if (n_rows_ == n_columns_) {
@@ -199,22 +204,76 @@ template<typename T> void marsvin::Matrix<T>::ScalarMultiplication(T scalar) {
     }
 }
 
-// Operator
-template<typename T> marsvin::Matrix<T> operator+(const marsvin::Matrix<T>& m2) {
-    if (!((marsvin::Matrix<T>::GetNumberOfRows() == m2.GetNumberOfRows()) && (marsvin::Matrix<T>::GetNumberOfColumns() == m2.GetNumberOfColumns()))) {
+// Operators
+template<typename T> marsvin::Matrix<T> operator+(const marsvin::Matrix<T>& m_lhs,const marsvin::Matrix<T>& m_rhs) {
+    if (!marsvin::Matrix<T>::CheckSameDimentions(m_lhs,m_rhs)) {
         throw std::invalid_argument("Mismatch in matrices dimensions :(");
     }
     // Initialize result matrix
-    marsvin::Matrix<T> m_result(marsvin::Matrix<T>::GetNumberOfRows(),marsvin::Matrix<T>::GetNumberOfColumns());
+    marsvin::Matrix<T> m_result(m_lhs.GetNumberOfRows(),m_lhs.GetNumberOfColumns());
     T sum;
-    for (std::size_t i=1;i<=marsvin::Matrix<T>::GetNumberOfRows();i++) {
-        for (std::size_t j=1; j<= marsvin::Matrix<T>::GetNumberOfColumns();j++) {
-            sum = marsvin::Matrix<T>::GetEntry(i,j) + m2.GetEntry(i,j);
+    for (std::size_t i=1;i<=m_lhs.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m_lhs.GetNumberOfColumns();j++) {
+            sum = m_lhs.GetEntry(i,j) + m_rhs.GetEntry(i,j);
             m_result.SetEntry(i,j,sum);
         }
     }
-    return m_result; 
+    return m_result;
 }
+
+template<typename T> marsvin::Matrix<T> operator+(const marsvin::Matrix<T>& m_lhs, const T& scalar) {
+    marsvin::Matrix<T> m_result(m_lhs.GetNumberOfRows(),m_lhs.GetNumberOfColumns());
+    T sum;
+    for (std::size_t i=1;i<=m_lhs.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m_lhs.GetNumberOfColumns();j++) {
+            sum = m_lhs.GetEntry(i,j) + scalar;
+            m_result.SetEntry(i,j,sum);
+        }
+    }
+    return m_result;
+}
+
+template<typename T> marsvin::Matrix<T> operator+(const T& scalar, const marsvin::Matrix<T>& m_rhs) {
+    marsvin::Matrix<T> m_result(m_rhs.GetNumberOfRows(),m_rhs.GetNumberOfColumns());
+    T sum;
+    for (std::size_t i=1;i<=m_rhs.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m_rhs.GetNumberOfColumns();j++) {
+            sum = m_rhs.GetEntry(i,j) + scalar;
+            m_result.SetEntry(i,j,sum);
+        }
+    }
+    return m_result;
+}
+
+// Private methods
+
+// (row-1,column-1)     :   Matrix coordinate for C++. The users set (row,column) like in books
+//  k                   :   1d index
+template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) const {
+    std::size_t k = column-1 + n_columns_*(row-1);
+    return k;
+}
+
+template<typename T> std::vector<std::size_t> marsvin::Matrix<T>::Transform1dTo2d(std::size_t k) const {
+    return std::vector<std::size_t>(2,0);
+}
+
+template<typename T> bool marsvin::Matrix<T>::CheckSameDimentions(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs) {
+    bool check = false;
+    if ( (m_lhs.GetNumberOfRows() == m_rhs.GetNumberOfRows()) && (m_lhs.GetNumberOfColumns() == m_rhs.GetNumberOfColumns())) {
+        check = true;
+    }
+    return check;
+}
+
+template<typename T> bool marsvin::Matrix<T>::CheckMultiplication(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs) {
+    bool check = false;
+    if (m_lhs.GetNumberOfColumns() == m_rhs.GetNumberOfRows()) {
+        check = true;
+    }
+    return check;
+}
+
 }
 #endif // MARSVIN_MATRIX_HPP_
 

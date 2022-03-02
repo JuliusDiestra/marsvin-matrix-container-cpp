@@ -16,7 +16,6 @@ class Operations {
         template<typename T> static marsvin::Matrix<T> Multiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static marsvin::Matrix<T> ScalarMultiplication(const marsvin::Matrix<T>& m1, const T scalar);
         template<typename T> static marsvin::Matrix<T> Transpose(const marsvin::Matrix<T>& m1);
-    private:
         template<typename T> static bool CheckSameDimentions(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
         template<typename T> static bool CheckMultiplication(const marsvin::Matrix<T>& m1, const marsvin::Matrix<T>& m2);
 };
