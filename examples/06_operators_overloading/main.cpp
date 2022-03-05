@@ -44,5 +44,22 @@ int main() {
     std::cout << "Addition 2.0 + m1: " << std::endl;
     matrixAddition.Print();
     
+    // Multiplication
+    marsvin::Matrix<float> m4(3,2);
+    std::vector<float> vec = {1,2,3,4,5,6};
+    m4.SetVectorData(vec);
+    std::cout << "m4 : " << std::endl;
+    m4.Print();
+    marsvin::Matrix<float> m5(2,4);
+    vec = {1,2,3,4,5,6,7,8};
+    m5.SetVectorData(vec);
+    std::cout << "m5 : " << std::endl;
+    m5.Print();
+    marsvin::Matrix<float> matrixMultiplication;
+    matrixMultiplication = m4*m5;
+    std::cout << "m4*m5 : " << std::endl;
+    matrixMultiplication.Print();
+    std::cout << "Number of rows: " << matrixMultiplication.GetNumberOfRows() << std::endl;
+    std::cout << "Number of rows: " << matrixMultiplication.GetNumberOfColumns() << std::endl;
 }
 

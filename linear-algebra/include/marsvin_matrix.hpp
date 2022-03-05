@@ -43,14 +43,22 @@ class Matrix {
         template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
         template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const U& scalar);
         template<typename U> friend Matrix<U> operator+(const U& scalar, const Matrix<U>& m_rhs);
-        static bool CheckSameDimentions(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
-        static bool CheckMultiplication(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
-    private:
+
+        template<typename U> friend Matrix<U> operator-(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
+        template<typename U> friend Matrix<U> operator-(const Matrix<U>& m_lhs, const U& scalar);
+        template<typename U> friend Matrix<U> operator-(const U& scalar, const Matrix<U>& m_rhs);
+
+        template<typename U> friend Matrix<U> operator*(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
+        template<typename U> friend Matrix<U> operator*(const Matrix<U>& m_lhs, const U& scalar);
+        template<typename U> friend Matrix<U> operator*(const U& scalar, const Matrix<U>& m_rhs);
+private:
         std::size_t n_rows_;
         std::size_t n_columns_;
         std::vector<T> data_;
         std::size_t Transform2dTo1d(std::size_t,std::size_t) const;
         std::vector<std::size_t> Transform1dTo2d(std::size_t) const;
+        static bool CheckSameDimentions(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
+        static bool CheckMultiplication(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
 };
 
 // Implementation
@@ -79,7 +87,6 @@ template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix,std::
 }
 
 // Methods
-
 template<typename T> void marsvin::Matrix<T>::SetEntry(std::size_t row,std::size_t column, T entry) {
     std::size_t k = Transform2dTo1d(row,column);
     data_.at(k) = entry;
@@ -256,8 +263,86 @@ template<typename T> marsvin::Matrix<T> operator+(const T& scalar, const marsvin
     return m_result;
 }
 
-// Private methods
+template<typename T> marsvin::Matrix<T> operator-(const marsvin::Matrix<T>& m_lhs,const marsvin::Matrix<T>& m_rhs) {
+    if (!marsvin::Matrix<T>::CheckSameDimentions(m_lhs,m_rhs)) {
+        throw std::invalid_argument("Mismatch in matrices dimensions :(");
+    }
+    // Initialize result matrix
+    marsvin::Matrix<T> m_result(m_lhs.GetNumberOfRows(),m_lhs.GetNumberOfColumns());
+    T sum;
+    for (std::size_t i=1;i<=m_lhs.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m_lhs.GetNumberOfColumns();j++) {
+            sum = m_lhs.GetEntry(i,j) - m_rhs.GetEntry(i,j);
+            m_result.SetEntry(i,j,sum);
+        }
+    }
+    return m_result;
+}
 
+template<typename T> marsvin::Matrix<T> operator-(const marsvin::Matrix<T>& m_lhs, const T& scalar) {
+    marsvin::Matrix<T> m_result(m_lhs.GetNumberOfRows(),m_lhs.GetNumberOfColumns());
+    T sum;
+    for (std::size_t i=1;i<=m_lhs.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m_lhs.GetNumberOfColumns();j++) {
+            sum = m_lhs.GetEntry(i,j) - scalar;
+            m_result.SetEntry(i,j,sum);
+        }
+    }
+    return m_result;
+}
+
+template<typename T> marsvin::Matrix<T> operator-(const T& scalar, const marsvin::Matrix<T>& m_rhs) {
+    marsvin::Matrix<T> m_result(m_rhs.GetNumberOfRows(),m_rhs.GetNumberOfColumns());
+    T sum;
+    for (std::size_t i=1;i<=m_rhs.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m_rhs.GetNumberOfColumns();j++) {
+            sum = m_rhs.GetEntry(i,j) - scalar;
+            m_result.SetEntry(i,j,sum);
+        }
+    }
+    return m_result;
+}
+
+template<typename T> marsvin::Matrix<T> operator*(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs) {
+    if (!marsvin::Matrix<T>::CheckMultiplication(m_lhs,m_rhs)) {
+        throw std::invalid_argument("Mismatch in matrices dimensions for multiplication");
+    }
+    marsvin::Matrix<T> m_result(m_lhs.GetNumberOfRows(),m_rhs.GetNumberOfColumns());
+    std::size_t n = m_lhs.GetNumberOfColumns();
+    T sum;
+    for (std::size_t i=1;i<=m_lhs.GetNumberOfRows();i++) {
+        for (std::size_t j=1; j<= m_rhs.GetNumberOfColumns();j++) {
+            sum = 0;
+            for (std::size_t k=1; k <=n; k++) {
+                sum += m_lhs.GetEntry(i,k)*m_rhs.GetEntry(k,j);
+            }
+            m_result.SetEntry(i,j,sum);
+        }
+    }
+    return m_result;
+}
+
+
+template<typename T> marsvin::Matrix<T> operator*(const T& scalar, const marsvin::Matrix<T>& m_rhs) {
+    marsvin::Matrix<T> m_result(m_rhs.GetNumberOfRows(),m_rhs.GetNumberOfColumns());
+    std::vector<T> matrix_data_ = m_rhs.GetVectorData();
+    for (std::size_t j = 0; j < matrix_data_.size(); j++) {
+        matrix_data_.at(j) = matrix_data_.at(j)*scalar;
+    }
+    m_result.SetVectorData(matrix_data_);
+    return m_result;
+}
+
+template<typename T> marsvin::Matrix<T> operator*(const marsvin::Matrix<T>& m_lhs, const T& scalar) {
+    marsvin::Matrix<T> m_result(m_lhs.GetNumberOfRows(),m_lhs.GetNumberOfColumns());
+    std::vector<T> matrix_data_ = m_lhs.GetVectorData();
+    for (std::size_t j = 0; j < matrix_data_.size(); j++) {
+        matrix_data_.at(j) = matrix_data_.at(j)*scalar;
+    }
+    m_result.SetVectorData(matrix_data_);
+    return m_result;
+}
+// Private methods
 // (row-1,column-1)     :   Matrix coordinate for C++. The users set (row,column) like in books
 //  k                   :   1d index
 template<typename T> std::size_t marsvin::Matrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) const {
