@@ -4,7 +4,6 @@ project(marsvin LANGUAGES CXX)
 
 set(MARSVIN_LINEAR_ALGEBRA_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/linear-algebra/src/matrix.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/linear-algebra/src/matrix_operations.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/differential-calculus/src/differential.cpp
 
 )
