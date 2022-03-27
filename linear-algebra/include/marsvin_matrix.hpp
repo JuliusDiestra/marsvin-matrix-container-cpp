@@ -1,3 +1,9 @@
+
+/**
+ * \file marsvin_matrix.hpp
+ *
+ */
+
 #ifndef MARSVIN_MATRIX_HPP_
 #define MARSVIN_MATRIX_HPP_
 
@@ -8,12 +14,22 @@
 
 namespace marsvin {
 
+/**
+ * @class Matrix
+ * @brief Matrix class base on std::vector use to declare matrices, row and column vectors.
+ *
+ */
+
 template <typename T>
 class Matrix {
     public:
-        // Constructors
-        Matrix(std::size_t row, std::size_t column);            // Any matrix
+        /*
+         * @brief Default constructor.
+         * Creates an empty matrix. Size of the matrix is 0x0.
+         *
+         */
         Matrix();                                               // Default empty matrix.
+        Matrix(std::size_t row, std::size_t column);            // Any matrix
         Matrix(std::size_t n);                                  // Square matrix
         Matrix(std::vector<T> diagonal);                        // Diagonal Matrix
         Matrix(marsvin::Matrix<T>& matrix);                                                                                 // Initalize using information from another matrix.
@@ -51,7 +67,7 @@ class Matrix {
         template<typename U> friend Matrix<U> operator*(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
         template<typename U> friend Matrix<U> operator*(const Matrix<U>& m_lhs, const U& scalar);
         template<typename U> friend Matrix<U> operator*(const U& scalar, const Matrix<U>& m_rhs);
-private:
+    private:
         std::size_t n_rows_;
         std::size_t n_columns_;
         std::vector<T> data_;
@@ -96,7 +112,7 @@ template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vecto
     if (n_columns_ != data.size() ) {
         std::cerr << "Wrong Row Matrix size. It must be:" << n_columns_  << std::endl;
         throw std::invalid_argument("Wrong length of row vector :(");
-    } 
+    }
     std::size_t k = Transform2dTo1d(row,1);
     data_.insert(data_.begin()+k,data.begin(),data.end());
     k = Transform2dTo1d(row+1,1);
@@ -131,7 +147,7 @@ template<typename T> void marsvin::Matrix<T>::SetDiagonal(std::vector<T> data) {
 template<typename T> void marsvin::Matrix<T>::SetVectorData(std::vector<T> data) {
     if (data.size() != data_.size()) {
         std::cerr << "Wrong data length. Length must be: " << n_rows_*n_columns_  << std::endl;
-        throw std::invalid_argument("Wrong data length");       
+        throw std::invalid_argument("Wrong data length");
     }
     data_ = data;
 }
@@ -167,7 +183,7 @@ template<typename T> std::vector<T> marsvin::Matrix<T>::GetColumn(std::size_t co
 }
 
 template<typename T> std::vector<T> marsvin::Matrix<T>::GetDiagonal() const {
-    std::vector<T> vec; 
+    std::vector<T> vec;
     if (IsSquare()) {
         for (int j = 0;j<n_rows_;j++) {
             vec.push_back(GetEntry(j+1,j+1));
@@ -191,7 +207,7 @@ template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfColumns() const 
 
 template<typename T> void marsvin::Matrix<T>::Print() const {
     for (std::size_t j = 0; j < data_.size(); j++) {
-        if ( (j+1) % n_columns_ == 0) { 
+        if ( (j+1) % n_columns_ == 0) {
             std::cout << data_.at(j) << '\n';
         } else {
             std::cout << data_.at(j) << '\t';
@@ -204,7 +220,7 @@ template<typename T> bool marsvin::Matrix<T>::IsSquare() const {
     if (n_rows_ == n_columns_) {
         is_square_ = true;
     }
-    return is_square_; 
+    return is_square_;
 }
 
 template<typename T> void marsvin::Matrix<T>::ScalarMultiplication(T scalar) {
