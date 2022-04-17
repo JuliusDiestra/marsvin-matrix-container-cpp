@@ -20,7 +20,7 @@ class Differential {
 // Implementation
 
 template<typename T> T marsvin::Differential::FirstDerivative(std::function<T(T)> f,T x, T dx) {
-    // f'(x) = 
+    // f'(x) =
     T df;
     T m1 = (f(x+dx) - f(x-dx))/(2*dx);
     T m2 = (f(x+2*dx) - f(x-2*dx))/(4*dx);
@@ -30,7 +30,7 @@ template<typename T> T marsvin::Differential::FirstDerivative(std::function<T(T)
 }
 
 template<typename T> T marsvin::Differential::SecondDerivative(std::function<T(T)> f,T x, T dx) {
-    // f''(x) = [ f(x+dx) - 2*f(x) + f(x-dx) ]/dx^2  
+    // f''(x) = [ f(x+dx) - 2*f(x) + f(x-dx) ]/dx^2
     T ddf = (f(x+dx) - 2*f(x) + f(x-dx))/(dx*dx);
     return ddf;
 }
