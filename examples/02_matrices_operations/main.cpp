@@ -11,7 +11,7 @@ int main() {
     std::cout << "m1: " << std::endl;
     m1.Print();
     // Get Transpose
-    marsvin::Matrix<float> m1_transpose; 
+    marsvin::Matrix<float> m1_transpose;
     m1_transpose = m1.Transpose();
     std::cout << "m1 :" << std::endl;
     m1.Print();

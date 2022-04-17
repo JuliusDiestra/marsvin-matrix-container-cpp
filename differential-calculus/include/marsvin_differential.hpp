@@ -19,6 +19,8 @@ class Differential {
 
 // Implementation
 
+marsvin::Differential::Differential(){};
+
 template<typename T> T marsvin::Differential::FirstDerivative(std::function<T(T)> f,T x, T dx) {
     // f'(x) =
     T df;
