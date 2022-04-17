@@ -50,3 +50,15 @@ target_link_libraries(${YOUR_TARGET_NAME} marsvin)
 
 6. Use the marsvin matrix class to play around.
 
+## How to build documentation
+
+Documentation HTML files are created using Doxygen.
+The documentation is generated into **docs/output-dir** directory.
+
+1. Go to docs directory and run doxygen
+
+```
+cd docs
+doxygen
+```
+
