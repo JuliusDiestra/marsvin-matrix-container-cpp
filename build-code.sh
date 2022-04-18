@@ -1,5 +1,5 @@
 #!/bin/bash
-STRING="Star build script"
+STRING="Start build script"
 echo $STRING
 # Remove old build folder
 rm -rf build

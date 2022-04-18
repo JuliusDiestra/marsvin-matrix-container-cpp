@@ -7,13 +7,20 @@ on:
       - releases/*
 jobs:
   build-projects:
-    name: Build project using build-code.sh
+    name: Build marsvin library
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: Build project
+      - name: Build Project
         run: |
           rm -rf build
           bash build-code.sh
-          cd ..
-
+  build-examples:
+    name: Build examples
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Examples
+        run: |
+          cd examples
+          bash build-examples.sh
