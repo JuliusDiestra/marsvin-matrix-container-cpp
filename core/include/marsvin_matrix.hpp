@@ -62,19 +62,62 @@ class Matrix {
         /**
          * @brief Constructor using another matrix instance.
          *
-         * Create a matrix using information from another matrix instance.
+         * Creates a matrix using information from another matrix instance.
          * All the properties of the matrix instances are copied to the new instance.
          *
          * @param matrix Matrix instance use to create a new matrix with same properties.
          *
          */
-        Matrix(marsvin::Matrix<T>& matrix);                                                                                 // Initalize using information from another matrix.
-        Matrix(marsvin::Matrix<T>& matrix,std::size_t row_i,std::size_t column_i,std::size_t row_j,std::size_t column_j);   // Initalize using a submatrix from another matrix.
-        // Methods : Modify matrix values
-        void SetEntry(std::size_t row, std::size_t column, T entry);        // Set (row,column) matrix entry.
-        void SetRow(std::size_t row,std::vector<T> data);                   // Matrix is filled by a row
-        void SetColumn(std::size_t column,std::vector<T> data);             // Matrix is filled by a column
-        void SetDiagonal(std::vector<T> data);                              // Matrix is filled by a diagonal
+        Matrix(marsvin::Matrix<T>& matrix);
+        /**
+         * @brief Constructor using a submatrix from another matrix instance.
+         *
+         * Creates a matrix using a submatrix from another matrix instances.
+         * Matrix size and information depends on the submatrix selected from
+         * the original matrix.
+         *
+         * @param matrix Matrix instance use to create a new matrix.
+         * @param row_i Row initial index.
+         * @param column_i Column initial index.
+         * @param row_j Row final index.
+         * @param column_j Column final index.
+         *
+         */
+        Matrix(marsvin::Matrix<T>& matrix,std::size_t row_i,std::size_t column_i,std::size_t row_j,std::size_t column_j);
+
+
+        /**
+         * @brief Method to set matrix entry/element value.
+         *
+         * @param row Row index.
+         * @param colum Column index.
+         * @param entry Entry value.
+         *
+         */
+        void SetEntry(std::size_t row, std::size_t column, T entry);
+        /**
+         * @brief Method to set values in a selected matrix row.
+         *
+         * @param row Row index.
+         * @param data Data to store in the selected row.
+         *
+         */
+        void SetRow(std::size_t row,std::vector<T> data);
+        /**
+         * @brief Method to set values in a selected matrix column.
+         *
+         * @param column Column index.
+         * @param data Data to store in the selected column.
+         *
+         */
+        void SetColumn(std::size_t column,std::vector<T> data);
+        /**
+         * @brief Method to set values in the matrix diagnoal.
+         *
+         * @param data Data to store in the matrix diagonal.
+         *
+         */
+        void SetDiagonal(std::vector<T> data);
         void SetVectorData(std::vector<T> data);
         void SwapRows(std::size_t i, std::size_t j);                        // Swap two rows in matrix.
         // Methods: Read matrix values

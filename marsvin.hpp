@@ -1,5 +1,5 @@
 /**
- * \file marsvin.hpp
+ * @file marsvin.hpp
  *
  */
 
