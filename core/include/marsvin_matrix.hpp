@@ -1,5 +1,5 @@
 /**
- * \file marsvin_matrix.hpp
+ * @file marsvin_matrix.hpp
  *
  */
 
@@ -22,15 +22,52 @@ namespace marsvin {
 template <typename T>
 class Matrix {
     public:
-        /*
+        /**
          * @brief Default constructor.
+         *
          * Creates an empty matrix. Size of the matrix is 0x0.
          *
          */
-        Matrix();                                               // Default empty matrix.
-        Matrix(std::size_t row, std::size_t column);            // Any matrix
-        Matrix(std::size_t n);                                  // Square matrix
-        Matrix(std::vector<T> diagonal);                        // Diagonal Matrix
+        Matrix();
+        /**
+         * @brief Constructor for any matrix.
+         *
+         * Creates matrix of any size. Number of rows and columns are input parameters of constructor.
+         * All matrix entries are zero.
+         *
+         * @param row Number of rows.
+         * @param column Number of columns.
+         *
+         */
+        Matrix(std::size_t row, std::size_t column);
+        /**
+         * @brief Constructor for square matrix.
+         *
+         * Creates an square matrix of size n. All matrix entries are zero.
+         *
+         * @param n Number of rows and colums for square matrix.
+         *
+         */
+        Matrix(std::size_t n);
+        /**
+         * @brief Constructor for square diagonal matrix.
+         *
+         * Creates an square matrix with diagonal set by the std::vector input.
+         * The number of rows and columns is equal to the length of the std::vector input.
+         *
+         * @param diagonal Diagonal of the square matrix.
+         *
+         */
+        Matrix(std::vector<T> diagonal);
+        /**
+         * @brief Constructor using another matrix instance.
+         *
+         * Create a matrix using information from another matrix instance.
+         * All the properties of the matrix instances are copied to the new instance.
+         *
+         * @param matrix Matrix instance use to create a new matrix with same properties.
+         *
+         */
         Matrix(marsvin::Matrix<T>& matrix);                                                                                 // Initalize using information from another matrix.
         Matrix(marsvin::Matrix<T>& matrix,std::size_t row_i,std::size_t column_i,std::size_t row_j,std::size_t column_j);   // Initalize using a submatrix from another matrix.
         // Methods : Modify matrix values
