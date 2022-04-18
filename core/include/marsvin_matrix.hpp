@@ -1,11 +1,10 @@
-
 /**
  * \file marsvin_matrix.hpp
  *
  */
 
-#ifndef MARSVIN_MATRIX_HPP_
-#define MARSVIN_MATRIX_HPP_
+#ifndef MARSVIN_CORE_MARSVIN_MATRIX_HPP_
+#define MARSVIN_CORE_MARSVIN_MATRIX_HPP_
 
 #include <cstddef>
 #include <vector>
@@ -387,5 +386,5 @@ template<typename T> bool marsvin::Matrix<T>::CheckMultiplication(const marsvin:
 }
 
 }
-#endif // MARSVIN_MATRIX_HPP_
+#endif // MARSVIN_CORE_MARSVIN_MATRIX_HPP_
 

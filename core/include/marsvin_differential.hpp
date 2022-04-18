@@ -1,5 +1,10 @@
-#ifndef MARSVIN_DIFFERENTIAL_HPP_
-#define MARSVIN_DIFFERENTIAL_HPP_
+/**
+ * \file marsvin_differential.hpp
+ *
+ */
+
+#ifndef MARSVIN_CORE_MARSVIN_DIFFERENTIAL_HPP_
+#define MARSVIN_CORE_MARSVIN_DIFFERENTIAL_HPP_
 
 #include "marsvin_matrix.hpp"
 #include <functional>
@@ -69,4 +74,4 @@ template<typename T> marsvin::Matrix<T> marsvin::Differential::Jacobian(std::vec
     return jacobian;
 }
 
-#endif // MARSVIN_DIFFERENTIAL_HPP_
+#endif // MARSVIN_CORE_MARSVIN_DIFFERENTIAL_HPP_
