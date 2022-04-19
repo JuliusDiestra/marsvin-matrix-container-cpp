@@ -184,7 +184,7 @@ template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix,std::
 // Methods
 template<typename T> void marsvin::Matrix<T>::SetEntry(std::size_t row,std::size_t column, T entry) {
     std::size_t k = Transform2dTo1d(row,column);
-    data_.at(k) = entry;
+    data_.at(k) = entry; // Change to operator []
 }
 
 template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vector<T> data) {
