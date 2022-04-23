@@ -98,7 +98,7 @@ class Matrix {
         /**
          * @brief Method to set values in a selected matrix row.
          *
-         * @param row Row index.
+         * @param row Row number.
          * @param data Data to store in the selected row.
          *
          */
@@ -106,7 +106,7 @@ class Matrix {
         /**
          * @brief Method to set values in a selected matrix column.
          *
-         * @param column Column index.
+         * @param column Column number.
          * @param data Data to store in the selected column.
          *
          */
@@ -118,17 +118,68 @@ class Matrix {
          *
          */
         void SetDiagonal(std::vector<T> data);
+        /**
+         * @brief Method to set matrix data using a vector.
+         *
+         * Marsvin matrix data is stored in a 1d vector.
+         * You can set the values of matrix using this method
+         *
+         * @param data Data to store in the matrix.
+         *
+         */
         void SetVectorData(std::vector<T> data);
-        void SwapRows(std::size_t i, std::size_t j);                        // Swap two rows in matrix.
-        // Methods: Read matrix values
+        /**
+         * @brief Method to swap two matrix rows.
+         *
+         * @param column_i First row number.
+         * @param column_j Second row number.
+         *
+         */
+        void SwapRows(std::size_t i, std::size_t j);
+
+        /**
+         *  @brief Method to get matrix entry/index.
+         *
+         *  @param row Row number.
+         *  @param column Column number.
+         *
+         */
         T GetEntry(std::size_t row, std::size_t column) const;
+        /**
+         *  @brief Method to get a matrix row.
+         *
+         *  @param row Row number.
+         *
+         */
         std::vector<T> GetRow(std::size_t row) const;
+        /**
+         *  @brief Method to get a matrix column.
+         *
+         *  @param row Column number.
+         *
+         */
         std::vector<T> GetColumn(std::size_t column) const;
+        /**
+         * @brief Method to get the matrix diagonal.
+         *
+         */
         std::vector<T> GetDiagonal() const;
+        /**
+         * @brief Method to get matrix data as a 1d vector.
+         *
+         */
         std::vector<T> GetVectorData() const;                                   // Get Matrix information as a 1D vector
+        /**
+         * @brief Method to get the number of rows of the matrix.
+         *
+         */
         std::size_t GetNumberOfRows() const;                                    // Get matrix number of rows
+        /**
+         * @brief Method to get the number of columns of the matrix.
+         *
+         */
         std::size_t GetNumberOfColumns() const;                                 // Get matrix number of columns
-        // Others
+
         void Print() const;                                                     // Print Matrix values
         bool IsSquare() const;                                                  // Return 1 if Matrix is square
         void ScalarMultiplication(T scalar);                                    // Matrix element multiply by constant
