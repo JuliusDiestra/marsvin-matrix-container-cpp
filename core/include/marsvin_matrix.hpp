@@ -8,7 +8,6 @@
 
 #include <cstddef>
 #include <vector>
-#include <iostream>
 #include <stdexcept>
 
 namespace marsvin {
@@ -180,9 +179,7 @@ class Matrix {
          */
         std::size_t GetNumberOfColumns() const;                                 // Get matrix number of columns
 
-        void Print() const;                                                     // Print Matrix values
         bool IsSquare() const;                                                  // Return 1 if Matrix is square
-        void ScalarMultiplication(T scalar);                                    // Matrix element multiply by constant
         // Matrix operations
         Matrix<T> Transpose() const;
         // Operators
@@ -335,15 +332,6 @@ template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfColumns() const 
     return n_columns_;
 }
 
-template<typename T> void marsvin::Matrix<T>::Print() const {
-    for (std::size_t j = 0; j < data_.size(); j++) {
-        if ( (j+1) % n_columns_ == 0) {
-            std::cout << data_.at(j) << '\n';
-        } else {
-            std::cout << data_.at(j) << '\t';
-        }
-    };
-}
 
 template<typename T> bool marsvin::Matrix<T>::IsSquare() const {
     bool is_square_ = false;
@@ -351,12 +339,6 @@ template<typename T> bool marsvin::Matrix<T>::IsSquare() const {
         is_square_ = true;
     }
     return is_square_;
-}
-
-template<typename T> void marsvin::Matrix<T>::ScalarMultiplication(T scalar) {
-    for (std::size_t j = 0; j < data_.size(); j++) {
-        data_.at(j) = data_.at(j)*scalar;
-    }
 }
 
 // Matrix operations
