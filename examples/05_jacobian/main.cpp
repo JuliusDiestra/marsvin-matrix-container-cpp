@@ -3,6 +3,8 @@
 #include <cmath>
 
 int main() {
+    // Create logger instance
+    marsvin::Logger logger_;
     // Function setting
     // F(X) = [x^4 + 3*x*y^2; 5*y^2 - 2*x*y + 1]
     // X = (x,y)
@@ -25,6 +27,6 @@ int main() {
     float dx = 0.01;
     marsvin::Matrix<float> jacobF;
     jacobF= marsvin::Differential::Jacobian(F,Xv,dx);
-    jacobF.Print();
+    logger_ << jacobF;
 }
 

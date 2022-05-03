@@ -2,11 +2,13 @@
 #include "marsvin.hpp"
 
 int main() {
+    // Create logger instance.
+    marsvin::Logger logger_;
     marsvin::Matrix<float> matrix(4,3);
     std::cout << "Number of Rows: " <<matrix.GetNumberOfRows() << std::endl;
     std::cout << "Number of Columns: " <<matrix.GetNumberOfColumns() << std::endl;
     std::cout << "Matrix: Empty Initialized " << std::endl;
-    matrix.Print();
+    logger_ << matrix;
     // Set matrix with values
     std::vector<float> row1(3,10);
     std::vector<float> row2(3,20);
@@ -16,25 +18,27 @@ int main() {
     matrix.SetRow(2, row2);
     matrix.SetRow(3, row3);
     matrix.SetRow(4, row4);
-    std::cout << "Matrix with Values: " << std::endl;
-    matrix.Print();
+    std::cout << "Matrix with Values:" << std::endl;
+    logger_ << matrix;
     std::cout << "Is Square matrix? :" << matrix.IsSquare() << std::endl;
     matrix.SetEntry(3,2,99);
-    matrix.Print();
+    logger_ << matrix;
     // Set matrix with values per row
     std::vector<float> column2(4,77);
     matrix.SetColumn(2,column2);
     std::cout << "Matrix after inserting column in row 2" << std::endl;
-    matrix.Print();
+    logger_ << matrix;
     // Set matrix diagonal
     marsvin::Matrix<float> matrixSquare(4);
     std::cout << "Square Matrix 4x4" << std::endl;
-    matrixSquare.Print();
+    logger_ << matrixSquare;
     std::vector<float> diagonal_{1,2,3,4};
-    std::cout << "Diagonal length: " << diagonal_.size() << std::endl;
+    std::cout << "Diagonal length:" << diagonal_.size() << std::endl;
+    std::cout << "Diagonal vector:" << std::endl;
+    logger_ << diagonal_;
     matrixSquare.SetDiagonal(diagonal_);
     std::cout << "Square Matrix 4x4. Diagonal Set:" << std::endl;
-    matrixSquare.Print();
+    logger_ << matrixSquare;
     std::vector<float> vec = matrixSquare.GetDiagonal();
     std::cout << "Diagonal vector size: " << vec.size() << std::endl;
     std::cout << "Diagonal vector third element: " << vec.at(2) << std::endl;
@@ -43,23 +47,23 @@ int main() {
     // Initialize Diagonal Matrix
     std::vector<float> diag_{10,20,30,40};
     marsvin::Matrix<float> matrixDiagonal(diag_);
-    matrixDiagonal.Print();
+    logger_ << matrixDiagonal;
     matrixDiagonal.SwapRows(1,2);
     std::cout << "Swap Rows 1 and 2" << std::endl;
-    matrixDiagonal.Print();
+    logger_ << matrixDiagonal;
     // Initialize using another matrix
     marsvin::Matrix<float> matrixCopied(matrixDiagonal);
     std::cout << "Initialize new matrix using another :" << std::endl;
-    matrixCopied.Print();
+    logger_ << matrixCopied;
     // Initialize using sub matrix
     marsvin::Matrix<float> subMatrix(matrixDiagonal,1,1,3,2);
     std::cout << "Initialize as a submatrix from anoter matrix :" << std::endl;
-    subMatrix.Print();
+    logger_ << subMatrix;
     // Set values using vector
     marsvin::Matrix<float> newMatrix(2,2);
     std::vector<float> vec_new_{1,2,3,4};
     newMatrix.SetVectorData(vec_new_);
     std::cout << "New matrix" << std::endl;
-    newMatrix.Print();
+    logger_ << newMatrix;
 }
 
