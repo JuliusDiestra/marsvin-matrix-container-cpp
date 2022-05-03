@@ -8,7 +8,6 @@
 
 #include <cstddef>
 #include <vector>
-#include <iostream>
 #include <stdexcept>
 
 namespace marsvin {
@@ -98,7 +97,7 @@ class Matrix {
         /**
          * @brief Method to set values in a selected matrix row.
          *
-         * @param row Row index.
+         * @param row Row number.
          * @param data Data to store in the selected row.
          *
          */
@@ -106,7 +105,7 @@ class Matrix {
         /**
          * @brief Method to set values in a selected matrix column.
          *
-         * @param column Column index.
+         * @param column Column number.
          * @param data Data to store in the selected column.
          *
          */
@@ -118,33 +117,132 @@ class Matrix {
          *
          */
         void SetDiagonal(std::vector<T> data);
+        /**
+         * @brief Method to set matrix data using a vector.
+         *
+         * Marsvin matrix data is stored in a 1d vector.
+         * You can set the values of matrix using this method
+         *
+         * @param data Data to store in the matrix.
+         *
+         */
         void SetVectorData(std::vector<T> data);
-        void SwapRows(std::size_t i, std::size_t j);                        // Swap two rows in matrix.
-        // Methods: Read matrix values
+        /**
+         * @brief Method to swap two matrix rows.
+         *
+         * @param column_i First row number.
+         * @param column_j Second row number.
+         *
+         */
+        void SwapRows(std::size_t i, std::size_t j);
+
+        /**
+         *  @brief Method to get matrix entry/index.
+         *
+         *  @param row Row number.
+         *  @param column Column number.
+         *
+         */
         T GetEntry(std::size_t row, std::size_t column) const;
+        /**
+         *  @brief Method to get a matrix row.
+         *
+         *  @param row Row number.
+         *
+         */
         std::vector<T> GetRow(std::size_t row) const;
+        /**
+         *  @brief Method to get a matrix column.
+         *
+         *  @param row Column number.
+         *
+         */
         std::vector<T> GetColumn(std::size_t column) const;
+        /**
+         * @brief Method to get the matrix diagonal.
+         *
+         */
         std::vector<T> GetDiagonal() const;
-        std::vector<T> GetVectorData() const;                                   // Get Matrix information as a 1D vector
-        std::size_t GetNumberOfRows() const;                                    // Get matrix number of rows
-        std::size_t GetNumberOfColumns() const;                                 // Get matrix number of columns
-        // Others
-        void Print() const;                                                     // Print Matrix values
-        bool IsSquare() const;                                                  // Return 1 if Matrix is square
-        void ScalarMultiplication(T scalar);                                    // Matrix element multiply by constant
-        // Matrix operations
+        /**
+         * @brief Method to get matrix data as a 1d vector.
+         *
+         */
+        std::vector<T> GetVectorData() const;
+        /**
+         * @brief Method to get the number of rows of the matrix.
+         *
+         */
+        std::size_t GetNumberOfRows() const;
+        /**
+         * @brief Method to get the number of columns of the matrix.
+         *
+         */
+        std::size_t GetNumberOfColumns() const;
+
+        /**
+         * @brief Method to know if the matrix instance is an square matrix or not.
+         *
+         */
+        bool IsSquareMatrix() const;
+
+        /**
+         * @brief Method to obtain the transpose of the matrix instance.
+         *
+         */
         Matrix<T> Transpose() const;
-        // Operators
+
+        /**
+         * @brief Method to perform the addition of two matrix instances.
+         *
+         */
         template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
+        /**
+         * @brief Method to perform the addition of one matrix instance and one scalar.
+         * The scalar is added to each matrix element.
+         *
+         */
         template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const U& scalar);
+        /**
+         * @brief Method to perform the addition of one scalar and one matrix instance.
+         * The scalar is added to each matrix element.
+         *
+         */
         template<typename U> friend Matrix<U> operator+(const U& scalar, const Matrix<U>& m_rhs);
 
+        /**
+         * @brief Method to perform substraction of two matrix instances.
+         *
+         */
         template<typename U> friend Matrix<U> operator-(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
+        /**
+         * @brief Method to perform substraction of one matrix instance and one scalar.
+         * The scalar is substracted to each matrix element.
+         *
+         */
         template<typename U> friend Matrix<U> operator-(const Matrix<U>& m_lhs, const U& scalar);
+        /**
+         * @brief Method to perform substraction of one scalar and one matrix instance.
+         * The scalar is substracted to each matrix element.
+         *
+         */
         template<typename U> friend Matrix<U> operator-(const U& scalar, const Matrix<U>& m_rhs);
 
+        /**
+         * @brief Method to perform the multiplication of two matrix instances.
+         *
+         */
         template<typename U> friend Matrix<U> operator*(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
+        /**
+         * @brief Method to perform the multiplication of one matrix instance and one scalar.
+         * The scalar is multiplied to each matrix element.
+         *
+         */
         template<typename U> friend Matrix<U> operator*(const Matrix<U>& m_lhs, const U& scalar);
+        /**
+         * @brief Method to perform the multiplication of one scalar and one matrix instance.
+         * The scalar is multiplied to each matrix element.
+         *
+         */
         template<typename U> friend Matrix<U> operator*(const U& scalar, const Matrix<U>& m_rhs);
     private:
         std::size_t n_rows_;
@@ -158,7 +256,7 @@ class Matrix {
 
 // Implementation
 
-// Constructor
+// Constructors
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n_rows, std::size_t n_columns): n_rows_{ n_rows }, n_columns_{ n_columns }, data_{ std::vector<T>(n_rows*n_columns,0) } {}
 template<typename T> marsvin::Matrix<T>::Matrix():Matrix(0,0) {}
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n):Matrix(n,n){}
@@ -184,7 +282,7 @@ template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix,std::
 // Methods
 template<typename T> void marsvin::Matrix<T>::SetEntry(std::size_t row,std::size_t column, T entry) {
     std::size_t k = Transform2dTo1d(row,column);
-    data_.at(k) = entry;
+    data_.at(k) = entry; // Change to operator []
 }
 
 template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vector<T> data) {
@@ -209,7 +307,7 @@ template<typename T> void marsvin::Matrix<T>::SetColumn(std::size_t column, std:
 }
 
 template<typename T> void marsvin::Matrix<T>::SetDiagonal(std::vector<T> data) {
-    if ( !IsSquare() ) {
+    if ( !IsSquareMatrix() ) {
         std::cerr << "Matrix should be square nxn. Where n = " << n_rows_  << std::endl;
         throw std::invalid_argument("Matrix should be square");
     }
@@ -263,7 +361,7 @@ template<typename T> std::vector<T> marsvin::Matrix<T>::GetColumn(std::size_t co
 
 template<typename T> std::vector<T> marsvin::Matrix<T>::GetDiagonal() const {
     std::vector<T> vec;
-    if (IsSquare()) {
+    if (IsSquareMatrix()) {
         for (int j = 0;j<n_rows_;j++) {
             vec.push_back(GetEntry(j+1,j+1));
         }
@@ -284,28 +382,13 @@ template<typename T> std::size_t marsvin::Matrix<T>::GetNumberOfColumns() const 
     return n_columns_;
 }
 
-template<typename T> void marsvin::Matrix<T>::Print() const {
-    for (std::size_t j = 0; j < data_.size(); j++) {
-        if ( (j+1) % n_columns_ == 0) {
-            std::cout << data_.at(j) << '\n';
-        } else {
-            std::cout << data_.at(j) << '\t';
-        }
-    };
-}
 
-template<typename T> bool marsvin::Matrix<T>::IsSquare() const {
+template<typename T> bool marsvin::Matrix<T>::IsSquareMatrix() const {
     bool is_square_ = false;
     if (n_rows_ == n_columns_) {
         is_square_ = true;
     }
     return is_square_;
-}
-
-template<typename T> void marsvin::Matrix<T>::ScalarMultiplication(T scalar) {
-    for (std::size_t j = 0; j < data_.size(); j++) {
-        data_.at(j) = data_.at(j)*scalar;
-    }
 }
 
 // Matrix operations
