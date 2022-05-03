@@ -20,7 +20,7 @@ int main() {
     matrix.SetRow(4, row4);
     std::cout << "Matrix with Values:" << std::endl;
     logger_ << matrix;
-    std::cout << "Is Square matrix? :" << matrix.IsSquare() << std::endl;
+    std::cout << "Is Square matrix? :" << matrix.IsSquareMatrix() << std::endl;
     matrix.SetEntry(3,2,99);
     logger_ << matrix;
     // Set matrix with values per row
