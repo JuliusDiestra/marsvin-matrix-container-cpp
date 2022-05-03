@@ -19,21 +19,21 @@ namespace marsvin {
  */
 class Logger {
     public:
-        /*
+        /**
          * @brief Default constructor.
          *
          * Creates Logger instance use to stream marsvin::Matrix and std::vector elements.
          *
          */
         Logger();
-        /*
+        /**
          * @brief Method to print marsvin::Matrix elements.
          *
          * @param matrix Matrix instance to stream elements.
          *
          */
         template<typename T> void operator<<(const marsvin::Matrix<T>& matrix);
-        /*
+        /**
          * @brief Method to print std::vector elements.
          *
          * @param vector Vector instance to stream elements.
