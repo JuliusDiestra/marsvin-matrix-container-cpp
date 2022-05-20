@@ -285,18 +285,41 @@ class Matrix {
          */
         std::vector<T> data_;
         /**
-         * @brief Method to transform a 2D matrix index to the equivalent 1D indext of the vector
+         * @brief Method to transform a 2D matrix index to the equivalent 1D index of the vector.
          * where data is stored.
          *
          * @param row Row index.
          * @param column Column index.
          */
         std::size_t Transform2dTo1d(std::size_t row, std::size_t column) const;
-        std::vector<std::size_t> Transform1dTo2d(std::size_t) const;
+        /**
+         * @brief Method to transform data 1D vector index to the equivalent 2D Matrix index.
+         *
+         * @param index Vector data index.
+         */
+        std::vector<std::size_t> Transform1dTo2d(std::size_t index) const;
+        /**
+         * @brief Method to check if 2 Matrices has the same dimensions.
+         *
+         * Check if the two matrices has the same dimensions.
+         *
+         * @param m_lhs Matrix left hand side.
+         * @param m_rhs Matrix right hand side.
+         */
         static bool CheckSameDimentions(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
+        /**
+         * @brief Method to check if 2 matrices can be multiplied.
+         *
+         * Check if the left hand side matrix number of columns is equal to the right hand side matrix
+         * number of rows.
+         *
+         * @param m_lhs Matrix left hand side.
+         * @param m_rhs Matrix right hand side.
+         */
         static bool CheckMultiplication(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
 };
 
+// ---------------------------
 // Implementation
 
 // Constructors
