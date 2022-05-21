@@ -97,7 +97,7 @@ class Matrix {
         /**
          * @brief Method to set values in a selected matrix row.
          *
-         * @param row Row number.
+         * @param row Row index.
          * @param data Data to store in the selected row.
          *
          */
@@ -105,7 +105,7 @@ class Matrix {
         /**
          * @brief Method to set values in a selected matrix column.
          *
-         * @param column Column number.
+         * @param column Column index.
          * @param data Data to store in the selected column.
          *
          */
@@ -137,24 +137,24 @@ class Matrix {
         void SwapRows(std::size_t i, std::size_t j);
 
         /**
-         *  @brief Method to get matrix entry/index.
+         *  @brief Method to get matrix entry/element.
          *
-         *  @param row Row number.
-         *  @param column Column number.
+         *  @param row Row index.
+         *  @param column Column index.
          *
          */
         T GetEntry(std::size_t row, std::size_t column) const;
         /**
          *  @brief Method to get a matrix row.
          *
-         *  @param row Row number.
+         *  @param row Row index.
          *
          */
         std::vector<T> GetRow(std::size_t row) const;
         /**
          *  @brief Method to get a matrix column.
          *
-         *  @param row Column number.
+         *  @param row Column index.
          *
          */
         std::vector<T> GetColumn(std::size_t column) const;
@@ -194,11 +194,17 @@ class Matrix {
         /**
          * @brief Method to perform the addition of two matrix instances.
          *
+         * @param m_lhs Matrix left hand side.
+         * @param m_rhs Matrix right hand side.
+         *
          */
         template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
         /**
          * @brief Method to perform the addition of one matrix instance and one scalar.
          * The scalar is added to each matrix element.
+         *
+         * @param m_lhs Matrix left hand side.
+         * @param scalar Scalar value.
          *
          */
         template<typename U> friend Matrix<U> operator+(const Matrix<U>& m_lhs, const U& scalar);
@@ -206,11 +212,17 @@ class Matrix {
          * @brief Method to perform the addition of one scalar and one matrix instance.
          * The scalar is added to each matrix element.
          *
+         * @param scalar Scalar value.
+         * @param m_rhs Matrix right hand side.
+         *
          */
         template<typename U> friend Matrix<U> operator+(const U& scalar, const Matrix<U>& m_rhs);
 
         /**
          * @brief Method to perform substraction of two matrix instances.
+         *
+         * @param m_lhs Matrix left hand side.
+         * @param m_rhs Matrix right hand side.
          *
          */
         template<typename U> friend Matrix<U> operator-(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
@@ -218,11 +230,17 @@ class Matrix {
          * @brief Method to perform substraction of one matrix instance and one scalar.
          * The scalar is substracted to each matrix element.
          *
+         * @param m_lhs Matrix left hand side.
+         * @param scalar Scalar value.
+         *
          */
         template<typename U> friend Matrix<U> operator-(const Matrix<U>& m_lhs, const U& scalar);
         /**
          * @brief Method to perform substraction of one scalar and one matrix instance.
          * The scalar is substracted to each matrix element.
+         *
+         * @param scalar Scalar value.
+         * @param m_rhs Matrix right hand side.
          *
          */
         template<typename U> friend Matrix<U> operator-(const U& scalar, const Matrix<U>& m_rhs);
@@ -230,11 +248,17 @@ class Matrix {
         /**
          * @brief Method to perform the multiplication of two matrix instances.
          *
+         * @param m_lhs Matrix left hand side.
+         * @param m_rhs Matrix right hand side.
+         *
          */
         template<typename U> friend Matrix<U> operator*(const Matrix<U>& m_lhs, const Matrix<U>& m_rhs);
         /**
          * @brief Method to perform the multiplication of one matrix instance and one scalar.
          * The scalar is multiplied to each matrix element.
+         *
+         * @param m_lhs Matrix left hand side.
+         * @param scalar Scalar value.
          *
          */
         template<typename U> friend Matrix<U> operator*(const Matrix<U>& m_lhs, const U& scalar);
@@ -242,18 +266,60 @@ class Matrix {
          * @brief Method to perform the multiplication of one scalar and one matrix instance.
          * The scalar is multiplied to each matrix element.
          *
+         * @param scalar Scalar value.
+         * @param m_rhs Matrix right hand side.
+         *
          */
         template<typename U> friend Matrix<U> operator*(const U& scalar, const Matrix<U>& m_rhs);
     private:
+        /**
+         * Matrix number of rows.
+         */
         std::size_t n_rows_;
+        /**
+         * Matrix number of columns.
+         */
         std::size_t n_columns_;
+        /**
+         * Matrix data stored in a one dimension vector.
+         */
         std::vector<T> data_;
-        std::size_t Transform2dTo1d(std::size_t,std::size_t) const;
-        std::vector<std::size_t> Transform1dTo2d(std::size_t) const;
+        /**
+         * @brief Method to transform a 2D matrix index to the equivalent 1D index of the vector.
+         * where data is stored.
+         *
+         * @param row Row index.
+         * @param column Column index.
+         */
+        std::size_t Transform2dTo1d(std::size_t row, std::size_t column) const;
+        /**
+         * @brief Method to transform data 1D vector index to the equivalent 2D Matrix index.
+         *
+         * @param index Vector data index.
+         */
+        std::vector<std::size_t> Transform1dTo2d(std::size_t index) const;
+        /**
+         * @brief Method to check if 2 Matrices has the same dimensions.
+         *
+         * Check if the two matrices has the same dimensions.
+         *
+         * @param m_lhs Matrix left hand side.
+         * @param m_rhs Matrix right hand side.
+         */
         static bool CheckSameDimentions(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
+        /**
+         * @brief Method to check if 2 matrices can be multiplied.
+         *
+         * Check if the left hand side matrix number of columns is equal to the right hand side matrix
+         * number of rows.
+         *
+         * @param m_lhs Matrix left hand side.
+         * @param m_rhs Matrix right hand side.
+         */
         static bool CheckMultiplication(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
 };
 
+// ---------------------------
 // Implementation
 
 // Constructors
@@ -282,13 +348,12 @@ template<typename T> marsvin::Matrix<T>::Matrix(marsvin::Matrix<T>& matrix,std::
 // Methods
 template<typename T> void marsvin::Matrix<T>::SetEntry(std::size_t row,std::size_t column, T entry) {
     std::size_t k = Transform2dTo1d(row,column);
-    data_.at(k) = entry; // Change to operator []
+    data_[k] = entry;
 }
 
 template<typename T> void marsvin::Matrix<T>::SetRow(std::size_t row, std::vector<T> data) {
     if (n_columns_ != data.size() ) {
-        std::cerr << "Wrong Row Matrix size. It must be:" << n_columns_  << std::endl;
-        throw std::invalid_argument("Wrong length of row vector :(");
+        throw std::invalid_argument("Wrong length of row vector.");
     }
     std::size_t k = Transform2dTo1d(row,1);
     data_.insert(data_.begin()+k,data.begin(),data.end());
