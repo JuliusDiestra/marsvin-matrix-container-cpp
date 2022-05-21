@@ -20,6 +20,8 @@ namespace marsvin {
 
 template <typename T>
 class Matrix {
+    private:
+        class EntryProxy;
     public:
         /**
          * @brief Default constructor.
@@ -271,6 +273,14 @@ class Matrix {
          *
          */
         template<typename U> friend Matrix<U> operator*(const U& scalar, const Matrix<U>& m_rhs);
+        /**
+         *  @brief Method to get matrix entry/element using [] operator.
+         *
+         *  @param row Row index.
+         *  @param column Column index.
+         *
+         */
+        EntryProxy operator[](std::size_t row, std::size_t column);
     private:
         /**
          * Matrix number of rows.
@@ -317,10 +327,28 @@ class Matrix {
          * @param m_rhs Matrix right hand side.
          */
         static bool CheckMultiplication(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
+        /*
+         * @brief Proxy class for operator[].
+         * Let the operator read or set a entry value using [].
+         */
+//        class EntryProxy;
+};
+
+template<typename T>
+class Matrix<T>::EntryProxy {
+    public:
+        EntryProxy(marsvin::Matrix<T>& matrix, std::size_t row, std::size_t column);
+        operator T();
+        void operator=(T entry_input);
+    private:
+        Matrix& matrix_;
+        std::size_t row_;
+        std::size_t column_;
 };
 
 // ---------------------------
 // Implementation
+// --------------------------
 
 // Constructors
 template<typename T> marsvin::Matrix<T>::Matrix(std::size_t n_rows, std::size_t n_columns): n_rows_{ n_rows }, n_columns_{ n_columns }, data_{ std::vector<T>(n_rows*n_columns,0) } {}
@@ -611,6 +639,23 @@ template<typename T> bool marsvin::Matrix<T>::CheckMultiplication(const marsvin:
         check = true;
     }
     return check;
+}
+
+//---------------
+// EntryProxy
+//---------------
+template<typename T> typename marsvin::Matrix<T>::EntryProxy marsvin::Matrix<T>::operator[](std::size_t row, std::size_t column) {
+    return EntryProxy(*this,row,column);
+}
+
+template<typename T> marsvin::Matrix<T>::EntryProxy::EntryProxy(marsvin::Matrix<T>& matrix,std::size_t row, std::size_t column) : matrix_{matrix},row_{row},column_{column}{}
+
+template<typename T> marsvin::Matrix<T>::EntryProxy::operator T(){
+    return matrix_.GetEntry(row_,column_);
+}
+
+template<typename T> void marsvin::Matrix<T>::EntryProxy::operator=(T entry_input){
+    matrix_.SetEntry(row_, column_, entry_input);
 }
 
 }
