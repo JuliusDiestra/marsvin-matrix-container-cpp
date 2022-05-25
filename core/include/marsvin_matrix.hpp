@@ -280,7 +280,7 @@ class Matrix {
          *  @param column Column index.
          *
          */
-        EntryProxy operator[](std::size_t row, std::size_t column);
+        EntryProxy operator()(std::size_t row, std::size_t column);
     private:
         /**
          * Matrix number of rows.
@@ -644,7 +644,7 @@ template<typename T> bool marsvin::Matrix<T>::CheckMultiplication(const marsvin:
 //---------------
 // EntryProxy
 //---------------
-template<typename T> typename marsvin::Matrix<T>::EntryProxy marsvin::Matrix<T>::operator[](std::size_t row, std::size_t column) {
+template<typename T> typename marsvin::Matrix<T>::EntryProxy marsvin::Matrix<T>::operator()(std::size_t row, std::size_t column) {
     return EntryProxy(*this,row,column);
 }
 
