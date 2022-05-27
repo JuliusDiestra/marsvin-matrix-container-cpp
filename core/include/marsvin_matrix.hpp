@@ -21,6 +21,13 @@ namespace marsvin {
 template <typename T>
 class Matrix {
     private:
+        /**
+         * @brief Proxy class for operator().
+         *
+         * Proxy class use as middle layer for the two ways of usage of operator().
+         * First case is to read an entry/element value.
+         * Sencond case to set an entry/elemetn value.
+         */
         class EntryProxy;
     public:
         /**
@@ -274,7 +281,7 @@ class Matrix {
          */
         template<typename U> friend Matrix<U> operator*(const U& scalar, const Matrix<U>& m_rhs);
         /**
-         *  @brief Method to get matrix entry/element using [] operator.
+         *  @brief Method to get matrix entry/element using () operator.
          *
          *  @param row Row index.
          *  @param column Column index.
@@ -327,11 +334,6 @@ class Matrix {
          * @param m_rhs Matrix right hand side.
          */
         static bool CheckMultiplication(const marsvin::Matrix<T>& m_lhs, const marsvin::Matrix<T>& m_rhs);
-        /*
-         * @brief Proxy class for operator[].
-         * Let the operator read or set a entry value using [].
-         */
-//        class EntryProxy;
 };
 
 template<typename T>
