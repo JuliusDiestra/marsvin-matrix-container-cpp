@@ -344,7 +344,7 @@ class Matrix {
          *  @param row Row index.
          *  @param column Column index.
          */
-        void CheckIndexBoundaries(std::size_t row, std::size_t column) const;
+        void CheckIndex(std::size_t row, std::size_t column) const;
 };
 
 template<typename T>
@@ -388,7 +388,7 @@ template<typename T> marsvin::Matrix<T>::Matrix(const marsvin::Matrix<T>& matrix
 
 // Methods
 template<typename T> void marsvin::Matrix<T>::SetEntry(std::size_t row,std::size_t column, T entry) {
-    CheckIndexBoundaries(row,column);
+    CheckIndex(row,column);
     std::size_t k = Transform2dTo1d(row,column);
     data_[k] = entry;
 }
@@ -450,7 +450,8 @@ template<typename T> void marsvin::Matrix<T>::SwapRows(std::size_t i, std::size_
 }
 
 template<typename T> T marsvin::Matrix<T>::GetEntry(std::size_t row, std::size_t column) const {
-    return data_.at(Transform2dTo1d(row,column));
+    CheckIndex(row,column);
+    return data_[Transform2dTo1d(row,column)];
 }
 
 template<typename T> std::vector<T> marsvin::Matrix<T>::GetRow(std::size_t row) const {
@@ -469,6 +470,7 @@ template<typename T> std::vector<T> marsvin::Matrix<T>::GetColumn(std::size_t co
 template<typename T> std::vector<T> marsvin::Matrix<T>::GetDiagonal() const {
     std::vector<T> vec;
     if (IsSquareMatrix()) {
+        vec.reserve(n_rows_);
         for (int j = 0;j<n_rows_;j++) {
             vec.push_back(GetEntry(j+1,j+1));
         }
@@ -655,7 +657,7 @@ template<typename T> bool marsvin::Matrix<T>::CheckMultiplication(const marsvin:
     return check;
 }
 
-template<typename T> void marsvin::Matrix<T>::CheckIndexBoundaries(std::size_t row, std::size_t column) const {
+template<typename T> void marsvin::Matrix<T>::CheckIndex(std::size_t row, std::size_t column) const {
     if (row > n_rows_) {
         if (column > n_columns_) {
             throw std::invalid_argument("Index out of bounderies for ROW and COLUMN");
