@@ -38,7 +38,6 @@ jobs:
       - name: Run unit-test
         run: |
           ctest --verbose
-  && cd / && rm -rf /googletest
   build-examples:
     name: Build examples
     runs-on: ubuntu-20.04
