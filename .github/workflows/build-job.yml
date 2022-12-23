@@ -6,20 +6,44 @@ on:
       - main
       - releases/*
 jobs:
-  build-projects:
-    name: Build marsvin library
-    runs-on: ubuntu-18.04
+#  build-projects:
+#    name: Build marsvin library
+#    runs-on: ubuntu-20.04
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Build Project
+#        run: |
+#          rm -rf build
+#          bash build-code.sh
+  build-and-run-unit-test:
+    name: Build and Run unit-test
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Install gtest
+        run: |
+          git clone -q https://github.com/google/googletest.git /googletest
+          mkdir -p /googletest/build \
+          cd /googletest/build \
+          cmake ..
+          make
+          make install
       - name: Build Project
         run: |
           rm -rf build
-          bash build-code.sh
+          mkdir -p build
+          cd build
+          cmake ..
+          make
+      - name: Run unit-test
+        run: |
+          ctest --verbose
+  && cd / && rm -rf /googletest
   build-examples:
     name: Build examples
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build Examples
         run: |
           cd examples
