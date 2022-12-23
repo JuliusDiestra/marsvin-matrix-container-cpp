@@ -23,6 +23,7 @@ jobs:
       - name: Install gtest
         run: |
           mkdir /googletest
+          cd /googletest
           git clone -q https://github.com/google/googletest.git
           mkdir -p /googletest/build \
           cd /googletest/build \
