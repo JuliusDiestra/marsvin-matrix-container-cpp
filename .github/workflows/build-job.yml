@@ -30,9 +30,9 @@ jobs:
           make
           make install
           cd ..
-          pwd
       - name: Build Project
         run: |
+          export PATH="$GITHUB_WORKSPACE/$INSTALL_LOCATION:$PATH"
           pwd
           rm -rf build
           mkdir -p build
