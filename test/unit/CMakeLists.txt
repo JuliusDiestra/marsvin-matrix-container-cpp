@@ -1,4 +1,4 @@
-
+find_package(GTest REQUIRED)
 set(TEST_NAME test_marsvin)
 
 add_executable(${TEST_NAME}
