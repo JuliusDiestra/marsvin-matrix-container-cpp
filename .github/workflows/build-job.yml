@@ -40,6 +40,8 @@ jobs:
           make
       - name: Run unit-test
         run: |
+          pwd
+          cd build
           ctest --verbose
   build-examples:
     name: Build examples
