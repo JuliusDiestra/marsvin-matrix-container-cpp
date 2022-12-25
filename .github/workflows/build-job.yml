@@ -29,10 +29,8 @@ jobs:
           cmake ..
           make
           sudo make install
-          cd ..
       - name: Build Project
         run: |
-          pwd
           rm -rf build
           mkdir -p build
           cd build
@@ -40,7 +38,6 @@ jobs:
           make
       - name: Run unit-test
         run: |
-          pwd
           cd build
           ctest --verbose
   build-examples:
