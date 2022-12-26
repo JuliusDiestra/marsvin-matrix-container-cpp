@@ -359,6 +359,8 @@ class Matrix<T>::EntryProxy {
         std::size_t column_;
 };
 
+} // namespace marsvin
+
 // ---------------------------
 // Implementation
 // --------------------------
@@ -687,6 +689,5 @@ template<typename T> void marsvin::Matrix<T>::EntryProxy::operator=(T entry_inpu
     matrix_.SetEntry(row_, column_, entry_input);
 }
 
-}
 #endif // MARSVIN_CORE_MARSVIN_MATRIX_HPP_
 

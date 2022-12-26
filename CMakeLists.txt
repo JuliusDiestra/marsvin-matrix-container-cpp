@@ -10,3 +10,9 @@ target_include_directories(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/core/include
 )
+
+include(CTest)
+if (BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(test/unit)
+endif()
