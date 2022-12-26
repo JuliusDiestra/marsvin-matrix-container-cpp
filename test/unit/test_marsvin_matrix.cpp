@@ -18,7 +18,7 @@ TEST_F(MatrixTest, Test_Constructor_Empty) {
 TEST_F(MatrixTest, Test_Constructor_SquareMatrix) {
     const std::size_t n_{5};
     cut_ = marsvin::Matrix<float>(n_);
-    EXPECT_EQ(cut_.GetNumberOfRows(),n_);
+    EXPECT_EQ(cut_.GetNumberOfRows(),8);
     EXPECT_EQ(cut_.GetNumberOfColumns(),n_);
 }
 
