@@ -1,4 +1,4 @@
-find_package(GTest REQUIRED)
+
 set(TEST_NAME test_marsvin)
 
 add_executable(${TEST_NAME}
@@ -13,3 +13,4 @@ target_link_libraries(${TEST_NAME}
 )
 
 add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+

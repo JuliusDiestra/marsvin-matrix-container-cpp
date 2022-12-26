@@ -6,15 +6,6 @@ on:
       - main
       - releases/*
 jobs:
-#  build-projects:
-#    name: Build marsvin library
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: Build Project
-#        run: |
-#          rm -rf build
-#          bash build-code.sh
   build-and-run-unit-test:
     name: Build and Run unit-test
     runs-on: ubuntu-20.04
@@ -49,3 +40,4 @@ jobs:
         run: |
           cd examples
           bash build-examples.sh
+
