@@ -30,11 +30,15 @@ class BaseMatrix {
          * Creates matrix of any size. Number of rows and columns are input parameters of constructor.
          * All matrix entries are zero.
          *
-         * @param row Number of rows.
-         * @param column Number of columns.
+         * @param n_rows Number of rows.
+         * @param n_columns Number of columns.
          *
          */
-        BaseMatrix(std::size_t row, std::size_t column);
+        BaseMatrix(std::size_t n_rows, std::size_t n_columns);
+        /*
+         * Base matrix destructor
+         */
+        ~BaseMatrix();
     protected:
         /**
          * Matrix number of rows.
@@ -45,6 +49,10 @@ class BaseMatrix {
          */
         std::size_t n_columns_;
         /*
+         * Matrix size
+         */
+        std::size_t size_;
+        /*
          * Data allocator
          */
         std::allocator<T> allocator_;
@@ -53,6 +61,16 @@ class BaseMatrix {
          */
         T* data_;
 };
+
+template<typename T> BaseMatrix<T>::BaseMatrix(std::size_t n_rows, std::size_t n_columns) :
+  n_rows_{n_rows},
+  n_columns_{n_columns},
+  size_{n_rows_*n_columns_} {
+    if (size_ > 0) {
+        data_ = allocator_.allocate(size_);
+    }
 }
+
+} // namespace marsvin
 
 #endif // MARSVIN_CORE_MARSVIN_BASE_MATRIX_HPP_
