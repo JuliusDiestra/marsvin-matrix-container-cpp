@@ -3,6 +3,7 @@ set(TEST_NAME test_marsvin)
 
 add_executable(${TEST_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_matrix.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_base_matrix.cpp
 )
 
 target_link_libraries(${TEST_NAME}

@@ -7,6 +7,7 @@
 #define MARSVIN_HPP_
 
 // Add marsvin headers here
+#include "marsvin_base_matrix.hpp"
 #include "marsvin_matrix.hpp"
 #include "marsvin_differential.hpp"
 #include "marsvin_logger.hpp"
