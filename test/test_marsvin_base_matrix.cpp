@@ -18,6 +18,3 @@ TEST(BaseMatrix, ConstructBaseMatrix) {
     EXPECT_EQ(COLUMNS_,cut_.columns());
 }
 
-
-TEST(BaseMatrix, SetEntry_01) {
-}

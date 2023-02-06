@@ -10,22 +10,27 @@ namespace marsvin {
 
 enum class ErrorType {
     kOk,
-    kColumnOutOfBoundaries,
-    kRowOutOfBoundaries,
-    kRowAndColumnOutOfBoundaries
+    kRow,
+    kColumn,
+    kRowAndColumn
 };
+
+/**
+ * @class ErrorCode
+ * @brief Error code class
+ */
 
 class ErrorCode {
   public:
-    ErrorCode(){};
+    ErrorCode();
     ErrorCode(ErrorType error_type);
     void set_error_type(ErrorType error_type);
     ErrorType error_type();
     bool ok();
-    static ErrorType Ok();
-    static ErrorType ColumnOutOfBoundaries();
-    static ErrorType RowOutOfBoundaries();
-    static ErrorType RowAndColumnOutOfBoundaries();
+    static ErrorType TypeOk();
+    static ErrorType TypeRow();
+    static ErrorType TypeColumn();
+    static ErrorType TypeRowAndColumn();
   private:
     ErrorType error_type_;
 };
