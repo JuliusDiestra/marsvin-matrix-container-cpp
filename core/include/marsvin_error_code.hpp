@@ -6,18 +6,13 @@
 #ifndef MARSVIN_CORE_MARSVIN_ERROR_CODE_HPP_
 #define MARSVIN_CORE_MARSVIN_ERROR_CODE_HPP_
 
-namespace marsvin {
+#include "marsvin_error_type.hpp"
 
-enum class ErrorType {
-    kOk,
-    kRow,
-    kColumn,
-    kRowAndColumn
-};
+namespace marsvin {
 
 /**
  * @class ErrorCode
- * @brief Error code class
+ * @brief Error code class use to throw exception. This class contains information of the error.
  */
 
 class ErrorCode {
@@ -25,8 +20,8 @@ class ErrorCode {
     ErrorCode();
     ErrorCode(ErrorType error_type);
     void set_error_type(ErrorType error_type);
-    ErrorType error_type();
-    bool ok();
+    ErrorType error_type() const;
+    bool Ok() const;
     static ErrorType TypeOk();
     static ErrorType TypeRow();
     static ErrorType TypeColumn();

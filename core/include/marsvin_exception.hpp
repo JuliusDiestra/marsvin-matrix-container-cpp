@@ -17,7 +17,9 @@ class Exception : public std::out_of_range {
   public:
     Exception();
     Exception(const ErrorCode& error_code);
-    ErrorCode error_code();
+    Exception(ErrorType error_type);
+    void set_error_code(ErrorCode error_code);
+    ErrorCode error_code() const;
   private:
     ErrorCode error_code_;
     std::string ErrorCodeToString(const ErrorCode& error_code);
