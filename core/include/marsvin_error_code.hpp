@@ -22,10 +22,10 @@ class ErrorCode {
     void set_error_type(ErrorType error_type);
     ErrorType error_type() const;
     bool Ok() const;
-    static ErrorType TypeOk();
-    static ErrorType TypeRow();
-    static ErrorType TypeColumn();
-    static ErrorType TypeRowAndColumn();
+    static constexpr ErrorType TypeOk();
+    static constexpr ErrorType TypeRow();
+    static constexpr ErrorType TypeColumn();
+    static constexpr ErrorType TypeRowAndColumn();
   private:
     ErrorType error_type_;
 };

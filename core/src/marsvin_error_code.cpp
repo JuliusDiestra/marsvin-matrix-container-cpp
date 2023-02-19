@@ -25,19 +25,19 @@ bool ErrorCode::Ok() const {
     return bool_;
 }
 
-ErrorType ErrorCode::TypeOk() {
+constexpr ErrorType ErrorCode::TypeOk() {
     return ErrorType::kOk;
 }
 
-ErrorType ErrorCode::TypeRow() {
+constexpr ErrorType ErrorCode::TypeRow() {
     return ErrorType::kRow;
 }
 
-ErrorType ErrorCode::TypeColumn() {
+constexpr ErrorType ErrorCode::TypeColumn() {
     return ErrorType::kColumn;
 }
 
-ErrorType ErrorCode::TypeRowAndColumn() {
+constexpr ErrorType ErrorCode::TypeRowAndColumn() {
     return ErrorType::kRowAndColumn;
 }
 
