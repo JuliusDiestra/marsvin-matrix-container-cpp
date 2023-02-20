@@ -23,13 +23,13 @@ ErrorCode Exception::error_code() const {
 std::string Exception::ErrorCodeToString(const ErrorCode& error_code) {
     std::string string_{};
     switch (error_code.error_type()) {
-        case marsvin::ErrorCode::TypeRow():
+        case marsvin::ErrorType::kRow:
             string_ = "Row index out of limits";
             break;
-        case marsvin::ErrorCode::TypeColumn():
+        case marsvin::ErrorType::kColumn:
             string_ = "Column index out of limits";
             break;
-        case marsvin::ErrorCode::TypeRowAndColumn():
+        case marsvin::ErrorType::kRowAndColumn:
             string_ = "Row and Column indexes out of limits";
             break;
         default:

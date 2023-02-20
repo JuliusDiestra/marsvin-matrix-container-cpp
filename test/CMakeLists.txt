@@ -14,6 +14,7 @@ MarsvinAddTest(
     NAME test_marsvin_exception
     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_exception.cpp
             ../core/src/marsvin_exception.cpp
+            ../core/src/marsvin_error_code.cpp
     INCLUDE_DIR ../core/include
 )
 
