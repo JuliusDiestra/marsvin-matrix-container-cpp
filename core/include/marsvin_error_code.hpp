@@ -21,8 +21,8 @@ class ErrorCode {
     ErrorCode(ErrorType error_type);
     void set_error_type(ErrorType error_type);
     ErrorType error_type() const;
-    bool Ok() const;
-    static ErrorType TypeOk();
+    bool NoError() const;
+    static ErrorType TypeNoError();
     static ErrorType TypeRow();
     static ErrorType TypeColumn();
     static ErrorType TypeRowAndColumn();
