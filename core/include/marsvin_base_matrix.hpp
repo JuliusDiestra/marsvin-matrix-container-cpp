@@ -17,6 +17,10 @@ namespace marsvin {
 template <typename T>
 class BaseMatrix {
     public:
+        using value_type = T;
+        using size_type = std::size_t;
+        using reference = value_type&;
+        using const_reference = const value_type&;
         /**
          * @brief Default constructor.
          *
@@ -111,7 +115,8 @@ class BaseMatrix {
         void CheckIndex(std::size_t row, std::size_t column) const;
 };
 
-template<typename T> BaseMatrix<T>::BaseMatrix(std::size_t rows, std::size_t columns) :
+template<typename T>
+BaseMatrix<T>::BaseMatrix(std::size_t rows, std::size_t columns) :
   rows_{rows},
   columns_{columns},
   size_{rows_*columns_} {
@@ -122,16 +127,18 @@ template<typename T> BaseMatrix<T>::BaseMatrix(std::size_t rows, std::size_t col
     }
 }
 
-template<typename T> BaseMatrix<T>::BaseMatrix() : BaseMatrix(0, 0) {
-}
+template<typename T>
+BaseMatrix<T>::BaseMatrix() : BaseMatrix(0, 0) {}
 
-template<typename T> BaseMatrix<T>::~BaseMatrix() {
+template<typename T>
+BaseMatrix<T>::~BaseMatrix() {
     if (!empty()) {
         allocator_.deallocate(data_, size_);
     }
 }
 
-template<typename T> bool BaseMatrix<T>::empty() const {
+template<typename T>
+bool BaseMatrix<T>::empty() const {
     bool empty_ = false;
     if (data_ == nullptr) {
         empty_ = true;
@@ -139,27 +146,32 @@ template<typename T> bool BaseMatrix<T>::empty() const {
     return empty_;
 }
 
-template<typename T> std::size_t BaseMatrix<T>::rows() const {
+template<typename T>
+std::size_t BaseMatrix<T>::rows() const {
     return rows_;
 }
 
-template<typename T> std::size_t BaseMatrix<T>::columns() const {
+template<typename T>
+std::size_t BaseMatrix<T>::columns() const {
     return columns_;
 }
 
-template<typename T> void marsvin::BaseMatrix<T>::SetEntry(std::size_t row,std::size_t column, T entry) {
+template<typename T>
+void marsvin::BaseMatrix<T>::SetEntry(std::size_t row,std::size_t column, T entry) {
     CheckIndex(row,column);
     std::size_t k = Transform2dTo1d(row,column);
     data_[k] = entry;
 }
 
 // Protected
-template<typename T> std::size_t marsvin::BaseMatrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) const {
+template<typename T>
+std::size_t marsvin::BaseMatrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) const {
     std::size_t k = column + columns_*(row);
     return k;
 }
 
-template<typename T> void marsvin::BaseMatrix<T>::CheckIndex(std::size_t row, std::size_t column) const {
+template<typename T>
+void marsvin::BaseMatrix<T>::CheckIndex(std::size_t row, std::size_t column) const {
     if (row >= rows_ ) {
         if (column >= columns_) {
             throw std::invalid_argument("Index out of bounderies for ROW and COLUMN");
