@@ -1,5 +1,4 @@
 
-
 #include "marsvin_exception.hpp"
 
 namespace marsvin {
@@ -7,14 +6,10 @@ namespace marsvin {
 Exception::Exception(const ErrorCode& error_code) :
   std::out_of_range(ErrorCodeToString(error_code)),
   error_code_{error_code} {
-    if (error_code_.Ok()) {
+    if (error_code_.NoError()) {
         throw std::invalid_argument("marsvin::Exception constructor argument should be an ErrorCode class storing a failure.");
     }
   }
-
-void Exception::set_error_code(ErrorCode error_code) {
-    error_code_ = error_code;
-}
 
 ErrorCode Exception::error_code() const {
     return error_code_;

@@ -14,7 +14,7 @@ namespace marsvin {
  *
  */
 enum class ErrorType {
-    kOk,                // No error.
+    kNoError,           // No error.
     kRow,               // Row index out of limits.
     kColumn,            // Column index out of limits.
     kRowAndColumn       // Row and column indexes out of limits.

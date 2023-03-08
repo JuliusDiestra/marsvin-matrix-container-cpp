@@ -22,6 +22,7 @@ MarsvinAddTest(
     NAME test_marsvin_base_matrix
     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_base_matrix.cpp
     INCLUDE_DIR ${PROJECT_SOURCE_DIR}/core/include
+    LINK_LIBRARIES marsvin
 )
 
 

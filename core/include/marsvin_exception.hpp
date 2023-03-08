@@ -15,8 +15,8 @@ namespace marsvin {
 
 class Exception : public std::out_of_range {
   public:
-    Exception(const ErrorCode& error_code);
-    void set_error_code(ErrorCode error_code);
+    Exception() = delete;
+    explicit Exception(const ErrorCode& error_code);
     ErrorCode error_code() const;
   private:
     ErrorCode error_code_;

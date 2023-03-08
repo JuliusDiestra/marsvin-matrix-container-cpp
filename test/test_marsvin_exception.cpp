@@ -2,15 +2,13 @@
 #include "marsvin_exception.hpp"
 
 #include "gtest/gtest.h"
-#include <iostream>
 
 TEST(Exception, Constructor_01) {
-    marsvin::ErrorCode error_code_(marsvin::ErrorCode::TypeOk());
+    marsvin::ErrorCode error_code_(marsvin::ErrorCode::TypeNoError());
     bool flag_{false};
     try {
         marsvin::Exception cut_(error_code_);
     } catch (const std::invalid_argument& exception_) {
-        std::cout << exception_.what() << std::endl;
         flag_ = true;
     }
     ASSERT_TRUE(flag_);

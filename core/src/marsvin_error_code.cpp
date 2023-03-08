@@ -4,7 +4,7 @@
 namespace marsvin {
 
 ErrorCode::ErrorCode() :
-    error_type_{ErrorType::kOk} {}
+    error_type_{ErrorType::kNoError} {}
 
 ErrorCode::ErrorCode(ErrorType error_type) :
     error_type_{error_type} {}
@@ -17,16 +17,18 @@ ErrorType ErrorCode::error_type() const {
     return error_type_;
 }
 
-bool ErrorCode::Ok() const {
-    bool bool_{false};
-    if (error_type_ == ErrorType::kOk) {
+bool ErrorCode::NoError() const {
+    bool bool_;
+    if (error_type_ == ErrorType::kNoError) {
         bool_ = true;
+    } else {
+        bool_ = false;
     }
     return bool_;
 }
 
-ErrorType ErrorCode::TypeOk() {
-    return ErrorType::kOk;
+ErrorType ErrorCode::TypeNoError() {
+    return ErrorType::kNoError;
 }
 
 ErrorType ErrorCode::TypeRow() {
