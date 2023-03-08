@@ -48,13 +48,6 @@ std::size_t BaseMatrix<T>::columns() const {
 }
 
 template<typename T>
-void marsvin::BaseMatrix<T>::SetEntry(std::size_t row,std::size_t column, T entry) {
-    CheckIndex(row,column);
-    std::size_t k = Transform2dTo1d(row,column);
-    data_[k] = entry;
-}
-
-template<typename T>
 T& marsvin::BaseMatrix<T>::at(std::size_t row,std::size_t column) {
     CheckIndex(row,column);
     return data_[Transform2dTo1d(row,column)];

@@ -58,24 +58,14 @@ class BaseMatrix {
          *
          */
         std::size_t columns() const;
+
         /**
-         * @brief Method to set matrix entry/element value.
-         *
-         * @param row Row index.
-         * @param colum Column index.
-         * @param entry Entry value.
-         *
-         */
-        void SetEntry(std::size_t row, std::size_t column, T entry);
-        /**
-         *  @brief Method to get matrix entry/element.
+         *  @brief Method to get and set matrix entry/element.
          *
          *  @param row Row index.
          *  @param column Column index.
          *
          */
-        T GetEntry(std::size_t row, std::size_t column) const;
-
         T& at(std::size_t row, std::size_t column);
     protected:
         /**

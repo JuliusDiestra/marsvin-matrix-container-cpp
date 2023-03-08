@@ -13,12 +13,21 @@ TEST(BaseMatrix, ConstructBaseMatrix) {
     constexpr std::size_t ROWS_ = 3;
     constexpr std::size_t COLUMNS_ = 4;
     marsvin::BaseMatrix<int> cut_(ROWS_, COLUMNS_);
-    EXPECT_TRUE(!cut_.empty());
     EXPECT_EQ(ROWS_,cut_.rows());
     EXPECT_EQ(COLUMNS_,cut_.columns());
 }
 
-TEST(BaseMatrix, method_at_01) {
+
+TEST(BaseMatrix, method_empty_01) {
+    marsvin::BaseMatrix<int> cut_;
+    EXPECT_TRUE(cut_.empty());
+}
+
+TEST(BaseMatrix, method_empty_02) {
+    marsvin::BaseMatrix<int> cut_(2,5);
+    EXPECT_FALSE(cut_.empty());
+}
+TEST(BaseMatrix, method_at_ReadAndSet) {
     constexpr std::size_t ROWS_ = 2;
     constexpr std::size_t COLUMNS_ = 2;
     marsvin::BaseMatrix<int> cut_(ROWS_, COLUMNS_);
