@@ -4,87 +4,44 @@ Standard: Auto
 BasedOnStyle: Google
 
 IndentWidth: 4
-
 AccessModifierOffset: -2
-# Access modifiers of class will have 2 of identation.
-# Example:
-#   class Marsvin {
-#     public:
-#       int counter_;
-#   }
-#
+
 
 AllowAllParametersOfDeclarationOnNextLine: false
-# First argument of a function always in same line.
-# Example:
-#   void myFunction(int arg1, int arg2)
-#
-
-AllowShortFunctionsOnASingleLine: None
-# Never merge short functions in one line
-# Example:
-#   int myFunction(int arg1, int arg2) {
-#      return arg1 + arg2;
-#   }
-
-AllowShortIfStatementsOnASingleLine: false
-# If statement always in multiple lines
-# Example:
-#   if (var == 10) {
-#       Foo();
-#   }
-#
-
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Empty
 AllowShortLoopsOnASingleLine: false
-# Always multiple lines for loops.
-# Example:
-#   for(std::size_t i = 0; i < 10; ++i) {
-#       Foo();
-#   }
-#
+
+AlwaysBreakTemplateDeclarations: Yes
 
 BinPackArguments: false
 BinPackParameters: false
-# Only 2 scenerios. All function arguments
-# in the same line, or each argument in a line.
-# Example:
-#   void myFunction(int arg1, int arg2)
-#
-#   or
-#
-#   void myFunction(int arg1,
-#                   int arg2)
-#
 
 BreakBeforeBraces: Attach
-# Always attached braces
-# Example:
-#   class MyClass {
-#     public:
-#   }
+BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterComma
+
+ConstructorInitializerIndentWidth: 2
 
 KeepEmptyLinesAtTheStartOfBlocks: true
-# Let empty line after block starts
-# if (bool_) {
-#
-#   something;
-# }
-#
 
 SpaceBeforeInheritanceColon: true
 #
 # class ChildClass : public ParentClass {
 # }
 
-BreakConstructorInitializers: AfterColon
 PackConstructorInitializers: Never
+
+PointerAlignment: Left
+QualifierAlignment: Left
+ReferenceAlignment: Left
+
 ConstructorInitializerIndentWidth: 2
 SpaceBeforeCtorInitializerColon: true
 
-AllowShortCaseLabelsOnASingleLine: false
-AllowShortEnumsOnASingleLine: false
-AllowShortIfStatementsOnASingleLine: Never
-AllowShortLambdasOnASingleLine: Empty
-
-AlwaysBreakTemplateDeclarations: Yes
+NamespaceIndentation: None
 
