@@ -1,0 +1,23 @@
+name: Build job
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+      - releases/*
+
+jobs:
+  clang-format-check:
+    name: Run clang-format-15
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install clang-format-15
+        run: |
+          wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+          sudo apt-add-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-15 main"
+          sudo apt-get update
+          sudo apt-get install -y clang-15 clang-format-15
+      - name: Check clang-format-15
+        run: |
+          clang-format-15 --help
