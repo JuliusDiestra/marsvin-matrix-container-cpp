@@ -10,7 +10,7 @@ template<typename T>
 BaseMatrix<T>::BaseMatrix(std::size_t rows, std::size_t columns) :
   rows_{rows},
   columns_{columns},
-  size_{rows_*columns_} {
+  size_{rows_ * columns_} {
     if (size_ > 0) {
         data_ = allocator_.allocate(size_);
     } else {
@@ -19,7 +19,8 @@ BaseMatrix<T>::BaseMatrix(std::size_t rows, std::size_t columns) :
 }
 
 template<typename T>
-BaseMatrix<T>::BaseMatrix() : BaseMatrix(0, 0) {}
+BaseMatrix<T>::BaseMatrix() :
+  BaseMatrix(0, 0) {}
 
 template<typename T>
 BaseMatrix<T>::~BaseMatrix() {
@@ -48,22 +49,24 @@ std::size_t BaseMatrix<T>::columns() const {
 }
 
 template<typename T>
-T& marsvin::BaseMatrix<T>::at(std::size_t row,std::size_t column) {
-    CheckIndex(row,column);
-    return data_[Transform2dTo1d(row,column)];
+T& marsvin::BaseMatrix<T>::at(std::size_t row, std::size_t column) {
+    CheckIndex(row, column);
+    return data_[Transform2dTo1d(row, column)];
 }
 
 /*
  * Protected
  */
 template<typename T>
-std::size_t marsvin::BaseMatrix<T>::Transform2dTo1d(std::size_t row,std::size_t column) const {
-    std::size_t k = column + columns_*(row);
+std::size_t marsvin::BaseMatrix<T>::Transform2dTo1d(std::size_t row,
+                                                    std::size_t column) const {
+    std::size_t k = column + columns_ * (row);
     return k;
 }
 
 template<typename T>
-void marsvin::BaseMatrix<T>::CheckIndex(std::size_t row, std::size_t column) const {
+void marsvin::BaseMatrix<T>::CheckIndex(std::size_t row,
+                                        std::size_t column) const {
     if ((row >= rows_) && (column >= columns_)) {
         throw marsvin::Exception(marsvin::ErrorCode::TypeRowAndColumn());
     }
@@ -75,6 +78,6 @@ void marsvin::BaseMatrix<T>::CheckIndex(std::size_t row, std::size_t column) con
     }
 }
 
-} // namespace marsvin
+}  // namespace marsvin
 
-#endif // MARSVIN_CORE_MARSVIN_BASE_MATRIX_IMPL_HPP_
+#endif  // MARSVIN_CORE_MARSVIN_BASE_MATRIX_IMPL_HPP_

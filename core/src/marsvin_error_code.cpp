@@ -4,10 +4,10 @@
 namespace marsvin {
 
 ErrorCode::ErrorCode() :
-    error_type_{ErrorType::kNoError} {}
+  error_type_{ErrorType::kNoError} {}
 
 ErrorCode::ErrorCode(ErrorType error_type) :
-    error_type_{error_type} {}
+  error_type_{error_type} {}
 
 void ErrorCode::set_error_type(ErrorType error_type) {
     error_type_ = error_type;
@@ -43,4 +43,4 @@ ErrorType ErrorCode::TypeRowAndColumn() {
     return ErrorType::kRowAndColumn;
 }
 
-} // namespace marsvin
+}  // namespace marsvin

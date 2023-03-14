@@ -7,9 +7,11 @@ Exception::Exception(const ErrorCode& error_code) :
   std::out_of_range(ErrorCodeToString(error_code)),
   error_code_{error_code} {
     if (error_code_.NoError()) {
-        throw std::invalid_argument("marsvin::Exception constructor argument should be an ErrorCode class storing a failure.");
+        throw std::invalid_argument(
+            "marsvin::Exception constructor argument should be an ErrorCode "
+            "class storing a failure.");
     }
-  }
+}
 
 ErrorCode Exception::error_code() const {
     return error_code_;
@@ -33,4 +35,4 @@ std::string Exception::ErrorCodeToString(const ErrorCode& error_code) {
     return string_;
 }
 
-} // namespace marsvin
+}  // namespace marsvin

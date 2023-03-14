@@ -1,0 +1,48 @@
+---
+Language: Cpp
+Standard: Auto
+BasedOnStyle: Google
+
+IndentWidth: 4
+AccessModifierOffset: -2
+ColumnLimit: 80
+
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Empty
+AllowShortLoopsOnASingleLine: false
+
+AlwaysBreakTemplateDeclarations: Yes
+SpaceAfterTemplateKeyword: false
+
+BinPackArguments: false
+BinPackParameters: false
+
+BreakBeforeBraces: Attach
+BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterComma
+
+ConstructorInitializerIndentWidth: 2
+
+KeepEmptyLinesAtTheStartOfBlocks: true
+
+SpaceBeforeInheritanceColon: true
+#
+# class ChildClass : public ParentClass {
+# }
+
+PackConstructorInitializers: Never
+
+PointerAlignment: Left
+QualifierAlignment: Left
+ReferenceAlignment: Left
+
+ConstructorInitializerIndentWidth: 2
+SpaceBeforeCtorInitializerColon: true
+
+NamespaceIndentation: None
+
