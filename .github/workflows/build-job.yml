@@ -42,6 +42,6 @@ jobs:
           sudo apt-add-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-15 main"
           sudo apt-get update
           sudo apt-get install -y clang-15 clang-format-15
-      - name: Check clang-format-15
+      - name: Run clang-format-15 in source code
         run: |
-          clang-format-15 --help
+          clang-format-15 --Werror --dry-run core/include/* core/src/*
