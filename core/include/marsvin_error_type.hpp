@@ -10,16 +10,17 @@ namespace marsvin {
 
 /**
  * @enum ErrorType
- * @brief Enum to clasify different runtime errors during operations with matrices.
+ * @brief Enum to clasify different runtime errors during operations with
+ * matrices.
  *
  */
 enum class ErrorType {
-    kNoError,           // No error.
-    kRow,               // Row index out of limits.
-    kColumn,            // Column index out of limits.
-    kRowAndColumn       // Row and column indexes out of limits.
+    kNoError,      // No error.
+    kRow,          // Row index out of limits.
+    kColumn,       // Column index out of limits.
+    kRowAndColumn  // Row and column indexes out of limits.
 };
 
-} // namespace marsvin
+}  // namespace marsvin
 
-#endif // MARSVIN_CORE_MARSVIN_ERROR_TYPE_HPP_
+#endif  // MARSVIN_CORE_MARSVIN_ERROR_TYPE_HPP_

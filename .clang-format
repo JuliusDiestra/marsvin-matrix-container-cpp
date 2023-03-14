@@ -5,7 +5,7 @@ BasedOnStyle: Google
 
 IndentWidth: 4
 AccessModifierOffset: -2
-
+ColumnLimit: 80
 
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: Empty
@@ -17,6 +17,7 @@ AllowShortLambdasOnASingleLine: Empty
 AllowShortLoopsOnASingleLine: false
 
 AlwaysBreakTemplateDeclarations: Yes
+SpaceAfterTemplateKeyword: false
 
 BinPackArguments: false
 BinPackParameters: false

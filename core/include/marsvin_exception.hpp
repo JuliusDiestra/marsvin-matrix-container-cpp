@@ -18,11 +18,12 @@ class Exception : public std::out_of_range {
     Exception() = delete;
     explicit Exception(const ErrorCode& error_code);
     ErrorCode error_code() const;
+
   private:
     ErrorCode error_code_;
     std::string ErrorCodeToString(const ErrorCode& error_code);
 };
 
-} // namespace marsvin
+}  // namespace marsvin
 
-#endif // MARSVIN_CORE_MARSVIN_EXCEPTION_HPP_
+#endif  // MARSVIN_CORE_MARSVIN_EXCEPTION_HPP_

@@ -12,7 +12,8 @@ namespace marsvin {
 
 /**
  * @class ErrorCode
- * @brief Error code class use to throw exception. This class contains information of the error.
+ * @brief Error code class use to throw exception. This class contains
+ * information of the error.
  */
 
 class ErrorCode {
@@ -26,10 +27,11 @@ class ErrorCode {
     static ErrorType TypeRow();
     static ErrorType TypeColumn();
     static ErrorType TypeRowAndColumn();
+
   private:
     ErrorType error_type_;
 };
 
-} // namespace marsvin
+}  // namespace marsvin
 
-#endif // MARSVIN_CORE_MARSVIN_ERROR_CODE_HPP_
+#endif  // MARSVIN_CORE_MARSVIN_ERROR_CODE_HPP_
