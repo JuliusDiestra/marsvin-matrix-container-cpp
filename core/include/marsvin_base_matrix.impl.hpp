@@ -31,9 +31,11 @@ BaseMatrix<T>::~BaseMatrix() {
 
 template<typename T>
 bool BaseMatrix<T>::empty() const {
-    bool empty_ = false;
+    bool empty_;
     if (data_ == nullptr) {
         empty_ = true;
+    } else {
+        empty_ = false;
     }
     return empty_;
 }
@@ -53,6 +55,8 @@ T& marsvin::BaseMatrix<T>::at(std::size_t row, std::size_t column) {
     CheckIndex(row, column);
     return data_[Transform2dTo1d(row, column)];
 }
+
+
 
 /*
  * Protected
