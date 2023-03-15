@@ -51,13 +51,58 @@ std::size_t BaseMatrix<T>::columns() const {
 }
 
 template<typename T>
-T& marsvin::BaseMatrix<T>::at(std::size_t row, std::size_t column) {
+const T& BaseMatrix<T>::at(std::size_t row, std::size_t column) const {
     CheckIndex(row, column);
     return data_[Transform2dTo1d(row, column)];
 }
 
+template<typename T>
+T& BaseMatrix<T>::at(std::size_t row, std::size_t column) {
+    return const_cast<T&>(const_cast<const BaseMatrix*>(this)->at(row, column));
+}
 
+template<typename T>
+void BaseMatrix<T>::resize(std::size_t resize_rows, std::size_t resize_columns) {
+    if ((resize_rows == rows_) && (resize_columns == columns_)) {
+        return;
+    } else {
+        std::size_t new_size_ = resize_rows * resize_columns;
+        T* data_resize_ = allocator_.allocate(resize_rows * resize_columns);
+        std::fill(data_resize_,data_resize_ + new_size_, 0);
+        if (resize_rows >= rows_) {
+            if (resize_columns >= columns_) {
+                // CASE 1 : New matrix bigger.
+                for (std::size_t j = 0; j < rows_; ++j) {
+                    std::copy(data_ + j*columns_, data_ + (j+1)*columns_, data_resize_ + j*resize_columns);
+                }
+            } else {
+                // CASE 2 : Resized matrix cut down by column
+                for (std::size_t j = 0; j < rows_; ++j) {
+                    std::copy(data_ + j*columns_, data_ + j*columns_ + resize_columns, data_resize_ + j*resize_columns);
+                }
+            }
+        } else {
+            if (resize_columns >= columns_) {
+                // CASE 3 : Resized matrix cut down by row
+            } else {
+                // CASE 4 : Resized matrx cut down column and row
+            }
+        }
+        // Allocate ande deallocate
+        allocator_.deallocate(data_, size_);
+        data_ = allocator_.allocate(new_size_);
+        std::copy(data_resize_, data_resize_ + new_size_, data_);
+        allocator_.deallocate(data_resize_, new_size_);
+        // Set new rows and columns
+        size_ = new_size_;
+        rows_ = resize_rows;
+        columns_ = resize_columns;
+    }
+}
 
+template<typename T>
+void BaseMatrix<T>::clear() {
+}
 /*
  * Protected
  */

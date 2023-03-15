@@ -1,6 +1,7 @@
 
 #include "gtest/gtest.h"
 #include "marsvin_base_matrix.hpp"
+#include "marsvin_logger.hpp"
 
 TEST(BaseMatrix, ConstructEmptyBaseMatrix) {
     marsvin::BaseMatrix<int> cut_;
@@ -71,5 +72,80 @@ TEST(BaseMatrix, method_at_Exception_ErrorRowAndColumnType) {
         cut_.at(2,2) = 10;
     } catch (const marsvin::Exception& exception_) {
         EXPECT_EQ(exception_.error_code().error_type(), marsvin::ErrorCode::TypeRowAndColumn());
+    }
+}
+
+TEST(BaseMatrix, method_resize_BiggerMatrix) {
+    marsvin::Logger logger_;
+    // Original Size
+    constexpr std::size_t kRows = 4;
+    constexpr std::size_t kColumns = 5;
+    // New Size
+    constexpr std::size_t kRowsResize = 6;
+    constexpr std::size_t kColumnsResize = 8;
+    // Create matrix
+    marsvin::BaseMatrix<int> cut_(kRows, kColumns);
+    // Fill matrix elements with values
+    for (std::size_t r = 0; r < kRows ; ++r) {
+        for (std::size_t c = 0; c < kColumns; ++c) {
+            cut_.at(r,c) = c + r*kColumns + 1;
+        }
+    }
+    logger_ << cut_;
+    cut_.resize(kRowsResize, kColumnsResize);
+    std::cout << "Resized matrix :" << std::endl;
+    logger_ << cut_;
+    EXPECT_EQ(cut_.rows(),kRowsResize);
+    EXPECT_EQ(cut_.columns(),kColumnsResize);
+    for (std::size_t r = 0; r < kRows ; ++r) {
+        for (std::size_t c = 0; c < kColumns; ++c) {
+            EXPECT_EQ(cut_.at(r,c), c + r*kColumns + 1);
+        }
+    }
+    // Check the addional entries are ZERO
+    for (std::size_t r = 0; r < kRows; ++r) {
+        for (std::size_t c = kColumns; c < kColumnsResize; ++c) {
+            EXPECT_EQ(cut_.at(r,c),0);
+        }
+    }
+    for (std::size_t r = kRows; r < kRowsResize; ++r) {
+        for (std::size_t c = 0; c < kColumns; ++c) {
+            EXPECT_EQ(cut_.at(r,c),0);
+        }
+    }
+}
+
+TEST(BaseMatrix, method_resize_HigherRowsLowerColums) {
+    marsvin::Logger logger_;
+    // Original Size
+    constexpr std::size_t kRows = 4;
+    constexpr std::size_t kColumns = 5;
+    // New Size
+    constexpr std::size_t kRowsResize = 6;
+    constexpr std::size_t kColumnsResize = 3;
+    // Create matrix
+    marsvin::BaseMatrix<int> cut_(kRows, kColumns);
+    // Fill matrix elements with values
+    for (std::size_t r = 0; r < kRows ; ++r) {
+        for (std::size_t c = 0; c < kColumns; ++c) {
+            cut_.at(r,c) = c + r*kColumns + 1;
+        }
+    }
+    logger_ << cut_;
+    cut_.resize(kRowsResize, kColumnsResize);
+    std::cout << "Resized matrix :" << std::endl;
+    logger_ << cut_;
+    EXPECT_EQ(cut_.rows(),kRowsResize);
+    EXPECT_EQ(cut_.columns(),kColumnsResize);
+    for (std::size_t r = 0; r < kRows ; ++r) {
+        for (std::size_t c = 0; c < kColumnsResize; ++c) {
+            EXPECT_EQ(cut_.at(r,c), c + r*kColumns + 1);
+        }
+    }
+    // Check the addional entries are ZERO
+    for (std::size_t r = kRows; r < kRowsResize; ++r) {
+        for (std::size_t c = 0; c < kColumnsResize; ++c) {
+            EXPECT_EQ(cut_.at(r,c),0);
+        }
     }
 }

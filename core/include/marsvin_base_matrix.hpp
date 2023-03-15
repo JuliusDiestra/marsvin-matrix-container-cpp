@@ -35,8 +35,8 @@ class BaseMatrix {
      * Creates matrix of any size. Number of rows and columns are input
      * parameters of constructor. All matrix entries are zero.
      *
-     * @param n_rows Number of rows.
-     * @param n_columns Number of columns.
+     * @param rows Number of rows.
+     * @param columns Number of columns.
      *
      */
     BaseMatrix(std::size_t rows, std::size_t columns);
@@ -67,6 +67,20 @@ class BaseMatrix {
      *
      */
     T& at(std::size_t row, std::size_t column);
+
+    const T& at(std::size_t row, std::size_t column) const;
+
+    /**
+     * @brief Method to resize matrix container.
+     *
+     * @param rows Number of rows
+     * @param columns Number of columns
+     *
+     */
+    void resize(std::size_t rows, std::size_t columns);
+
+
+    void clear();
 
   protected:
     /**
