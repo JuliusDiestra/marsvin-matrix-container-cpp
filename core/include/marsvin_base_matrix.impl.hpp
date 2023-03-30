@@ -73,7 +73,7 @@ void BaseMatrix<T>::resize(std::size_t resize_rows, std::size_t resize_columns) 
             if (resize_columns >= columns_) {
                 // CASE 1 : New matrix bigger.
                 for (std::size_t j = 0; j < rows_; ++j) {
-                    std::copy(data_ + j*columns_, data_ + (j+1)*columns_, data_resize_ + j*resize_columns);
+                    std::copy(data_ + j*columns_, data_ + j*columns_ + columns_, data_resize_ + j*resize_columns);
                 }
             } else {
                 // CASE 2 : Resized matrix cut down by column
@@ -84,8 +84,14 @@ void BaseMatrix<T>::resize(std::size_t resize_rows, std::size_t resize_columns) 
         } else {
             if (resize_columns >= columns_) {
                 // CASE 3 : Resized matrix cut down by row
+                for (std::size_t j = 0; j < resize_rows; ++j) {
+                    std::copy(data_ + j*columns_, data_ + j*columns_ + columns_, data_resize_ + j*resize_columns);
+                }
             } else {
-                // CASE 4 : Resized matrx cut down column and row
+                // CASE 4 : Resized matrix cut down column and row
+                for (std::size_t j = 0; j < resize_rows; ++j) {
+                    std::copy(data_ + j*columns_, data_ + j*columns_ + resize_columns, data_resize_ + j*resize_columns);
+                }
             }
         }
         // Allocate ande deallocate
