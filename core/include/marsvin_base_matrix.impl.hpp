@@ -62,35 +62,44 @@ T& BaseMatrix<T>::at(std::size_t row, std::size_t column) {
 }
 
 template<typename T>
-void BaseMatrix<T>::resize(std::size_t resize_rows, std::size_t resize_columns) {
+void BaseMatrix<T>::resize(std::size_t resize_rows,
+                           std::size_t resize_columns) {
     if ((resize_rows == rows_) && (resize_columns == columns_)) {
         return;
     } else {
         std::size_t new_size_ = resize_rows * resize_columns;
         T* data_resize_ = allocator_.allocate(resize_rows * resize_columns);
-        std::fill(data_resize_,data_resize_ + new_size_, 0);
+        std::fill(data_resize_, data_resize_ + new_size_, 0);
         if (resize_rows >= rows_) {
             if (resize_columns >= columns_) {
                 // CASE 1 : New matrix bigger.
                 for (std::size_t j = 0; j < rows_; ++j) {
-                    std::copy(data_ + j*columns_, data_ + j*columns_ + columns_, data_resize_ + j*resize_columns);
+                    std::copy(data_ + j * columns_,
+                              data_ + j * columns_ + columns_,
+                              data_resize_ + j * resize_columns);
                 }
             } else {
                 // CASE 2 : Resized matrix cut down by column
                 for (std::size_t j = 0; j < rows_; ++j) {
-                    std::copy(data_ + j*columns_, data_ + j*columns_ + resize_columns, data_resize_ + j*resize_columns);
+                    std::copy(data_ + j * columns_,
+                              data_ + j * columns_ + resize_columns,
+                              data_resize_ + j * resize_columns);
                 }
             }
         } else {
             if (resize_columns >= columns_) {
                 // CASE 3 : Resized matrix cut down by row
                 for (std::size_t j = 0; j < resize_rows; ++j) {
-                    std::copy(data_ + j*columns_, data_ + j*columns_ + columns_, data_resize_ + j*resize_columns);
+                    std::copy(data_ + j * columns_,
+                              data_ + j * columns_ + columns_,
+                              data_resize_ + j * resize_columns);
                 }
             } else {
                 // CASE 4 : Resized matrix cut down column and row
                 for (std::size_t j = 0; j < resize_rows; ++j) {
-                    std::copy(data_ + j*columns_, data_ + j*columns_ + resize_columns, data_resize_ + j*resize_columns);
+                    std::copy(data_ + j * columns_,
+                              data_ + j * columns_ + resize_columns,
+                              data_resize_ + j * resize_columns);
                 }
             }
         }
@@ -107,8 +116,7 @@ void BaseMatrix<T>::resize(std::size_t resize_rows, std::size_t resize_columns) 
 }
 
 template<typename T>
-void BaseMatrix<T>::clear() {
-}
+void BaseMatrix<T>::clear() {}
 /*
  * Protected
  */

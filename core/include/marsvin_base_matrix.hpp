@@ -79,7 +79,6 @@ class BaseMatrix {
      */
     void resize(std::size_t rows, std::size_t columns);
 
-
     void clear();
 
   protected:

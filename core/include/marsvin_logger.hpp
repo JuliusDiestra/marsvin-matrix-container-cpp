@@ -58,9 +58,9 @@ void marsvin::Logger::operator<<(const marsvin::BaseMatrix<T>& matrix) {
     for (std::size_t r = 0; r < matrix.rows(); ++r) {
         for (std::size_t c = 0; c < matrix.columns(); ++c) {
             if (c == (matrix.columns() - 1)) {
-                std::cout << matrix.at(r,c) << '\n';
+                std::cout << matrix.at(r, c) << '\n';
             } else {
-                std::cout << matrix.at(r,c) << '\t';
+                std::cout << matrix.at(r, c) << '\t';
             }
         }
     };
