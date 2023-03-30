@@ -9,7 +9,7 @@
 #include <iostream>
 #include <vector>
 
-#include "marsvin_matrix.hpp"
+#include "marsvin_base_matrix.hpp"
 
 namespace marsvin {
 
@@ -36,7 +36,7 @@ class Logger {
      *
      */
     template<typename T>
-    void operator<<(const marsvin::Matrix<T>& matrix);
+    void operator<<(const marsvin::BaseMatrix<T>& matrix);
     /**
      * @brief Method to print std::vector elements.
      *
@@ -54,14 +54,14 @@ class Logger {
 marsvin::Logger::Logger(){};
 
 template<typename T>
-void marsvin::Logger::operator<<(const marsvin::Matrix<T>& matrix) {
-    std::vector<T> data_;
-    data_ = matrix.GetVectorData();
-    for (std::size_t j = 0; j < data_.size(); j++) {
-        if ((j + 1) % matrix.GetNumberOfColumns() == 0) {
-            std::cout << data_[j] << '\n';
-        } else {
-            std::cout << data_[j] << '\t';
+void marsvin::Logger::operator<<(const marsvin::BaseMatrix<T>& matrix) {
+    for (std::size_t r = 0; r < matrix.rows(); ++r) {
+        for (std::size_t c = 0; c < matrix.columns(); ++c) {
+            if (c == (matrix.columns() - 1)) {
+                std::cout << matrix.at(r, c) << '\n';
+            } else {
+                std::cout << matrix.at(r, c) << '\t';
+            }
         }
     };
 }
