@@ -117,11 +117,15 @@ void BaseMatrix<T>::resize(std::size_t resize_rows,
 
 template<typename T>
 void BaseMatrix<T>::clear() {
+    if (empty()) {
+        return;
+    } else {
         allocator_.deallocate(data_, size_);
         data_ = nullptr;
         columns_ = 0;
         rows_ = 0;
         size_ = 0;
+    }
 }
 
 /*
