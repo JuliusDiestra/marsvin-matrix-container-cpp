@@ -300,3 +300,13 @@ TEST(BaseMatrix, method_resize_SameRowsSameColums) {
         }
     }
 }
+
+TEST(BaseMatrix, method_clear) {
+    // Original Size
+    constexpr std::size_t kRows = 4;
+    constexpr std::size_t kColumns = 5;
+    // Create matrix
+    marsvin::BaseMatrix<int> cut_(kRows, kColumns);
+    cut_.clear();
+    EXPECT_TRUE(cut_.empty());
+}
