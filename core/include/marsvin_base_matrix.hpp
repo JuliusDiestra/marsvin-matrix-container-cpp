@@ -81,6 +81,96 @@ class BaseMatrix {
 
     void clear();
 
+    /**
+     * @brief Method to perform the addition of two matrix instances.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator+(const BaseMatrix<U>& m_lhs, const BaseMatrix<U>& m_rhs);
+    /**
+     * @brief Method to perform the addition of one matrix instance and one
+     * scalar. The scalar is added to each matrix element.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param scalar Scalar value.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator+(const BaseMatrix<U>& m_lhs, const U& scalar);
+    /**
+     * @brief Method to perform the addition of one scalar and one matrix
+     * instance. The scalar is added to each matrix element.
+     *
+     * @param scalar Scalar value.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator+(const U& scalar, const BaseMatrix<U>& m_rhs);
+
+    /**
+     * @brief Method to perform substraction of two matrix instances.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator-(const BaseMatrix<U>& m_lhs, const BaseMatrix<U>& m_rhs);
+    /**
+     * @brief Method to perform substraction of one matrix instance and one
+     * scalar. The scalar is substracted to each matrix element.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param scalar Scalar value.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator-(const BaseMatrix<U>& m_lhs, const U& scalar);
+    /**
+     * @brief Method to perform substraction of one scalar and one matrix
+     * instance. The scalar is substracted to each matrix element.
+     *
+     * @param scalar Scalar value.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator-(const U& scalar, const BaseMatrix<U>& m_rhs);
+
+    /**
+     * @brief Method to perform the multiplication of two matrix instances.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator*(const BaseMatrix<U>& m_lhs, const BaseMatrix<U>& m_rhs);
+    /**
+     * @brief Method to perform the multiplication of one matrix instance and
+     * one scalar. The scalar is multiplied to each matrix element.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param scalar Scalar value.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator*(const BaseMatrix<U>& m_lhs, const U& scalar);
+    /**
+     * @brief Method to perform the multiplication of one scalar and one matrix
+     * instance. The scalar is multiplied to each matrix element.
+     *
+     * @param scalar Scalar value.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator*(const U& scalar, const BaseMatrix<U>& m_rhs);
+
   protected:
     /**
      * Matrix number of rows.
