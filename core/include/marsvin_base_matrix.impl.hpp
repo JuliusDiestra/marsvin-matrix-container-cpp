@@ -9,10 +9,9 @@ namespace marsvin {
 template<typename T>
 BaseMatrix<T>::BaseMatrix(std::size_t rows, std::size_t columns) :
   rows_{rows},
-  columns_{columns},
-  size_{rows_ * columns_} {
-    if (size_ > 0) {
-        data_ = allocator_.allocate(size_);
+  columns_{columns} {
+    if (size() > 0) {
+        data_ = allocator_.allocate(size());
     } else {
         data_ = nullptr;
     }
@@ -23,10 +22,44 @@ BaseMatrix<T>::BaseMatrix() :
   BaseMatrix(0, 0) {}
 
 template<typename T>
+BaseMatrix<T>::BaseMatrix(const BaseMatrix& other) {
+    data_ = allocator_.allocate(other.rows() * other.columns());
+    std::copy(other.data_, other.data_ + other.size(), data_);
+    rows_ = other.rows_;
+    columns_ = other.columns_;
+}
+
+template<typename T>
+BaseMatrix<T>::BaseMatrix(BaseMatrix&& other) :
+  data_{std::exchange(other.data_, nullptr)} {
+    other.rows_ = 0;
+    other.columns_ = 0;
+}
+
+template<typename T>
 BaseMatrix<T>::~BaseMatrix() {
     if (!empty()) {
-        allocator_.deallocate(data_, size_);
+        allocator_.deallocate(data_, size());
     }
+}
+
+template<typename T>
+BaseMatrix<T>& BaseMatrix<T>::operator=(const BaseMatrix& other) {
+    if (!empty()) {
+        allocator_.deallocate(data_, size());
+    }
+    data_ = allocator_.allocate(other.size());
+    columns_ = other.columns_;
+    rows_ = other.rows_;
+    return *this;
+}
+
+template<typename T>
+BaseMatrix<T>& BaseMatrix<T>::operator=(BaseMatrix&& other) {
+    data_ = std::exchange(other.data_, nullptr);
+    other.rows_ = 0;
+    other.columns_ = 0;
+    return *this;
 }
 
 template<typename T>
@@ -48,6 +81,11 @@ std::size_t BaseMatrix<T>::rows() const {
 template<typename T>
 std::size_t BaseMatrix<T>::columns() const {
     return columns_;
+}
+
+template<typename T>
+std::size_t BaseMatrix<T>::size() const {
+    return rows_ * columns_;
 }
 
 template<typename T>
@@ -104,12 +142,11 @@ void BaseMatrix<T>::resize(std::size_t resize_rows,
             }
         }
         // Allocate ande deallocate
-        allocator_.deallocate(data_, size_);
+        allocator_.deallocate(data_, size());
         data_ = allocator_.allocate(new_size_);
         std::copy(data_resize_, data_resize_ + new_size_, data_);
         allocator_.deallocate(data_resize_, new_size_);
         // Set new rows and columns
-        size_ = new_size_;
         rows_ = resize_rows;
         columns_ = resize_columns;
     }
@@ -120,14 +157,63 @@ void BaseMatrix<T>::clear() {
     if (empty()) {
         return;
     } else {
-        allocator_.deallocate(data_, size_);
+        allocator_.deallocate(data_, size());
         data_ = nullptr;
         columns_ = 0;
         rows_ = 0;
-        size_ = 0;
     }
 }
 
+template<typename T>
+typename BaseMatrix<T>::iterator BaseMatrix<T>::begin() {
+    return &data_[0];
+}
+
+template<typename T>
+typename BaseMatrix<T>::iterator BaseMatrix<T>::end() {
+    return &data_[size() - 1];
+}
+
+template<typename T>
+marsvin::BaseMatrix<T> operator+(const marsvin::BaseMatrix<T>& m_lhs,
+                                 const marsvin::BaseMatrix<T>& m_rhs) {
+    if ((m_lhs.rows() == m_rhs.rows()) &&
+        (m_lhs.columns() == m_rhs.columns())) {
+        marsvin::BaseMatrix<T> m_result(m_rhs.rows(), m_rhs.columns());
+        for (std::size_t r = 0; r < m_rhs.rows(); ++r) {
+            for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
+                m_result.at(r, c) = m_lhs.at(r, c) + m_rhs.at(r, c);
+            }
+        }
+        return marsvin::BaseMatrix<T>(m_result);
+    } else {
+        throw marsvin::Exception(marsvin::ErrorCode::TypeAddition());
+    }
+}
+
+template<typename T>
+marsvin::BaseMatrix<T> operator+(const marsvin::BaseMatrix<T>& m_lhs,
+                                 const T& scalar) {
+    marsvin::BaseMatrix<T> m_result(m_lhs.rows(), m_lhs.columns());
+    for (std::size_t r = 0; r < m_lhs.rows(); ++r) {
+        for (std::size_t c = 0; c < m_lhs.columns(); ++c) {
+            m_result.at(r, c) = m_lhs.at(r, c) + scalar;
+        }
+    }
+    return m_result;
+}
+
+template<typename T>
+marsvin::BaseMatrix<T> operator+(const T& scalar,
+                                 const marsvin::BaseMatrix<T>& m_rhs) {
+    marsvin::BaseMatrix<T> m_result(m_rhs.rows(), m_rhs.columns());
+    for (std::size_t r = 0; r < m_rhs.rows(); ++r) {
+        for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
+            m_result.at(r, c) = m_rhs.at(r, c) + scalar;
+        }
+    }
+    return m_result;
+}
 /*
  * Protected
  */

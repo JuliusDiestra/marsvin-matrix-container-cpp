@@ -22,6 +22,7 @@ class BaseMatrix {
     using size_type = std::size_t;
     using reference = value_type&;
     using const_reference = const value_type&;
+    using iterator = T*;
     /**
      * @brief Default constructor.
      *
@@ -40,19 +41,43 @@ class BaseMatrix {
      *
      */
     BaseMatrix(std::size_t rows, std::size_t columns);
+
+    /**
+     * @brief Copy constructor
+     */
+    BaseMatrix(const BaseMatrix& other);
+
+    /**
+     * @brief Move constructor
+     */
+    BaseMatrix(BaseMatrix&& other);
+
     /**
      * Base matrix destructor
      */
     ~BaseMatrix();
+
+    /**
+     * @brief Copy Assignment
+     */
+    BaseMatrix& operator=(const BaseMatrix& other);
+
+    /**
+     * @brief Move Assignment
+     */
+    BaseMatrix& operator=(BaseMatrix&& other);
+
     /**
      * @brief Method to check if matrix is empty.
      */
     bool empty() const;
+
     /**
      * @brief Method to get the number of rows of the matrix.
      *
      */
     std::size_t rows() const;
+
     /**
      * @brief Method to get the number of columns of the matrix.
      *
@@ -60,7 +85,13 @@ class BaseMatrix {
     std::size_t columns() const;
 
     /**
-     *  @brief Method to get and set matrix entry/element.
+     * @brief Method to get matrix size. Total number of elements/entries.
+     *
+     */
+    std::size_t size() const;
+
+    /**
+     *  @brief Method to set matrix entry/element.
      *
      *  @param row Row index.
      *  @param column Column index.
@@ -68,6 +99,13 @@ class BaseMatrix {
      */
     T& at(std::size_t row, std::size_t column);
 
+    /**
+     *  @brief Method to get matrix entry/element.
+     *
+     *  @param row Row index.
+     *  @param column Column index.
+     *
+     */
     const T& at(std::size_t row, std::size_t column) const;
 
     /**
@@ -79,7 +117,117 @@ class BaseMatrix {
      */
     void resize(std::size_t rows, std::size_t columns);
 
+    /**
+     * @brief Method to clear matrix container.
+     * Data is deallocated. Rows and columns are set to zero.
+     *
+     */
     void clear();
+
+    /**
+     * @brief Pointer to the first data member of matrix.
+     *
+     */
+    iterator begin();
+
+    /**
+     * @brief Pointer to the last data member of matrix.
+     *
+     */
+    iterator end();
+
+    /**
+     * @brief Method to perform the addition of two matrix instances.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator+(const BaseMatrix<U>& m_lhs,
+                                   const BaseMatrix<U>& m_rhs);
+    /**
+     * @brief Method to perform the addition of one matrix instance and one
+     * scalar. The scalar is added to each matrix element.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param scalar Scalar value.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator+(const BaseMatrix<U>& m_lhs, const U& scalar);
+    /**
+     * @brief Method to perform the addition of one scalar and one matrix
+     * instance. The scalar is added to each matrix element.
+     *
+     * @param scalar Scalar value.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator+(const U& scalar, const BaseMatrix<U>& m_rhs);
+
+    /**
+     * @brief Method to perform substraction of two matrix instances.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator-(const BaseMatrix<U>& m_lhs,
+                                   const BaseMatrix<U>& m_rhs);
+    /**
+     * @brief Method to perform substraction of one matrix instance and one
+     * scalar. The scalar is substracted to each matrix element.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param scalar Scalar value.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator-(const BaseMatrix<U>& m_lhs, const U& scalar);
+    /**
+     * @brief Method to perform substraction of one scalar and one matrix
+     * instance. The scalar is substracted to each matrix element.
+     *
+     * @param scalar Scalar value.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator-(const U& scalar, const BaseMatrix<U>& m_rhs);
+
+    /**
+     * @brief Method to perform the multiplication of two matrix instances.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator*(const BaseMatrix<U>& m_lhs,
+                                   const BaseMatrix<U>& m_rhs);
+    /**
+     * @brief Method to perform the multiplication of one matrix instance and
+     * one scalar. The scalar is multiplied to each matrix element.
+     *
+     * @param m_lhs Matrix left hand side.
+     * @param scalar Scalar value.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator*(const BaseMatrix<U>& m_lhs, const U& scalar);
+    /**
+     * @brief Method to perform the multiplication of one scalar and one matrix
+     * instance. The scalar is multiplied to each matrix element.
+     *
+     * @param scalar Scalar value.
+     * @param m_rhs Matrix right hand side.
+     *
+     */
+    template<typename U>
+    friend BaseMatrix<U> operator*(const U& scalar, const BaseMatrix<U>& m_rhs);
 
   protected:
     /**
@@ -90,10 +238,6 @@ class BaseMatrix {
      * Matrix number of columns.
      */
     std::size_t columns_;
-    /*
-     * Matrix size
-     */
-    std::size_t size_;
     /*
      * Data allocator
      */

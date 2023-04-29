@@ -43,4 +43,16 @@ ErrorType ErrorCode::TypeRowAndColumn() {
     return ErrorType::kRowAndColumn;
 }
 
+ErrorType ErrorCode::TypeAddition() {
+    return ErrorType::kAddition;
+}
+
+ErrorType ErrorCode::TypeSubtraction() {
+    return ErrorType::kSubtraction;
+}
+
+ErrorType ErrorCode::TypeMultiplication() {
+    return ErrorType::kMultiplication;
+}
+
 }  // namespace marsvin

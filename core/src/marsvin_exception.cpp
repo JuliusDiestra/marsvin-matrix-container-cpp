@@ -29,6 +29,17 @@ std::string Exception::ErrorCodeToString(const ErrorCode& error_code) {
         case marsvin::ErrorType::kRowAndColumn:
             string_ = "Row and Column indexes out of limits";
             break;
+        case marsvin::ErrorType::kAddition:
+            string_ = "Addition error. Size mismatch.";
+            break;
+        case marsvin::ErrorType::kSubtraction:
+            string_ = "Addition error. Size mismatch.";
+            break;
+        case marsvin::ErrorType::kMultiplication:
+            string_ =
+                "Multiplication error. Number of columns of lhs matrix must be "
+                "equal to number of rows of rhs matrix.";
+            break;
         default:
             break;
     }

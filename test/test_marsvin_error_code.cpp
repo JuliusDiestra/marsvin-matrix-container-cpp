@@ -7,6 +7,9 @@ TEST(ErrorCode, StaticMethods) {
     ASSERT_EQ(marsvin::ErrorType::kRow, marsvin::ErrorCode::TypeRow());
     ASSERT_EQ(marsvin::ErrorType::kColumn, marsvin::ErrorCode::TypeColumn());
     ASSERT_EQ(marsvin::ErrorType::kRowAndColumn, marsvin::ErrorCode::TypeRowAndColumn());
+    ASSERT_EQ(marsvin::ErrorType::kAddition, marsvin::ErrorCode::TypeAddition());
+    ASSERT_EQ(marsvin::ErrorType::kSubtraction, marsvin::ErrorCode::TypeSubtraction());
+    ASSERT_EQ(marsvin::ErrorType::kMultiplication, marsvin::ErrorCode::TypeMultiplication());
 }
 
 TEST(ErrorCode, Constructor_01) {

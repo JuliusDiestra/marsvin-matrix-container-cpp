@@ -15,10 +15,13 @@ namespace marsvin {
  *
  */
 enum class ErrorType {
-    kNoError,      // No error.
-    kRow,          // Row index out of limits.
-    kColumn,       // Column index out of limits.
-    kRowAndColumn  // Row and column indexes out of limits.
+    kNoError,        // No error.
+    kRow,            // Row index out of limits.
+    kColumn,         // Column index out of limits.
+    kRowAndColumn,   // Row and column indexes out of limits.
+    kAddition,       // Error adding two matrices.
+    kSubtraction,    // Error subtracting two matrices.
+    kMultiplication  // Error multiplying two matrices.
 };
 
 }  // namespace marsvin
