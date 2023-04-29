@@ -144,7 +144,8 @@ class BaseMatrix {
      *
      */
     template<typename U>
-    friend BaseMatrix<U> operator+(const BaseMatrix<U>& m_lhs, const BaseMatrix<U>& m_rhs);
+    friend BaseMatrix<U> operator+(const BaseMatrix<U>& m_lhs,
+                                   const BaseMatrix<U>& m_rhs);
     /**
      * @brief Method to perform the addition of one matrix instance and one
      * scalar. The scalar is added to each matrix element.
@@ -174,7 +175,8 @@ class BaseMatrix {
      *
      */
     template<typename U>
-    friend BaseMatrix<U> operator-(const BaseMatrix<U>& m_lhs, const BaseMatrix<U>& m_rhs);
+    friend BaseMatrix<U> operator-(const BaseMatrix<U>& m_lhs,
+                                   const BaseMatrix<U>& m_rhs);
     /**
      * @brief Method to perform substraction of one matrix instance and one
      * scalar. The scalar is substracted to each matrix element.
@@ -204,7 +206,8 @@ class BaseMatrix {
      *
      */
     template<typename U>
-    friend BaseMatrix<U> operator*(const BaseMatrix<U>& m_lhs, const BaseMatrix<U>& m_rhs);
+    friend BaseMatrix<U> operator*(const BaseMatrix<U>& m_lhs,
+                                   const BaseMatrix<U>& m_rhs);
     /**
      * @brief Method to perform the multiplication of one matrix instance and
      * one scalar. The scalar is multiplied to each matrix element.

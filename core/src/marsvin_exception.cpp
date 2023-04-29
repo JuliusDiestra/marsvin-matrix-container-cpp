@@ -36,7 +36,9 @@ std::string Exception::ErrorCodeToString(const ErrorCode& error_code) {
             string_ = "Addition error. Size mismatch.";
             break;
         case marsvin::ErrorType::kMultiplication:
-            string_ = "Multiplication error. Number of columns of lhs matrix must be equal to number of rows of rhs matrix.";
+            string_ =
+                "Multiplication error. Number of columns of lhs matrix must be "
+                "equal to number of rows of rhs matrix.";
             break;
         default:
             break;

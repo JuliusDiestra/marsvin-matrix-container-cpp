@@ -23,7 +23,7 @@ BaseMatrix<T>::BaseMatrix() :
 
 template<typename T>
 BaseMatrix<T>::BaseMatrix(const BaseMatrix& other) {
-    data_ = allocator_.allocate(other.rows()*other.columns());
+    data_ = allocator_.allocate(other.rows() * other.columns());
     std::copy(other.data_, other.data_ + other.size(), data_);
     rows_ = other.rows_;
     columns_ = other.columns_;
@@ -85,7 +85,7 @@ std::size_t BaseMatrix<T>::columns() const {
 
 template<typename T>
 std::size_t BaseMatrix<T>::size() const {
-    return rows_*columns_;
+    return rows_ * columns_;
 }
 
 template<typename T>
@@ -171,17 +171,18 @@ typename BaseMatrix<T>::iterator BaseMatrix<T>::begin() {
 
 template<typename T>
 typename BaseMatrix<T>::iterator BaseMatrix<T>::end() {
-    return &data_[size()-1];
+    return &data_[size() - 1];
 }
 
 template<typename T>
 marsvin::BaseMatrix<T> operator+(const marsvin::BaseMatrix<T>& m_lhs,
                                  const marsvin::BaseMatrix<T>& m_rhs) {
-    if ((m_lhs.rows() == m_rhs.rows()) && (m_lhs.columns() == m_rhs.columns())) {
+    if ((m_lhs.rows() == m_rhs.rows()) &&
+        (m_lhs.columns() == m_rhs.columns())) {
         marsvin::BaseMatrix<T> m_result(m_rhs.rows(), m_rhs.columns());
         for (std::size_t r = 0; r < m_rhs.rows(); ++r) {
             for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
-                m_result.at(r,c) = m_lhs.at(r,c) + m_rhs.at(r,c);
+                m_result.at(r, c) = m_lhs.at(r, c) + m_rhs.at(r, c);
             }
         }
         return marsvin::BaseMatrix<T>(m_result);
@@ -196,7 +197,7 @@ marsvin::BaseMatrix<T> operator+(const marsvin::BaseMatrix<T>& m_lhs,
     marsvin::BaseMatrix<T> m_result(m_lhs.rows(), m_lhs.columns());
     for (std::size_t r = 0; r < m_lhs.rows(); ++r) {
         for (std::size_t c = 0; c < m_lhs.columns(); ++c) {
-            m_result.at(r,c) = m_lhs.at(r,c) + scalar;
+            m_result.at(r, c) = m_lhs.at(r, c) + scalar;
         }
     }
     return m_result;
@@ -208,7 +209,7 @@ marsvin::BaseMatrix<T> operator+(const T& scalar,
     marsvin::BaseMatrix<T> m_result(m_rhs.rows(), m_rhs.columns());
     for (std::size_t r = 0; r < m_rhs.rows(); ++r) {
         for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
-            m_result.at(r,c) = m_rhs.at(r,c) + scalar;
+            m_result.at(r, c) = m_rhs.at(r, c) + scalar;
         }
     }
     return m_result;
