@@ -1,6 +1,5 @@
 name: Marsvin matrix library checks
 on:
-  push:
   pull_request:
     branches:
       - main
