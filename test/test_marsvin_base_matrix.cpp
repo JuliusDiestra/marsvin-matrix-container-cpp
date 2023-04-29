@@ -3,21 +3,35 @@
 #include "marsvin_base_matrix.hpp"
 #include "marsvin_logger.hpp"
 
-TEST(BaseMatrix, ConstructEmptyBaseMatrix) {
+TEST(BaseMatrix, Constructor_empty_matrix) {
     marsvin::BaseMatrix<int> cut_;
     EXPECT_TRUE(cut_.empty());
     EXPECT_EQ(0,cut_.rows());
     EXPECT_EQ(0,cut_.columns());
+    EXPECT_EQ(0,cut_.size());
 }
 
-TEST(BaseMatrix, ConstructBaseMatrix) {
+TEST(BaseMatrix, Constructor_with_row_and_columns) {
     constexpr std::size_t ROWS_ = 3;
     constexpr std::size_t COLUMNS_ = 4;
     marsvin::BaseMatrix<int> cut_(ROWS_, COLUMNS_);
+    EXPECT_FALSE(cut_.empty());
     EXPECT_EQ(ROWS_,cut_.rows());
     EXPECT_EQ(COLUMNS_,cut_.columns());
+    EXPECT_EQ(ROWS_*COLUMNS_,cut_.size());
 }
 
+TEST(BaseMatrix, Constructor_Copy) {
+    /*
+     * TBD
+     */
+}
+
+TEST(BaseMatrix, Constructor_Move) {
+    /*
+     * TBD
+     */
+}
 
 TEST(BaseMatrix, method_empty_01) {
     marsvin::BaseMatrix<int> cut_;
@@ -309,4 +323,33 @@ TEST(BaseMatrix, method_clear) {
     marsvin::BaseMatrix<int> cut_(kRows, kColumns);
     cut_.clear();
     EXPECT_TRUE(cut_.empty());
+}
+
+TEST(BaseMatrix, method_addition_two_matrices_error) {
+    marsvin::BaseMatrix<int> m_lhs(2,3);
+    marsvin::BaseMatrix<int> m_rhs(5,6);
+    try {
+        marsvin::BaseMatrix<int> m_result = m_lhs + m_rhs;
+    } catch (const marsvin::Exception& exception_) {
+        EXPECT_EQ(exception_.error_code().error_type(), marsvin::ErrorCode::TypeAddition());
+    }
+}
+
+TEST(BaseMatrix, method_addition_two_matrices) {
+    constexpr std::size_t kRows = 3;
+    constexpr std::size_t kColumns = 2;
+    marsvin::BaseMatrix<int> m_lhs(kRows,kColumns);
+    marsvin::BaseMatrix<int> m_rhs(kRows,kColumns);
+    for (std::size_t r = 0; r < kRows ; ++r) {
+        for (std::size_t c = 0; c < kColumns; ++c) {
+            m_lhs.at(r,c) = c + r*kColumns + 1;
+            m_rhs.at(r,c) = 2*(c + r*kColumns + 1);
+        }
+    }
+    marsvin::BaseMatrix<int> m_result = m_lhs + m_rhs;
+    for (std::size_t r = 0; r < m_result.rows() ; ++r) {
+        for (std::size_t c = 0; c < m_result.columns(); ++c) {
+            EXPECT_EQ(m_result.at(r,c), 3*(c + r*m_result.columns() + 1));
+        }
+    }
 }

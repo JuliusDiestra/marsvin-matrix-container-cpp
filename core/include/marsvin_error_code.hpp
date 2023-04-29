@@ -27,6 +27,9 @@ class ErrorCode {
     static ErrorType TypeRow();
     static ErrorType TypeColumn();
     static ErrorType TypeRowAndColumn();
+    static ErrorType TypeAddition();
+    static ErrorType TypeSubtraction();
+    static ErrorType TypeMultiplication();
 
   private:
     ErrorType error_type_;
