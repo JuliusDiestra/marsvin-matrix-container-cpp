@@ -10,6 +10,7 @@ TEST(ErrorCode, StaticMethods) {
     ASSERT_EQ(marsvin::ErrorType::kAddition, marsvin::ErrorCode::TypeAddition());
     ASSERT_EQ(marsvin::ErrorType::kSubtraction, marsvin::ErrorCode::TypeSubtraction());
     ASSERT_EQ(marsvin::ErrorType::kMultiplication, marsvin::ErrorCode::TypeMultiplication());
+    ASSERT_EQ(marsvin::ErrorType::kInitializerList, marsvin::ErrorCode::TypeInitializerList());
 }
 
 TEST(ErrorCode, Constructor_01) {

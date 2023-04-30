@@ -43,6 +43,27 @@ class BaseMatrix {
     BaseMatrix(std::size_t rows, std::size_t columns);
 
     /**
+     * @brief Constructor using initializer list
+     *
+     * @param rows Number of rows.
+     * @param columns Number of columns.
+     * @param initializer_list Initializer list.
+     *
+     */
+    BaseMatrix(std::size_t rows,
+               std::size_t columns,
+               std::initializer_list<T> initializer_list);
+
+    /**
+     * @brief Constructor using initializer list of initializer list
+     *
+     * @param initializer_list Initializer list of initializer list.
+     *
+     */
+    BaseMatrix(std::initializer_list<std::initializer_list<T>>
+                   initializer_list_double);
+
+    /**
      * @brief Copy constructor
      */
     BaseMatrix(const BaseMatrix& other);
