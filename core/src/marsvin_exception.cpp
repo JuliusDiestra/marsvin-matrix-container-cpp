@@ -40,6 +40,20 @@ std::string Exception::ErrorCodeToString(const ErrorCode& error_code) {
                 "Multiplication error. Number of columns of lhs matrix must be "
                 "equal to number of rows of rhs matrix.";
             break;
+        case marsvin::ErrorType::kInitializerList:
+            string_ =
+                "Initializer list should match the matrix size "
+                "(multiplication of number of rows and columns)";
+            break;
+        case marsvin::ErrorType::kDoubleInitializerList:
+            string_ =
+                "Double initializer is "
+                "std::initializer_list<std::initializer_list<T>> cut_."
+                "The matrix number of rows is equal to cut_.size(). "
+                "Each internal std::initializer_list<T> should have the same "
+                "size and this "
+                "value is the matrix column size.";
+            break;
         default:
             break;
     }

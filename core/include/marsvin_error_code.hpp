@@ -30,6 +30,8 @@ class ErrorCode {
     static ErrorType TypeAddition();
     static ErrorType TypeSubtraction();
     static ErrorType TypeMultiplication();
+    static ErrorType TypeInitializerList();
+    static ErrorType TypeDoubleInitializerList();
 
   private:
     ErrorType error_type_;

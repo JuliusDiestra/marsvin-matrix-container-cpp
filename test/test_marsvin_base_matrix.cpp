@@ -21,6 +21,33 @@ TEST(BaseMatrix, Constructor_with_row_and_columns) {
     EXPECT_EQ(ROWS_*COLUMNS_,cut_.size());
 }
 
+TEST(BaseMatrix, Constructor_Initializer_List) {
+    constexpr std::size_t ROWS_ = 2;
+    constexpr std::size_t COLUMNS_ = 3;
+    marsvin::BaseMatrix<int> cut_(ROWS_, COLUMNS_, {1,2,3,4,5,6});
+    EXPECT_EQ(cut_.size(),ROWS_*COLUMNS_);
+    EXPECT_EQ(cut_.at(0,0), 1);
+    EXPECT_EQ(cut_.at(0,1), 2);
+    EXPECT_EQ(cut_.at(0,2), 3);
+    EXPECT_EQ(cut_.at(1,0), 4);
+    EXPECT_EQ(cut_.at(1,1), 5);
+    EXPECT_EQ(cut_.at(1,2), 6);
+}
+
+TEST(BaseMatrix, Constructor_Double_Initializer_List) {
+    marsvin::BaseMatrix<int> cut_ = {{1,2,3},{4,5,6}};
+    EXPECT_EQ(cut_.size(), 6);
+    EXPECT_EQ(cut_.rows(), 2);
+    EXPECT_EQ(cut_.columns(), 3);
+    EXPECT_EQ(cut_.at(0,0), 1);
+    EXPECT_EQ(cut_.at(0,1), 2);
+    EXPECT_EQ(cut_.at(0,2), 3);
+    EXPECT_EQ(cut_.at(1,0), 4);
+    EXPECT_EQ(cut_.at(1,1), 5);
+    EXPECT_EQ(cut_.at(1,2), 6);
+}
+
+
 TEST(BaseMatrix, Constructor_Copy) {
     /*
      * TBD

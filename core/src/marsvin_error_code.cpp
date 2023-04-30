@@ -55,4 +55,12 @@ ErrorType ErrorCode::TypeMultiplication() {
     return ErrorType::kMultiplication;
 }
 
+ErrorType ErrorCode::TypeInitializerList() {
+    return ErrorType::kInitializerList;
+}
+
+ErrorType ErrorCode::TypeDoubleInitializerList() {
+    return ErrorType::kDoubleInitializerList;
+}
+
 }  // namespace marsvin

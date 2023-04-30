@@ -22,6 +22,48 @@ BaseMatrix<T>::BaseMatrix() :
   BaseMatrix(0, 0) {}
 
 template<typename T>
+BaseMatrix<T>::BaseMatrix(std::size_t rows,
+                          std::size_t columns,
+                          std::initializer_list<T> initializer_list) {
+    if (initializer_list.size() != (rows * columns)) {
+        throw marsvin::Exception(marsvin::ErrorCode::TypeInitializerList());
+    }
+    rows_ = rows;
+    columns_ = columns;
+    data_ = allocator_.allocate(size());
+    std::copy(initializer_list.begin(), initializer_list.end(), data_);
+}
+
+template<typename T>
+BaseMatrix<T>::BaseMatrix(
+    std::initializer_list<std::initializer_list<T>> initializer_list_double) {
+    std::size_t rows = initializer_list_double.size();
+    std::size_t columns{0};
+    for (auto it = initializer_list_double.begin();
+         it != initializer_list_double.end();
+         ++it) {
+        if (it == initializer_list_double.begin()) {
+            columns = (*it).size();
+        } else {
+            if (columns != (*it).size()) {
+                throw marsvin::Exception(
+                    marsvin::ErrorCode::TypeDoubleInitializerList());
+            }
+        }
+    }
+    rows_ = rows;
+    columns_ = columns;
+    data_ = allocator_.allocate(size());
+    int counter{0};
+    for (auto it = initializer_list_double.begin();
+         it != initializer_list_double.end();
+         ++it) {
+        std::copy((*it).begin(), (*it).end(), data_ + columns_ * counter);
+        ++counter;
+    }
+}
+
+template<typename T>
 BaseMatrix<T>::BaseMatrix(const BaseMatrix& other) {
     data_ = allocator_.allocate(other.rows() * other.columns());
     std::copy(other.data_, other.data_ + other.size(), data_);
