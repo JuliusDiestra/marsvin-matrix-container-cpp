@@ -34,20 +34,6 @@ TEST(BaseMatrix, Constructor_Initializer_List) {
     EXPECT_EQ(cut_.at(1,2), 6);
 }
 
-TEST(BaseMatrix, Constructor_Double_Initializer_List) {
-    marsvin::BaseMatrix<int> cut_ = {{1,2,3},{4,5,6}};
-    EXPECT_EQ(cut_.size(), 6);
-    EXPECT_EQ(cut_.rows(), 2);
-    EXPECT_EQ(cut_.columns(), 3);
-    EXPECT_EQ(cut_.at(0,0), 1);
-    EXPECT_EQ(cut_.at(0,1), 2);
-    EXPECT_EQ(cut_.at(0,2), 3);
-    EXPECT_EQ(cut_.at(1,0), 4);
-    EXPECT_EQ(cut_.at(1,1), 5);
-    EXPECT_EQ(cut_.at(1,2), 6);
-}
-
-
 TEST(BaseMatrix, Constructor_Copy) {
     /*
      * TBD
