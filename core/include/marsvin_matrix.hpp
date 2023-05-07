@@ -16,23 +16,66 @@ namespace marsvin {
  */
 template<typename T>
 class Matrix : public BaseMatrix<T> {
+
+  public:
+    /**
+     * @brief Default constructor.
+     *
+     * Creates an empty matrix. Size of the matrix is 0x0.
+     *
+     */
+    Matrix();
+
+    /**
+     * @brief Constructor for matrix with initial size.
+     *
+     * Creates matrix of any size. Number of rows and columns are input
+     * parameters of constructor. All matrix entries are zero.
+     *
+     * @param rows Number of rows.
+     * @param columns Number of columns.
+     *
+     */
+    Matrix(std::size_t rows, std::size_t columns);
+
+    /**
+     * @brief Constructor using initializer list
+     *
+     * The size of matrix should be specify.
+     * The element/entries values are specified by the initializer list.
+     *
+     * @param rows Number of rows.
+     * @param columns Number of columns.
+     * @param initializer_list Initializer list.
+     *
+     */
+    Matrix(std::size_t rows,
+           std::size_t columns,
+           std::initializer_list<T> initializer_list);
     /**
      * @brief Constructor using initializer list of initializer list
      *
      * @param initializer_list Initializer list of initializer list.
      *
      */
-  public:
-    Matrix();
-    Matrix(std::size_t rows, std::size_t columns);
-    Matrix(std::size_t rows,
-           std::size_t columns,
-           std::initializer_list<T> initializer_list);
     Matrix(std::initializer_list<std::initializer_list<T>>
                double_initializer_list);
+
+    /**
+     * @brief Copy constructor
+     *
+     * Copy data allocated from input matrix instance to the new matrix
+     * instance.
+     */
     Matrix(const Matrix& other);
+
+    /**
+     * @brief Move constructor
+     *
+     * Move data allocated from input matrix instance to the new matrix
+     * instance.
+     */
     Matrix(Matrix&& other);
-    //~Matrix();
 };
 }  // namespace marsvin
 
