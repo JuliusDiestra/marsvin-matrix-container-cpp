@@ -28,7 +28,8 @@ class Matrix : public BaseMatrix<T> {
     Matrix(std::size_t rows,
            std::size_t columns,
            std::initializer_list<T> initializer_list);
-    Matrix(std::initializer_list<std::initializer_list<T>> double_initializer_list);
+    Matrix(std::initializer_list<std::initializer_list<T>>
+               double_initializer_list);
     Matrix(const Matrix& other);
     Matrix(Matrix&& other);
     //~Matrix();
