@@ -60,14 +60,16 @@ class BaseMatrix {
     /**
      * @brief Copy constructor
      *
-     * Copy data allocated from input matrix instance to the new matrix instance.
+     * Copy data allocated from input matrix instance to the new matrix
+     * instance.
      */
     BaseMatrix(const BaseMatrix& other);
 
     /**
      * @brief Move constructor
      *
-     * Move data allocated from input matrix instance to the new matrix instance.
+     * Move data allocated from input matrix instance to the new matrix
+     * instance.
      */
     BaseMatrix(BaseMatrix&& other);
 

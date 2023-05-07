@@ -64,14 +64,16 @@ class Matrix : public BaseMatrix<T> {
     /**
      * @brief Copy constructor
      *
-     * Copy data allocated from input matrix instance to the new matrix instance.
+     * Copy data allocated from input matrix instance to the new matrix
+     * instance.
      */
     Matrix(const Matrix& other);
 
     /**
      * @brief Move constructor
      *
-     * Move data allocated from input matrix instance to the new matrix instance.
+     * Move data allocated from input matrix instance to the new matrix
+     * instance.
      */
     Matrix(Matrix&& other);
 };
