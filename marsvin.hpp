@@ -13,5 +13,6 @@
 #include "marsvin_exception.hpp"
 #include "marsvin_logger.hpp"
 #include "marsvin_matrix.hpp"
+#include "marsvin_vector.hpp"
 
 #endif  // MARSVIN_HPP_

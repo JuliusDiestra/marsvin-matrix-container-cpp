@@ -31,7 +31,7 @@ class BaseMatrix {
      */
     BaseMatrix();
     /**
-     * @brief Constructor for any matrix.
+     * @brief Constructor for matrix with initial size.
      *
      * Creates matrix of any size. Number of rows and columns are input
      * parameters of constructor. All matrix entries are zero.
@@ -45,6 +45,9 @@ class BaseMatrix {
     /**
      * @brief Constructor using initializer list
      *
+     * The size of matrix should be specify.
+     * The element/entries values are specified by the initializer list.
+     *
      * @param rows Number of rows.
      * @param columns Number of columns.
      * @param initializer_list Initializer list.
@@ -56,11 +59,15 @@ class BaseMatrix {
 
     /**
      * @brief Copy constructor
+     *
+     * Copy data allocated from input matrix instance to the new matrix instance.
      */
     BaseMatrix(const BaseMatrix& other);
 
     /**
      * @brief Move constructor
+     *
+     * Move data allocated from input matrix instance to the new matrix instance.
      */
     BaseMatrix(BaseMatrix&& other);
 
