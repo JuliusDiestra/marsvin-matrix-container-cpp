@@ -32,7 +32,6 @@ class Matrix : public BaseMatrix<T> {
                double_initializer_list);
     Matrix(const Matrix& other);
     Matrix(Matrix&& other);
-    //~Matrix();
 };
 }  // namespace marsvin
 
