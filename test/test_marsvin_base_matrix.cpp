@@ -35,9 +35,17 @@ TEST(BaseMatrix, Constructor_Initializer_List) {
 }
 
 TEST(BaseMatrix, Constructor_Copy) {
-    /*
-     * TBD
-     */
+    constexpr std::size_t ROWS_ = 2;
+    constexpr std::size_t COLUMNS_ = 3;
+    marsvin::BaseMatrix<int> base_matrix_one(ROWS_, COLUMNS_, {1,2,3,4,5,6});
+    marsvin::BaseMatrix<int> base_matrix_two = base_matrix_one;
+    EXPECT_EQ(base_matrix_two.size(),ROWS_*COLUMNS_);
+    EXPECT_EQ(base_matrix_two.at(0,0), 1);
+    EXPECT_EQ(base_matrix_two.at(0,1), 2);
+    EXPECT_EQ(base_matrix_two.at(0,2), 3);
+    EXPECT_EQ(base_matrix_two.at(1,0), 4);
+    EXPECT_EQ(base_matrix_two.at(1,1), 5);
+    EXPECT_EQ(base_matrix_two.at(1,2), 6);
 }
 
 TEST(BaseMatrix, Constructor_Move) {
