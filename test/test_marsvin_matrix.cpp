@@ -47,3 +47,18 @@ TEST(Matrix, Constructor_Double_Initializer_List) {
     EXPECT_EQ(cut_.at(1,2), 6);
 }
 
+TEST(Matrix, GetId) {
+    class TestClass {};
+    marsvin::Matrix<TestClass> one_;
+    EXPECT_EQ(1, one_.GetId());
+    marsvin::Matrix<TestClass> two_;
+    EXPECT_EQ(2, two_.GetId());
+}
+
+TEST(Matrix, GetInstanceCounter) {
+    class TestClass {};
+    marsvin::Matrix<TestClass> one_;
+    marsvin::Matrix<TestClass> two_;
+    marsvin::Matrix<TestClass> three_;
+    EXPECT_EQ(3, marsvin::Matrix<TestClass>::GetInstanceCounter());
+}

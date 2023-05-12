@@ -24,6 +24,9 @@ class Vector : public BaseMatrix<T> {
     Vector(const Vector& other);
     Vector(Vector&& other);
 
+    std::size_t GetId() const;
+    static std::size_t GetInstanceCounter();
+
   private:
     InstanceCounter<Vector> instance_counter;
 };

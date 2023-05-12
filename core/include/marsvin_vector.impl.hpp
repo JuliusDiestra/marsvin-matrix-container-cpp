@@ -23,6 +23,16 @@ template<typename T>
 Vector<T>::Vector(Vector&& other) :
   BaseMatrix<T>::BaseMatrix(std::move(other)) {}
 
+template<typename T>
+std::size_t Vector<T>::GetId() const {
+    return instance_counter.id();
+}
+
+template<typename T>
+std::size_t Vector<T>::GetInstanceCounter() {
+    return InstanceCounter<Vector>::counter();
+}
+
 }  // namespace marsvin
 
 #endif  // MARSVIN_CORE_MARSVIN_VECTOR_IMPL_HPP_

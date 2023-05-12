@@ -79,7 +79,7 @@ class Matrix : public BaseMatrix<T> {
     Matrix(Matrix&& other);
 
     std::size_t GetId() const;
-    std::size_t GetInstanceCounter() const;
+    static std::size_t GetInstanceCounter();
 
   private:
     InstanceCounter<Matrix> instance_counter;
