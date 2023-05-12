@@ -61,8 +61,8 @@ std::size_t Matrix<T>::GetId() const {
 }
 
 template<typename T>
-std::size_t Matrix<T>::GetInstanceCounter() const {
-    return instance_counter.counter();
+std::size_t Matrix<T>::GetInstanceCounter() {
+    return InstanceCounter<Matrix>::counter();
 }
 
 }  // namespace marsvin
