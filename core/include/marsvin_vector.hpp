@@ -22,6 +22,9 @@ class Vector : public BaseMatrix<T> {
     Vector(std::initializer_list<T> initializer_list);
     Vector(const Vector& other);
     Vector(Vector&& other);
+  private:
+    InstanceCounter<Vector> instance_counter;
+
 };
 }  // namespace marsvin
 
