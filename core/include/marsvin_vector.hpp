@@ -7,6 +7,7 @@
 #define MARSVIN_CORE_MARSVIN_VECTOR_HPP_
 
 #include "marsvin_base_matrix.hpp"
+#include "marsvin_instance_counter.hpp"
 
 namespace marsvin {
 
