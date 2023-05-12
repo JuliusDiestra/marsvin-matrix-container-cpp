@@ -7,6 +7,7 @@
 #define MARSVIN_CORE_MARSVIN_MATRIX_HPP_
 
 #include "marsvin_base_matrix.hpp"
+#include "marsvin_instance_counter.hpp"
 
 namespace marsvin {
 
@@ -76,6 +77,12 @@ class Matrix : public BaseMatrix<T> {
      * instance.
      */
     Matrix(Matrix&& other);
+
+    std::size_t GetId() const;
+    std::size_t GetInstanceCounter() const;
+
+  private:
+    InstanceCounter<Matrix> instance_counter;
 };
 }  // namespace marsvin
 
