@@ -55,6 +55,16 @@ template<typename T>
 Matrix<T>::Matrix(Matrix&& other) :
   BaseMatrix<T>::BaseMatrix(std::move(other)) {}
 
+template<typename T>
+std::size_t Matrix<T>::GetId() const {
+    return instance_counter.id();
+}
+
+template<typename T>
+std::size_t Matrix<T>::GetInstanceCounter() const {
+    return instance_counter.counter();
+}
+
 }  // namespace marsvin
 
 #endif  // MARSVIN_CORE_MARSVIN_MATRIX_IMPL_HPP_
