@@ -21,6 +21,15 @@ TEST(Matrix, Constructor_with_row_and_columns) {
     EXPECT_EQ(ROWS_*COLUMNS_,cut_.size());
 }
 
+TEST(Matrix, Constructor_square_matrix) {
+    constexpr std::size_t SIZE_ = 3;
+    marsvin::Matrix<int> cut_(SIZE_);
+    EXPECT_FALSE(cut_.empty());
+    EXPECT_EQ(SIZE_,cut_.rows());
+    EXPECT_EQ(SIZE_,cut_.columns());
+    EXPECT_EQ(SIZE_*SIZE_,cut_.size());
+}
+
 TEST(Matrix, Constructor_Initializer_List) {
     constexpr std::size_t ROWS_ = 2;
     constexpr std::size_t COLUMNS_ = 3;

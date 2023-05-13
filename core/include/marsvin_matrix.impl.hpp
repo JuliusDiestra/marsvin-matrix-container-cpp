@@ -12,6 +12,10 @@ Matrix<T>::Matrix(std::size_t rows, std::size_t columns) :
   BaseMatrix<T>::BaseMatrix(rows, columns) {}
 
 template<typename T>
+Matrix<T>::Matrix(std::size_t size) :
+  BaseMatrix<T>::BaseMatrix(size, size) {}
+
+template<typename T>
 Matrix<T>::Matrix(std::size_t rows,
                   std::size_t columns,
                   std::initializer_list<T> initializer_list) :
