@@ -40,6 +40,18 @@ class Matrix : public BaseMatrix<T> {
     Matrix(std::size_t rows, std::size_t columns);
 
     /**
+     * @brief Constructor to initialize an square matrix.
+     *
+     * Creates an square matrix with a defined size.
+     * Number of rows and columns are the parameter of the constructor.
+     * All matrix entries are zero.
+     *
+     * @param size Number of rows and columns.
+     *
+     */
+    Matrix(std::size_t size);
+
+    /**
      * @brief Constructor using initializer list
      *
      * The size of matrix should be specify.
