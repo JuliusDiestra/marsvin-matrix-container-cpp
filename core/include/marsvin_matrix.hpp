@@ -90,7 +90,19 @@ class Matrix : public BaseMatrix<T> {
      */
     Matrix(Matrix&& other);
 
+    /**
+     * @brief Method to get matrix instance ID.
+     *
+     * Each matrix instance created has a unique ID.
+     */
     std::size_t GetId() const;
+
+    /**
+     * @brief Method to get total number of marsvin::Matrix<T> created.
+     *
+     * This static method get the count of all the marsvin::Matrix<T> created.
+     * While a matrix is destroyed or moved, the counter goes down one.
+     */
     static std::size_t GetInstanceCounter();
 
   private:
