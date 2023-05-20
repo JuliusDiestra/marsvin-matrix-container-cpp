@@ -84,7 +84,7 @@ template<typename T>
 void Matrix<T>::set_diagonal(T value) {
     if (is_square()) {
         for (std::size_t j; j < this->rows(); ++j) {
-            this->at(j,j) = value;
+            this->at(j, j) = value;
         }
     }
 }
