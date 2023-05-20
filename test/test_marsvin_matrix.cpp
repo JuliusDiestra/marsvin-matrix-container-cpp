@@ -71,3 +71,16 @@ TEST(Matrix, GetInstanceCounter) {
     marsvin::Matrix<TestClass> three_;
     EXPECT_EQ(3, marsvin::Matrix<TestClass>::GetInstanceCounter());
 }
+
+TEST(Matrix, is_square_true) {
+    constexpr std::size_t SIZE_ = 3;
+    marsvin::Matrix<int> cut_(SIZE_);
+    EXPECT_TRUE(cut_.is_square());
+}
+
+TEST(Matrix, is_square_false) {
+    constexpr std::size_t ROWS_ = 2;
+    constexpr std::size_t COLUMNS_ = 3;
+    marsvin::Matrix<int> cut_(ROWS_, COLUMNS_);
+    EXPECT_FALSE(cut_.is_square());
+}
