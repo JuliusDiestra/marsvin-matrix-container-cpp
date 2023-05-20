@@ -105,6 +105,24 @@ class Matrix : public BaseMatrix<T> {
      */
     static std::size_t GetInstanceCounter();
 
+    /**
+     *
+     * @brief Method to check if matrix is square.
+     *
+     * An square matrix has the same number of row and columns.
+     * This method check if the number of row and columns are equal.
+     */
+    bool is_square() const;
+
+    /**
+     * @brief Set matrix diagonal with single element/entry value.
+     *
+     * The argument is copied in each diagonal element/entry.
+     *
+     * @param value Value of each diagonal element.
+     */
+    void set_diagonal(T value);
+
   private:
     InstanceCounter<Matrix> instance_counter;
 };
