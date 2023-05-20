@@ -5,7 +5,7 @@ namespace marsvin {
 
 template<typename T>
 Matrix<T>::Matrix() :
-  BaseMatrix<T>::BaseMatrix() {}
+  Matrix(0,0) {}
 
 template<typename T>
 Matrix<T>::Matrix(std::size_t rows, std::size_t columns) :
@@ -61,6 +61,16 @@ Matrix<T>::Matrix(Matrix&& other) :
   instance_counter{std::move(other.instance_counter)} {}
 
 template<typename T>
+Matrix<T>& Matrix<T>::operator=(const Matrix& other) {
+    return this->operator=(other);
+}
+
+template<typename T>
+Matrix<T>& Matrix<T>::operator=(Matrix&& other) {
+    return this->operator=(other);
+}
+
+template<typename T>
 std::size_t Matrix<T>::GetId() const {
     return instance_counter.id();
 }
@@ -84,9 +94,16 @@ bool Matrix<T>::is_square() const {
 template<typename T>
 void Matrix<T>::set_diagonal(T value) {
     if (is_square()) {
-        for (std::size_t j; j < this->rows(); ++j) {
+        for (std::size_t j = 0; j < this->rows(); ++j) {
             this->at(j, j) = value;
         }
+    }
+}
+
+template<typename T>
+void Matrix<T>::swap_rows(std::size_t lhs_row, std::size_t rhs_row) {
+    for (std::size_t j = 0; j < this->columns()  ; ++j) {
+        std::swap(this->at(lhs_row, j),this->at(rhs_row, j));
     }
 }
 

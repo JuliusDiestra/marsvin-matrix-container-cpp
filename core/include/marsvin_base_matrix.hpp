@@ -7,6 +7,7 @@
 #define MARSVIN_CORE_MARSVIN_BASE_MATRIX_HPP_
 
 #include <utility>
+#include <algorithm>
 
 #include "marsvin_exception.hpp"
 

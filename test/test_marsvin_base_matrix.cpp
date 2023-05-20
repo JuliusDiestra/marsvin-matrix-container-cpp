@@ -384,6 +384,22 @@ TEST(BaseMatrix, method_addition_two_matrices) {
     }
 }
 
+
+TEST(BaseMatrix, method_base_matrix_multiplication) {
+    constexpr std::size_t lhs_kRows = 3;
+    constexpr std::size_t lhs_kColumns = 2;
+    constexpr std::size_t rhs_kRows = 2;
+    constexpr std::size_t rhs_kColumns = 4;
+    marsvin::BaseMatrix<int> m_lhs(lhs_kRows, lhs_kColumns, {1,2,3,4,5,6});
+    marsvin::BaseMatrix<int> m_rhs(rhs_kRows, rhs_kColumns, {1,2,3,4,5,6,7,8});
+    marsvin::BaseMatrix<int> m_result_expected(lhs_kRows, rhs_kColumns, {11,14,17,20,23,30,37,44,35,46,57,68});
+    auto m_result = m_lhs*m_rhs;
+    EXPECT_EQ(m_result.rows(), lhs_kRows);
+    EXPECT_EQ(m_result.columns(), rhs_kColumns);
+    EXPECT_TRUE(m_result == m_result_expected);
+}
+
+
 TEST(BaseMatrix, operator_compare_true) {
     constexpr std::size_t ROWS_ = 2;
     constexpr std::size_t COLUMNS_ = 3;
