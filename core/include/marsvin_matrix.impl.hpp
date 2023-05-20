@@ -69,6 +69,26 @@ std::size_t Matrix<T>::GetInstanceCounter() {
     return InstanceCounter<Matrix>::counter();
 }
 
+template<typename T>
+bool Matrix<T>::is_square() const {
+    bool is_square;
+    if (this->rows() == this->columns()) {
+        is_square = true;
+    } else {
+        is_square = false;
+    }
+    return is_square;
+}
+
+template<typename T>
+void Matrix<T>::set_diagonal(T value) {
+    if (is_square()) {
+        for (std::size_t j; j < this->rows(); ++j) {
+            this->at(j,j) = value;
+        }
+    }
+}
+
 }  // namespace marsvin
 
 #endif  // MARSVIN_CORE_MARSVIN_MATRIX_IMPL_HPP_
