@@ -23,7 +23,8 @@ enum class ErrorType {
     kSubtraction,           // Error subtracting two matrices.
     kMultiplication,        // Error multiplying two matrices.
     kInitializerList,       // Initializer list does not match matrix size.
-    kDoubleInitializerList  // Initializer list does not match matrix size.
+    kDoubleInitializerList, // Initializer list does not match matrix size.
+    kSquareMatrix           // Error while a function is not applied to an square matrix.
 };
 
 }  // namespace marsvin
