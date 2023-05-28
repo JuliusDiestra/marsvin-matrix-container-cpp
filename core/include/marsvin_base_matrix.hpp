@@ -6,6 +6,8 @@
 #ifndef MARSVIN_CORE_MARSVIN_BASE_MATRIX_HPP_
 #define MARSVIN_CORE_MARSVIN_BASE_MATRIX_HPP_
 
+#include <utility>
+
 #include "marsvin_exception.hpp"
 
 namespace marsvin {
