@@ -56,6 +56,27 @@ TEST(Matrix, Constructor_Double_Initializer_List) {
     EXPECT_EQ(cut_.at(1,2), 6);
 }
 
+TEST(Matrix, Copy_Constructor) {
+    EXPECT_EQ(0,marsvin::Matrix<int>::GetInstanceCounter());
+    marsvin::Matrix<int> cut_ = {{1,2,3},{4,5,6}};
+    EXPECT_EQ(1, cut_.GetId());
+    EXPECT_EQ(1,marsvin::Matrix<int>::GetInstanceCounter());
+    marsvin::Matrix<int> cut_copy = cut_;
+    EXPECT_EQ(2, cut_copy.GetId());
+    EXPECT_EQ(2,marsvin::Matrix<int>::GetInstanceCounter());
+}
+
+TEST(Matrix, Move_Constructor) {
+    EXPECT_EQ(0, marsvin::Matrix<int>::GetInstanceCounter());
+    marsvin::Matrix<int> cut_ = {{1,2,3},{4,5,6}};
+    EXPECT_EQ(1, cut_.GetId());
+    EXPECT_EQ(1, marsvin::Matrix<int>::GetInstanceCounter());
+    marsvin::Matrix<int> cut_moved = std::move(cut_);
+    EXPECT_EQ(1, cut_moved.GetId());
+    EXPECT_EQ(1, marsvin::Matrix<int>::GetInstanceCounter());
+    EXPECT_TRUE(cut_.empty());
+}
+
 TEST(Matrix, GetId) {
     class TestClass {};
     marsvin::Matrix<TestClass> one_;
