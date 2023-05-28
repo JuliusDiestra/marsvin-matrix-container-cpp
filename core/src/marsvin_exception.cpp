@@ -3,49 +3,49 @@
 
 namespace marsvin {
 
-Exception::Exception(const ErrorCode& error_code) :
-  std::out_of_range(ErrorCodeToString(error_code)),
-  error_code_{error_code} {
-    if (error_code_.NoError()) {
+Exception::Exception(const StatusCode& status_code) :
+  std::out_of_range(StatusCodeToString(status_code)),
+  status_code_{status_code} {
+    if (status_code_.success()) {
         throw std::invalid_argument(
-            "marsvin::Exception constructor argument should be an ErrorCode "
+            "marsvin::Exception constructor argument should be an StatusCode "
             "class storing a failure.");
     }
 }
 
-ErrorCode Exception::error_code() const {
-    return error_code_;
+StatusCode Exception::status_code() const {
+    return status_code_;
 }
 
-std::string Exception::ErrorCodeToString(const ErrorCode& error_code) {
+std::string Exception::StatusCodeToString(const StatusCode& status_code) {
     std::string string_{};
-    switch (error_code.error_type()) {
-        case marsvin::ErrorType::kRow:
+    switch (status_code.status_type()) {
+        case marsvin::StatusType::kErrorRowIndex:
             string_ = "Row index out of limits";
             break;
-        case marsvin::ErrorType::kColumn:
+        case marsvin::StatusType::kErrorColumnIndex:
             string_ = "Column index out of limits";
             break;
-        case marsvin::ErrorType::kRowAndColumn:
+        case marsvin::StatusType::kErrorRowAndColumnIndex:
             string_ = "Row and Column indexes out of limits";
             break;
-        case marsvin::ErrorType::kAddition:
+        case marsvin::StatusType::kErrorAdditionDimension:
             string_ = "Addition error. Size mismatch.";
             break;
-        case marsvin::ErrorType::kSubtraction:
+        case marsvin::StatusType::kErrorSubtractionDimension:
             string_ = "Addition error. Size mismatch.";
             break;
-        case marsvin::ErrorType::kMultiplication:
+        case marsvin::StatusType::kErrorMultiplicationDimension:
             string_ =
                 "Multiplication error. Number of columns of lhs matrix must be "
                 "equal to number of rows of rhs matrix.";
             break;
-        case marsvin::ErrorType::kInitializerList:
+        case marsvin::StatusType::kErrorInitializerList:
             string_ =
                 "Initializer list should match the matrix size "
                 "(multiplication of number of rows and columns)";
             break;
-        case marsvin::ErrorType::kDoubleInitializerList:
+        case marsvin::StatusType::kErrorDoubleInitializerList:
             string_ =
                 "Double initializer is "
                 "std::initializer_list<std::initializer_list<T>> cut_."
@@ -54,6 +54,8 @@ std::string Exception::ErrorCodeToString(const ErrorCode& error_code) {
                 "size and this "
                 "value is the matrix column size.";
             break;
+        case marsvin::StatusType::kErrorSquareMatrix:
+            string_ = "Operation should be applied in an square matrix.";
         default:
             break;
     }

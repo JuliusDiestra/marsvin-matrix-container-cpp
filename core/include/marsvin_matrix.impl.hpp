@@ -34,7 +34,7 @@ Matrix<T>::Matrix(
         } else {
             if (columns != (*it).size()) {
                 throw marsvin::Exception(
-                    marsvin::ErrorCode::TypeDoubleInitializerList());
+                    marsvin::StatusCode::TypeErrorDoubleInitializerList());
             }
         }
     }

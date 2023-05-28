@@ -9,19 +9,19 @@
 #include <stdexcept>
 #include <string>
 
-#include "marsvin_error_code.hpp"
+#include "marsvin_status_code.hpp"
 
 namespace marsvin {
 
 class Exception : public std::out_of_range {
   public:
     Exception() = delete;
-    explicit Exception(const ErrorCode& error_code);
-    ErrorCode error_code() const;
+    explicit Exception(const StatusCode& status_code);
+    StatusCode status_code() const;
 
   private:
-    ErrorCode error_code_;
-    std::string ErrorCodeToString(const ErrorCode& error_code);
+    StatusCode status_code_;
+    std::string StatusCodeToString(const StatusCode& status_code);
 };
 
 }  // namespace marsvin

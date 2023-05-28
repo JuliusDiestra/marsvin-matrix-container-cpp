@@ -26,7 +26,8 @@ BaseMatrix<T>::BaseMatrix(std::size_t rows,
                           std::size_t columns,
                           std::initializer_list<T> initializer_list) {
     if (initializer_list.size() != (rows * columns)) {
-        throw marsvin::Exception(marsvin::ErrorCode::TypeInitializerList());
+        throw marsvin::Exception(
+            marsvin::StatusCode::TypeErrorInitializerList());
     }
     rows_ = rows;
     columns_ = columns;
@@ -200,7 +201,8 @@ marsvin::BaseMatrix<T> operator+(const marsvin::BaseMatrix<T>& m_lhs,
         }
         return marsvin::BaseMatrix<T>(m_result);
     } else {
-        throw marsvin::Exception(marsvin::ErrorCode::TypeAddition());
+        throw marsvin::Exception(
+            marsvin::StatusCode::TypeErrorAdditionDimension());
     }
 }
 
@@ -241,13 +243,14 @@ template<typename T>
 void marsvin::BaseMatrix<T>::CheckIndex(std::size_t row,
                                         std::size_t column) const {
     if ((row >= rows_) && (column >= columns_)) {
-        throw marsvin::Exception(marsvin::ErrorCode::TypeRowAndColumn());
+        throw marsvin::Exception(
+            marsvin::StatusCode::TypeErrorRowAndColumnIndex());
     }
     if (row >= rows_) {
-        throw marsvin::Exception(marsvin::ErrorCode::TypeRow());
+        throw marsvin::Exception(marsvin::StatusCode::TypeErrorRowIndex());
     }
     if (column >= columns_) {
-        throw marsvin::Exception(marsvin::ErrorCode::TypeColumn());
+        throw marsvin::Exception(marsvin::StatusCode::TypeErrorColumnIndex());
     }
 }
 

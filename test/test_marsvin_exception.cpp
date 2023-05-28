@@ -4,10 +4,10 @@
 #include "gtest/gtest.h"
 
 TEST(Exception, Constructor_01) {
-    marsvin::ErrorCode error_code_(marsvin::ErrorCode::TypeNoError());
+    marsvin::StatusCode status_code_(marsvin::StatusCode::TypeSuccess());
     bool flag_{false};
     try {
-        marsvin::Exception cut_(error_code_);
+        marsvin::Exception cut_(status_code_);
     } catch (const std::invalid_argument& exception_) {
         flag_ = true;
     }
@@ -15,8 +15,8 @@ TEST(Exception, Constructor_01) {
 }
 
 TEST(Exception, Constructor_02) {
-    marsvin::ErrorCode error_code_(marsvin::ErrorCode::TypeColumn());
-    marsvin::Exception cut_(error_code_);
-    ASSERT_EQ(cut_.error_code().error_type(), error_code_.error_type());
+    marsvin::StatusCode status_code_(marsvin::StatusCode::TypeErrorColumnIndex());
+    marsvin::Exception cut_(status_code_);
+    ASSERT_EQ(cut_.status_code().status_type(), status_code_.status_type());
 }
 
