@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10.2)
 project(marsvin LANGUAGES CXX)
 
 set(MARSVIN_SOURCE_CODE
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/src/marsvin_error_code.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/src/marsvin_status_code.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/src/marsvin_exception.cpp
 )
 

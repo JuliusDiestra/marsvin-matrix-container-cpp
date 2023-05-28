@@ -4,9 +4,9 @@ cmake_minimum_required(VERSION 3.10.2)
 include(addTest.cmake)
 
 MarsvinAddTest(
-    NAME test_marsvin_error_code
-    SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_error_code.cpp
-            ../core/src/marsvin_error_code.cpp
+    NAME test_marsvin_status_code
+    SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_status_code.cpp
+            ../core/src/marsvin_status_code.cpp
     INCLUDE_DIR ../core/include
 )
 
@@ -14,7 +14,7 @@ MarsvinAddTest(
     NAME test_marsvin_exception
     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_exception.cpp
             ../core/src/marsvin_exception.cpp
-            ../core/src/marsvin_error_code.cpp
+            ../core/src/marsvin_status_code.cpp
     INCLUDE_DIR ../core/include
 )
 

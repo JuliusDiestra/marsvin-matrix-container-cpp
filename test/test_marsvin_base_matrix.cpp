@@ -84,7 +84,7 @@ TEST(BaseMatrix, method_at_Exception_ErrorRowType) {
     try {
         cut_.at(2,1) = 10;
     } catch (const marsvin::Exception& exception_) {
-        EXPECT_EQ(exception_.error_code().error_type(), marsvin::ErrorCode::TypeRow());
+        EXPECT_EQ(exception_.status_code().status_type(), marsvin::StatusCode::TypeErrorRowIndex());
     }
 }
 
@@ -95,7 +95,7 @@ TEST(BaseMatrix, method_at_Exception_ErrorColumnType) {
     try {
         cut_.at(1,2) = 10;
     } catch (const marsvin::Exception& exception_) {
-        EXPECT_EQ(exception_.error_code().error_type(), marsvin::ErrorCode::TypeColumn());
+        EXPECT_EQ(exception_.status_code().status_type(), marsvin::StatusCode::TypeErrorColumnIndex());
     }
 }
 
@@ -106,7 +106,7 @@ TEST(BaseMatrix, method_at_Exception_ErrorRowAndColumnType) {
     try {
         cut_.at(2,2) = 10;
     } catch (const marsvin::Exception& exception_) {
-        EXPECT_EQ(exception_.error_code().error_type(), marsvin::ErrorCode::TypeRowAndColumn());
+        EXPECT_EQ(exception_.status_code().status_type(), marsvin::StatusCode::TypeErrorRowAndColumnIndex());
     }
 }
 
@@ -352,7 +352,7 @@ TEST(BaseMatrix, method_addition_two_matrices_error) {
     try {
         marsvin::BaseMatrix<int> m_result = m_lhs + m_rhs;
     } catch (const marsvin::Exception& exception_) {
-        EXPECT_EQ(exception_.error_code().error_type(), marsvin::ErrorCode::TypeAddition());
+        EXPECT_EQ(exception_.status_code().status_type(), marsvin::StatusCode::TypeErrorAdditionDimension());
     }
 }
 
