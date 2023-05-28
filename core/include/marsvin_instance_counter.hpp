@@ -31,9 +31,8 @@ InstanceCounter<T>::InstanceCounter() {
 }
 
 template<typename T>
-InstanceCounter<T>::InstanceCounter(const InstanceCounter& other) :
-  id_{other.id_ + 1} {
-    ++counter_;
+InstanceCounter<T>::InstanceCounter(const InstanceCounter& other) {
+    id_ = ++counter_;
 }
 
 template<typename T>

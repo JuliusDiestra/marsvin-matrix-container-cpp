@@ -46,6 +46,8 @@ BaseMatrix<T>::BaseMatrix(const BaseMatrix& other) {
 template<typename T>
 BaseMatrix<T>::BaseMatrix(BaseMatrix&& other) :
   data_{std::exchange(other.data_, nullptr)} {
+    rows_ = other.rows();
+    columns_ = other.columns();
     other.rows_ = 0;
     other.columns_ = 0;
 }

@@ -21,7 +21,8 @@ Vector<T>::Vector(const Vector& other) :
 
 template<typename T>
 Vector<T>::Vector(Vector&& other) :
-  BaseMatrix<T>::BaseMatrix(std::move(other)) {}
+  BaseMatrix<T>::BaseMatrix(std::move(other)),
+  instance_counter{std::move(other.instance_counter)} {}
 
 template<typename T>
 std::size_t Vector<T>::GetId() const {

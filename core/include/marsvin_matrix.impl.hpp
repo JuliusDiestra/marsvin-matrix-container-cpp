@@ -57,7 +57,8 @@ Matrix<T>::Matrix(const Matrix& other) :
 
 template<typename T>
 Matrix<T>::Matrix(Matrix&& other) :
-  BaseMatrix<T>::BaseMatrix(std::move(other)) {}
+  BaseMatrix<T>::BaseMatrix(std::move(other)),
+  instance_counter{std::move(other.instance_counter)} {}
 
 template<typename T>
 std::size_t Matrix<T>::GetId() const {
