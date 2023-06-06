@@ -234,7 +234,7 @@ marsvin::BaseMatrix<T> operator+(const T& scalar,
 
 template<typename T>
 bool operator==(const marsvin::BaseMatrix<T>& m_lhs,
-                                  const marsvin::BaseMatrix<T>& m_rhs) {
+                const marsvin::BaseMatrix<T>& m_rhs) {
     bool result = true;
     if ((m_lhs.rows() == m_rhs.rows()) &&
         (m_lhs.columns() == m_rhs.columns())) {
