@@ -383,3 +383,27 @@ TEST(BaseMatrix, method_addition_two_matrices) {
         }
     }
 }
+
+TEST(BaseMatrix, operator_compare_true) {
+    constexpr std::size_t ROWS_ = 2;
+    constexpr std::size_t COLUMNS_ = 3;
+    marsvin::BaseMatrix<int> A(ROWS_, COLUMNS_, {1,2,3,4,5,6});
+    marsvin::BaseMatrix<int> B(ROWS_, COLUMNS_, {1,2,3,4,5,6});
+    EXPECT_TRUE(A==B);
+}
+
+TEST(BaseMatrix, operator_compare_false) {
+    constexpr std::size_t ROWS_ = 2;
+    constexpr std::size_t COLUMNS_ = 3;
+    marsvin::BaseMatrix<int> A(ROWS_, COLUMNS_, {1,2,3,4,5,6});
+    marsvin::BaseMatrix<int> B(ROWS_, COLUMNS_, {1,2,3,7,5,6});
+    EXPECT_FALSE(A==B);
+}
+
+TEST(BaseMatrix, operator_compare_false_size_mismatch) {
+    constexpr std::size_t ROWS_ = 2;
+    constexpr std::size_t COLUMNS_ = 3;
+    marsvin::BaseMatrix<int> A(ROWS_, COLUMNS_, {1,2,3,4,5,6});
+    marsvin::BaseMatrix<int> B(ROWS_ + 1, COLUMNS_, {1,2,3,4,5,6,7,8,9});
+    EXPECT_FALSE(A==B);
+}
