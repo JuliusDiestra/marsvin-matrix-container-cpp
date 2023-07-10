@@ -23,17 +23,16 @@ TEST(Vector, Move_Constructor) {
 }
 
 TEST(Vector, GetId) {
-    class TestClass {};
-    marsvin::Vector<TestClass> one_;
+    marsvin::Vector<int> one_;
     EXPECT_EQ(1, one_.GetId());
-    marsvin::Vector<TestClass> two_;
+    marsvin::Vector<int> two_;
     EXPECT_EQ(2, two_.GetId());
 }
 
 TEST(Matrix, GetInstanceCounter) {
     class TestClass {};
-    marsvin::Vector<TestClass> one_;
-    marsvin::Vector<TestClass> two_;
-    marsvin::Vector<TestClass> three_;
-    EXPECT_EQ(3, marsvin::Vector<TestClass>::GetInstanceCounter());
+    marsvin::Vector<float> one_;
+    marsvin::Vector<float> two_;
+    marsvin::Vector<float> three_;
+    EXPECT_EQ(3, marsvin::Vector<float>::GetInstanceCounter());
 }

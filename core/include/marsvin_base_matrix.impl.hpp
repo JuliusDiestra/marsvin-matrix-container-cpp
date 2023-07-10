@@ -12,6 +12,7 @@ BaseMatrix<T>::BaseMatrix(std::size_t rows, std::size_t columns) :
   columns_{columns} {
     if (size() > 0) {
         data_ = allocator_.allocate(size());
+        std::fill(begin(), end(), static_cast<T>(0));
     } else {
         data_ = nullptr;
     }
@@ -228,6 +229,70 @@ marsvin::BaseMatrix<T> operator+(const T& scalar,
         for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
             m_result.at(r, c) = m_rhs.at(r, c) + scalar;
         }
+    }
+    return m_result;
+}
+
+template<typename T>
+marsvin::BaseMatrix<T> operator-(const marsvin::BaseMatrix<T>& m_lhs,
+                                 const marsvin::BaseMatrix<T>& m_rhs) {
+    if ((m_lhs.rows() == m_rhs.rows()) &&
+        (m_lhs.columns() == m_rhs.columns())) {
+        marsvin::BaseMatrix<T> m_result(m_rhs.rows(), m_rhs.columns());
+        for (std::size_t r = 0; r < m_rhs.rows(); ++r) {
+            for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
+                m_result.at(r, c) = m_lhs.at(r, c) - m_rhs.at(r, c);
+            }
+        }
+        return marsvin::BaseMatrix<T>(m_result);
+    } else {
+        throw marsvin::Exception(
+            marsvin::StatusCode::TypeErrorAdditionDimension());
+    }
+}
+
+template<typename T>
+marsvin::BaseMatrix<T> operator-(const marsvin::BaseMatrix<T>& m_lhs,
+                                 const T& scalar) {
+    marsvin::BaseMatrix<T> m_result(m_lhs.rows(), m_lhs.columns());
+    for (std::size_t r = 0; r < m_lhs.rows(); ++r) {
+        for (std::size_t c = 0; c < m_lhs.columns(); ++c) {
+            m_result.at(r, c) = m_lhs.at(r, c) - scalar;
+        }
+    }
+    return m_result;
+}
+
+template<typename T>
+marsvin::BaseMatrix<T> operator-(const T& scalar,
+                                 const marsvin::BaseMatrix<T>& m_rhs) {
+    marsvin::BaseMatrix<T> m_result(m_rhs.rows(), m_rhs.columns());
+    for (std::size_t r = 0; r < m_rhs.rows(); ++r) {
+        for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
+            m_result.at(r, c) = m_rhs.at(r, c) - scalar;
+        }
+    }
+    return m_result;
+}
+
+template<typename T>
+marsvin::BaseMatrix<T> operator*(const marsvin::BaseMatrix<T>& m_lhs,
+                                 const marsvin::BaseMatrix<T>& m_rhs) {
+    T sum;
+    marsvin::BaseMatrix<T> m_result(m_lhs.rows(), m_rhs.columns());
+    if (m_lhs.columns() == m_rhs.rows()) {
+        for (std::size_t i = 0; i < m_lhs.rows(); ++i) {
+            for (std::size_t j = 0; j < m_rhs.columns(); ++j) {
+                sum = 0;
+                for (std::size_t k = 0; k < m_lhs.columns(); ++k) {
+                    sum += m_lhs.at(i, k) * m_rhs.at(k, j);
+                }
+                m_result.at(i, j) = sum;
+            }
+        }
+    } else {
+        throw marsvin::Exception(
+            marsvin::StatusCode::TypeErrorMultiplicationDimension());
     }
     return m_result;
 }

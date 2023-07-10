@@ -90,6 +90,10 @@ class Matrix : public BaseMatrix<T> {
      */
     Matrix(Matrix&& other);
 
+    Matrix<T>& operator=(const Matrix& other);
+
+    Matrix<T>& operator=(Matrix&& other);
+
     /**
      * @brief Method to get matrix instance ID.
      *
@@ -122,6 +126,14 @@ class Matrix : public BaseMatrix<T> {
      * @param value Value of each diagonal element.
      */
     void set_diagonal(T value);
+
+    /**
+     * @brief Method to swap rows.
+     *
+     * @param lhs_row Right hand side row.
+     * @param rhs_row Left hand side row.
+     */
+    void swap_rows(std::size_t lhs_row, std::size_t rhs_row);
 
   private:
     InstanceCounter<Matrix> instance_counter;

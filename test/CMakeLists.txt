@@ -19,6 +19,12 @@ MarsvinAddTest(
 )
 
 MarsvinAddTest(
+    NAME test_marsvin_instance_counter
+    SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_instance_counter.cpp
+    INCLUDE_DIR ../core/include
+)
+
+MarsvinAddTest(
     NAME test_marsvin_base_matrix
     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_base_matrix.cpp
     INCLUDE_DIR ${PROJECT_SOURCE_DIR}/core/include
@@ -39,8 +45,3 @@ MarsvinAddTest(
     LINK_LIBRARIES marsvin
 )
 
-MarsvinAddTest(
-    NAME test_marsvin_instance_counter
-    SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_instance_counter.cpp
-    INCLUDE_DIR ../core/include
-)
