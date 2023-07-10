@@ -5,7 +5,7 @@ namespace marsvin {
 
 template<typename T>
 Matrix<T>::Matrix() :
-  Matrix(0,0) {}
+  Matrix(0, 0) {}
 
 template<typename T>
 Matrix<T>::Matrix(std::size_t rows, std::size_t columns) :
@@ -102,8 +102,8 @@ void Matrix<T>::set_diagonal(T value) {
 
 template<typename T>
 void Matrix<T>::swap_rows(std::size_t lhs_row, std::size_t rhs_row) {
-    for (std::size_t j = 0; j < this->columns()  ; ++j) {
-        std::swap(this->at(lhs_row, j),this->at(rhs_row, j));
+    for (std::size_t j = 0; j < this->columns(); ++j) {
+        std::swap(this->at(lhs_row, j), this->at(rhs_row, j));
     }
 }
 

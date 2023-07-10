@@ -284,10 +284,10 @@ marsvin::BaseMatrix<T> operator*(const marsvin::BaseMatrix<T>& m_lhs,
         for (std::size_t i = 0; i < m_lhs.rows(); ++i) {
             for (std::size_t j = 0; j < m_rhs.columns(); ++j) {
                 sum = 0;
-                for (std::size_t k=0; k < m_lhs.columns(); ++k) {
-                    sum += m_lhs.at(i,k)*m_rhs.at(k,j);
+                for (std::size_t k = 0; k < m_lhs.columns(); ++k) {
+                    sum += m_lhs.at(i, k) * m_rhs.at(k, j);
                 }
-                m_result.at(i,j) = sum;
+                m_result.at(i, j) = sum;
             }
         }
     } else {
