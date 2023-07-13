@@ -260,8 +260,8 @@ class BaseMatrix {
      * @param m_rhs Matrix right hand side.
      */
     template<typename U>
-    friend BaseMatrix<U> operator==(const U& scalar,
-                                    const BaseMatrix<U>& m_rhs);
+    friend bool operator==(const BaseMatrix<U>& m_lhs,
+                           const BaseMatrix<U>& m_rhs);
 
   protected:
     /**

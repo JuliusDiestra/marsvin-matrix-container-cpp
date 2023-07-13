@@ -45,3 +45,10 @@ MarsvinAddTest(
     LINK_LIBRARIES marsvin
 )
 
+MarsvinAddTest(
+    NAME test_marsvin_lud_partial_pivoting
+    SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_lud_partial_pivoting.cpp
+    INCLUDE_DIR ${PROJECT_SOURCE_DIR}/core/include
+    LINK_LIBRARIES marsvin
+)
+
