@@ -253,16 +253,6 @@ class BaseMatrix {
     template<typename U>
     friend BaseMatrix<U> operator*(const U& scalar, const BaseMatrix<U>& m_rhs);
 
-    /**
-     * @brief Method to check if two matrices are equal.
-     *
-     * @param m_lhs Matrix left hand side.
-     * @param m_rhs Matrix right hand side.
-     */
-    template<typename U>
-    friend bool operator==(const BaseMatrix<U>& m_lhs,
-                           const BaseMatrix<U>& m_rhs);
-
   protected:
     /**
      * Matrix number of rows.
