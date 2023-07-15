@@ -2,6 +2,7 @@
 #include "gtest/gtest.h"
 #include "marsvin_matrix.hpp"
 #include "marsvin_logger.hpp"
+#include "marsvin_tools.hpp"
 
 TEST(Matrix, Test_Constructor_Empty) {
     marsvin::Matrix<int> cut_;
@@ -129,5 +130,6 @@ TEST(Matrix, method_matrix_multiplication) {
     auto m_result = m_lhs*m_rhs;
     EXPECT_EQ(m_result.rows(), lhs_kRows);
     EXPECT_EQ(m_result.columns(), rhs_kColumns);
-    EXPECT_TRUE(m_result == m_result_expected);
+    int tolerance = 0;
+    EXPECT_TRUE(marsvin::tools::CompareMatrix(m_result,m_result_expected,tolerance));
 }

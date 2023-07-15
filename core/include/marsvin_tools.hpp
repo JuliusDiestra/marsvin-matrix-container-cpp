@@ -17,9 +17,13 @@ bool CompareMatrix(const ::marsvin::BaseMatrix<T>& m_lhs,
         for (std::size_t r = 0; r < m_rhs.rows(); ++r) {
             for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
                 T diff = m_lhs.at(r, c) - m_rhs.at(r, c);
-                bool compare_one = diff < tolerance;
-                bool compare_two = -1 * tolerance < diff;
+                bool compare_one = diff <= tolerance;
+                bool compare_two = -1 * tolerance <= diff;
                 if (!compare_one || !compare_two) {
+                    std::cout << "(r,c) : " << r << " , " << c << std::endl;
+                    std::cout << "m_lhs.at(r,c) : " << m_lhs.at(r,c) << std::endl;
+                    std::cout << "m_rhs.at(r,c) : " << m_rhs.at(r,c) << std::endl;
+                    std::cout << "diff : " << diff << std::endl;
                     result = false;
                     return result;
                 }
