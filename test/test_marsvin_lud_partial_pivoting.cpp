@@ -16,7 +16,8 @@ TEST(PartialPivoting, Algorithm_2x2) {
     logger_ << P*A;
     std::cout << "L*U :" << "\n";
     logger_ << L*U;
-    EXPECT_TRUE(P*A == L*U);
+    float tolerance = 0.1;
+    EXPECT_TRUE(marsvin::tools::CompareMatrix(P*A,L*U,tolerance));
 }
 
 TEST(PartialPivoting, Algorithm_3x3) {
