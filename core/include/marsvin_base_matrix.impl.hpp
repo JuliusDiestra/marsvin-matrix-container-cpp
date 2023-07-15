@@ -297,26 +297,6 @@ marsvin::BaseMatrix<T> operator*(const marsvin::BaseMatrix<T>& m_lhs,
     return m_result;
 }
 
-template<typename T>
-bool operator==(const marsvin::BaseMatrix<T>& m_lhs,
-                const marsvin::BaseMatrix<T>& m_rhs) {
-    bool result = true;
-    if ((m_lhs.rows() == m_rhs.rows()) &&
-        (m_lhs.columns() == m_rhs.columns())) {
-        for (std::size_t r = 0; r < m_rhs.rows(); ++r) {
-            for (std::size_t c = 0; c < m_rhs.columns(); ++c) {
-                if (m_lhs.at(r, c) != m_rhs.at(r, c)) {
-                    result = false;
-                    return result;
-                }
-            }
-        }
-    } else {
-        result = false;
-    }
-    return result;
-}
-
 /*
  * Protected
  */

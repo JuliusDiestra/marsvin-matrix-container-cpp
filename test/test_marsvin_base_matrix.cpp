@@ -2,6 +2,7 @@
 #include "gtest/gtest.h"
 #include "marsvin_base_matrix.hpp"
 #include "marsvin_logger.hpp"
+#include "marsvin_tools.hpp"
 
 TEST(BaseMatrix, Constructor_empty_matrix) {
     marsvin::BaseMatrix<int> cut_;
@@ -384,7 +385,6 @@ TEST(BaseMatrix, method_addition_two_matrices) {
     }
 }
 
-
 TEST(BaseMatrix, method_base_matrix_multiplication) {
     constexpr std::size_t lhs_kRows = 3;
     constexpr std::size_t lhs_kColumns = 2;
@@ -396,30 +396,7 @@ TEST(BaseMatrix, method_base_matrix_multiplication) {
     auto m_result = m_lhs*m_rhs;
     EXPECT_EQ(m_result.rows(), lhs_kRows);
     EXPECT_EQ(m_result.columns(), rhs_kColumns);
-    EXPECT_TRUE(m_result == m_result_expected);
+    int tolerance = 0;
+    EXPECT_TRUE(marsvin::tools::CompareMatrix(m_result,m_result_expected,tolerance));
 }
 
-
-TEST(BaseMatrix, operator_compare_true) {
-    constexpr std::size_t ROWS_ = 2;
-    constexpr std::size_t COLUMNS_ = 3;
-    marsvin::BaseMatrix<int> A(ROWS_, COLUMNS_, {1,2,3,4,5,6});
-    marsvin::BaseMatrix<int> B(ROWS_, COLUMNS_, {1,2,3,4,5,6});
-    EXPECT_TRUE(A==B);
-}
-
-TEST(BaseMatrix, operator_compare_false) {
-    constexpr std::size_t ROWS_ = 2;
-    constexpr std::size_t COLUMNS_ = 3;
-    marsvin::BaseMatrix<int> A(ROWS_, COLUMNS_, {1,2,3,4,5,6});
-    marsvin::BaseMatrix<int> B(ROWS_, COLUMNS_, {1,2,3,7,5,6});
-    EXPECT_FALSE(A==B);
-}
-
-TEST(BaseMatrix, operator_compare_false_size_mismatch) {
-    constexpr std::size_t ROWS_ = 2;
-    constexpr std::size_t COLUMNS_ = 3;
-    marsvin::BaseMatrix<int> A(ROWS_, COLUMNS_, {1,2,3,4,5,6});
-    marsvin::BaseMatrix<int> B(ROWS_ + 1, COLUMNS_, {1,2,3,4,5,6,7,8,9});
-    EXPECT_FALSE(A==B);
-}
