@@ -61,7 +61,6 @@ class Vector : public BaseMatrix<T> {
      */
     Vector(Vector&& other);
 
-
     /**
      * @brief Method to resize vector container.
      *

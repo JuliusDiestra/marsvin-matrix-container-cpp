@@ -26,7 +26,7 @@ Vector<T>::Vector(Vector&& other) :
 
 template<typename T>
 void Vector<T>::resize(std::size_t size) {
-    BaseMatrix<T>::resize(size,1);
+    BaseMatrix<T>::resize(size, 1);
 }
 
 template<typename T>
