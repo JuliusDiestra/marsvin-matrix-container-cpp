@@ -78,6 +78,20 @@ TEST(Matrix, Move_Constructor) {
     EXPECT_TRUE(cut_.empty());
 }
 
+
+TEST(Matrix, resize) {
+    constexpr std::size_t kRows = 6;
+    constexpr std::size_t kColumns = 3;
+    marsvin::Matrix<int> cut_(kRows, kColumns);
+    EXPECT_TRUE(cut_.rows() == kRows);
+    EXPECT_TRUE(cut_.columns() == kColumns);
+    constexpr std::size_t kRows_new = 6;
+    constexpr std::size_t kColumns_new = 3;
+    cut_.resize(kRows_new, kColumns_new);
+    EXPECT_TRUE(cut_.rows() == kRows_new);
+    EXPECT_TRUE(cut_.columns() == kColumns_new);
+}
+
 TEST(Matrix, GetId) {
     marsvin::Matrix<int> one_;
     EXPECT_EQ(1, one_.GetId());

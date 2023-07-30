@@ -62,6 +62,14 @@ class Vector : public BaseMatrix<T> {
     Vector(Vector&& other);
 
     /**
+     * @brief Method to resize vector container.
+     *
+     * @param size Number of elements.
+     *
+     */
+    void resize(std::size_t size);
+
+    /**
      * @brief Method to get vector instance ID.
      *
      * Each vector instance created has a unique ID.

@@ -22,6 +22,15 @@ TEST(Vector, Move_Constructor) {
     EXPECT_TRUE(cut_.empty());
 }
 
+TEST(Vector, resize) {
+    constexpr std::size_t kSize = 6;
+    marsvin::Vector<int> cut_(kSize);
+    EXPECT_TRUE(cut_.size() == kSize);
+    constexpr std::size_t kSize_new = 3;
+    cut_.resize(kSize_new);
+    EXPECT_TRUE(cut_.size() == kSize_new);
+}
+
 TEST(Vector, GetId) {
     marsvin::Vector<int> one_;
     EXPECT_EQ(1, one_.GetId());
