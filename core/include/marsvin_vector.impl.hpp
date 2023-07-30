@@ -25,6 +25,11 @@ Vector<T>::Vector(Vector&& other) :
   instance_counter{std::move(other.instance_counter)} {}
 
 template<typename T>
+void Vector<T>::resize(std::size_t size) {
+    BaseMatrix<T>::resize(size,1);
+}
+
+template<typename T>
 std::size_t Vector<T>::GetId() const {
     return instance_counter.id();
 }
