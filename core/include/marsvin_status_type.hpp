@@ -28,8 +28,9 @@ enum class StatusType {
     kErrorInitializerList,  // Initializer list does not match matrix size.
     kErrorDoubleInitializerList,  // Initializer list does not match matrix
                                   // size.
-    kErrorSquareMatrix  // Error while a function is not applied to an square
-                        // matrix.
+    kErrorSquareMatrix,  // Error while a function is not applied to an square
+                         // matrix.
+    kErrorEqualSize      // Error while same size of matrix/vector is needed.
 };
 
 }  // namespace marsvin

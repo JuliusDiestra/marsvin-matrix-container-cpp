@@ -56,6 +56,9 @@ std::string Exception::StatusCodeToString(const StatusCode& status_code) {
             break;
         case marsvin::StatusType::kErrorSquareMatrix:
             string_ = "Operation should be applied in an square matrix.";
+        case marsvin::StatusType::kErrorEqualSize:
+            string_ =
+                "Equal size of matrix or vector is required in operation.";
         default:
             break;
     }

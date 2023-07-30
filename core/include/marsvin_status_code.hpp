@@ -34,6 +34,7 @@ class StatusCode {
     static StatusType TypeErrorInitializerList();
     static StatusType TypeErrorDoubleInitializerList();
     static StatusType TypeErrorSquareMatrix();
+    static StatusType TypeErrorEqualSize();
 
   private:
     StatusType status_type_;
