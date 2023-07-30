@@ -13,6 +13,7 @@ TEST(StatusCode, StaticMethods) {
     ASSERT_EQ(marsvin::StatusType::kErrorInitializerList, marsvin::StatusCode::TypeErrorInitializerList());
     ASSERT_EQ(marsvin::StatusType::kErrorDoubleInitializerList, marsvin::StatusCode::TypeErrorDoubleInitializerList());
     ASSERT_EQ(marsvin::StatusType::kErrorSquareMatrix, marsvin::StatusCode::TypeErrorSquareMatrix());
+    ASSERT_EQ(marsvin::StatusType::kErrorEqualSize, marsvin::StatusCode::TypeErrorEqualSize());
 }
 
 TEST(StatusCode, Constructor_01) {

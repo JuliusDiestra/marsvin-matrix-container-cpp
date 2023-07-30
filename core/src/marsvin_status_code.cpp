@@ -70,4 +70,8 @@ StatusType StatusCode::TypeErrorSquareMatrix() {
     return StatusType::kErrorSquareMatrix;
 }
 
+StatusType StatusCode::TypeErrorEqualSize() {
+    return StatusType::kErrorEqualSize;
+}
+
 }  // namespace marsvin
