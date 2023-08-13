@@ -12,14 +12,24 @@ Contains :
 * Matrix inverse calculation.
 * Solution of A\*x = b.
 
-Documentation of classes and examples: [Link](./documentation/main.md)
-
 ## How to build library
 
 1. Clone repository
 2. Run bash script
 ```
 bash build-code.sh
+```
+
+## How to build Doxygen documentation
+
+Documentation HTML files are created using Doxygen.
+The documentation is generated into **documentation/output-dir** directory.
+
+1. Go to docs directory and run doxygen
+
+```
+cd documentation
+doxygen
 ```
 
 ## How to use it as a submodule
@@ -50,15 +60,4 @@ target_link_libraries(${YOUR_TARGET_NAME} marsvin)
 #include "marsvin.hpp"
 ```
 
-## How to build Doxygen documentation
-
-Documentation HTML files are created using Doxygen.
-The documentation is generated into **docs/output-dir** directory.
-
-1. Go to docs directory and run doxygen
-
-```
-cd docs
-doxygen
-```
 
