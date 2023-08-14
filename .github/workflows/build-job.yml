@@ -3,7 +3,6 @@ on:
   pull_request:
     branches:
       - main
-      - releases/*
 jobs:
   build-and-run-unit-test:
     name: Build and Run unit-test
@@ -58,13 +57,4 @@ jobs:
         run: |
           cd documentation
           doxygen
-  deploy-doxygen:
-    name: Deploy Doxygen documentation
-    if: github.event.pull_request.merged
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install Doxygen
-        run: |
-          echo Hello
 

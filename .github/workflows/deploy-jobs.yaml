@@ -1,0 +1,17 @@
+name: Marsvin matrix library checks
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  deploy-doxygen:
+    name: Build and Deploy Doxygen documentation
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Doxygen
+        run: |
+          echo Hello
+
