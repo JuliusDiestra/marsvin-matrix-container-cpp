@@ -1,4 +1,4 @@
-name: Marsvin matrix library checks
+name: Marsvin matrix library deploy jobs
 on:
   pull_request:
     types:
