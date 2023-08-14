@@ -1,4 +1,4 @@
-# Matrix library
+# Marsvin library : Matrix, vectors and linear algebra
 
 Repository that contains the **MARSVIN** library that contains usefull containers and operations for linear algebra.
 

@@ -19,9 +19,5 @@ Marsvin library contains matrix and vector containers and linear algebra operati
 ### Gauss Elimination
 
 #### Partial Pivoting
-#### Sherman's March
-
-
-
 
 
