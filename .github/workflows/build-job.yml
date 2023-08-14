@@ -1,9 +1,8 @@
-name: Marsvin matrix library checks
+name: Marsvin matrix library check jobs
 on:
   pull_request:
     branches:
       - main
-      - releases/*
 jobs:
   build-and-run-unit-test:
     name: Build and Run unit-test
@@ -44,3 +43,18 @@ jobs:
       - name: Run clang-format-15 in source code
         run: |
           clang-format-15 --Werror --dry-run core/include/* core/src/*
+
+  doxygen-build:
+    name: Build Doxygen documentation
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen
+      - name: Build documentation
+        run: |
+          cd documentation
+          doxygen
+

@@ -1,23 +1,35 @@
-# marsvin-library-cpp
-------------------------------------------------------------------------------
+# Marsvin library : Matrix, vectors and linear algebra
 
-Repository that contains the **MARSVIN** library that contains a matrix class.
+Repository that contains the **MARSVIN** library that contains usefull containers and operations for linear algebra.
 
-Current implementations:
+Contains :
 
-* Matrix Class template using std::vector.
-* Matrix Class contains operator to access elements and addition, multiplication and subtraction.
-* Numerical differentiation: First, Second derivative, Gradient and Jacobian.
+* Matrix container.
+* Vector container.
+* Forward substitution.
+* Backward substitution.
+* Gauss elimination.
+* Matrix inverse calculation.
+* Solution of A\*x = b.
 
-.... More coming soon  ... or maybe not too soon.
-
-The **MARSVIN** library depends only on standard libraries and a lot of coffee.
 ## How to build library
 
 1. Clone repository
 2. Run bash script
 ```
 bash build-code.sh
+```
+
+## How to build Doxygen documentation
+
+Documentation HTML files are created using Doxygen.
+The documentation is generated into **documentation/output-dir** directory.
+
+1. Go to docs directory and run doxygen
+
+```
+cd documentation
+doxygen
 ```
 
 ## How to use it as a submodule
@@ -48,17 +60,4 @@ target_link_libraries(${YOUR_TARGET_NAME} marsvin)
 #include "marsvin.hpp"
 ```
 
-6. Use the marsvin matrix class to play around.
-
-## How to build documentation
-
-Documentation HTML files are created using Doxygen.
-The documentation is generated into **docs/output-dir** directory.
-
-1. Go to docs directory and run doxygen
-
-```
-cd docs
-doxygen
-```
 
