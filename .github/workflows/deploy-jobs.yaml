@@ -5,6 +5,7 @@ on:
       - closed
     branches:
       - main
+jobs:
   deploy-doxygen:
     name: Build and Deploy Doxygen documentation
     if: github.event.pull_request.merged == true
