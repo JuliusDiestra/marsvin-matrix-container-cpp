@@ -23,6 +23,6 @@ jobs:
       - name: Publish HTML files
         uses: actions/upload-pages-artifact@v2
         with:
-          path: documentation/output-dir
+          path: documentation/output-dir/html
 
 
