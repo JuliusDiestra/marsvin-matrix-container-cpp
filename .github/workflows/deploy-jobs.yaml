@@ -29,9 +29,15 @@ jobs:
         run: |
           cd documentation
           doxygen
+      - name: Build Jekyll site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: documentation/output-dir/html
+          destination: "./_site"
       - name: Publish HTML files
         uses: actions/upload-pages-artifact@v2
         with:
           path: documentation/output-dir/html
-
+      - name: Deploy github page
+        uses: actions/deploy-pages@v2
 
