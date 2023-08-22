@@ -14,6 +14,8 @@ TBD
 
 ### Vector
 
+TBD
+
 ## Linear Algebra
 
 ### Forward Substitution
