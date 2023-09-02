@@ -1,5 +1,5 @@
 
-#include "marsvin_exception.hpp"
+#include "marsvin/error_handling/exception.hpp"
 
 namespace marsvin {
 

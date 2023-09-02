@@ -1,6 +1,6 @@
 
 #include "gtest/gtest.h"
-#include "marsvin_status_code.hpp"
+#include "marsvin/error_handling/status_code.hpp"
 
 TEST(StatusCode, StaticMethods) {
     ASSERT_EQ(marsvin::StatusType::kSuccess, marsvin::StatusCode::TypeSuccess());

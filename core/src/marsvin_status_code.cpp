@@ -1,5 +1,5 @@
 
-#include "marsvin_status_code.hpp"
+#include "marsvin/error_handling/status_code.hpp"
 
 namespace marsvin {
 

@@ -1,9 +1,9 @@
 
 #include "gtest/gtest.h"
 
-#include "marsvin_base_matrix.hpp"
-#include "marsvin_logger.hpp"
-#include "marsvin_tools.hpp"
+#include "marsvin/containers/base_matrix.hpp"
+#include "marsvin/tools/logger.hpp"
+#include "marsvin/tools/compare_matrix.hpp"
 
 TEST(Tools, CompareMatrix_true) {
     constexpr std::size_t ROWS_ = 2;

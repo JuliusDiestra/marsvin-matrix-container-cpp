@@ -1,8 +1,8 @@
 
 #include "gtest/gtest.h"
-#include "marsvin_lud_partial_pivoting.hpp"
-#include "marsvin_logger.hpp"
-#include "marsvin_tools.hpp"
+#include "marsvin/lu_decomposition/partial_pivoting.hpp"
+#include "marsvin/tools/logger.hpp"
+#include "marsvin/tools/compare_matrix.hpp"
 
 TEST(PartialPivoting, Algorithm_2x2) {
     marsvin::Logger logger_;

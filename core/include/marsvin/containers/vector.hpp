@@ -6,8 +6,8 @@
 #ifndef MARSVIN_CORE_MARSVIN_VECTOR_HPP_
 #define MARSVIN_CORE_MARSVIN_VECTOR_HPP_
 
-#include "marsvin_base_matrix.hpp"
-#include "marsvin_instance_counter.hpp"
+#include "marsvin/containers/base_matrix.hpp"
+#include "marsvin/tools/instance_counter.hpp"
 
 namespace marsvin {
 
@@ -89,6 +89,6 @@ class Vector : public BaseMatrix<T> {
 };
 }  // namespace marsvin
 
-#include "marsvin_vector.impl.hpp"
+#include "marsvin/containers/vector.impl.hpp"
 
 #endif  // MARSVIN_CORE_MARSVIN_VECTOR_HPP_

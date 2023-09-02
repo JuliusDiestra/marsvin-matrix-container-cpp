@@ -6,7 +6,7 @@
 #ifndef MARSVIN_CORE_MARSVIN_STATUS_CODE_HPP_
 #define MARSVIN_CORE_MARSVIN_STATUS_CODE_HPP_
 
-#include "marsvin_status_type.hpp"
+#include "marsvin/error_handling/status_type.hpp"
 
 namespace marsvin {
 

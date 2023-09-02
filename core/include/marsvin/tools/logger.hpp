@@ -9,7 +9,7 @@
 #include <iostream>
 #include <vector>
 
-#include "marsvin_base_matrix.hpp"
+#include "marsvin/containers/base_matrix.hpp"
 
 namespace marsvin {
 
