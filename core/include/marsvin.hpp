@@ -19,3 +19,4 @@
 #include "marsvin/tools/logger.hpp"
 
 #endif  // MARSVIN_HPP_
+
