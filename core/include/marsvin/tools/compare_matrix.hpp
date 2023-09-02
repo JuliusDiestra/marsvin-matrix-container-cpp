@@ -2,7 +2,7 @@
 #ifndef MARSVIN_CORE_MARSVIN_TOOLS_HPP_
 #define MARSVIN_CORE_MARSVIN_TOOLS_HPP_
 
-#include "marsvin_base_matrix.hpp"
+#include "marsvin/containers/base_matrix.hpp"
 
 namespace marsvin {
 namespace tools {

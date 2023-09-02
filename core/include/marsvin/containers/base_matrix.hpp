@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <utility>
 
-#include "marsvin_exception.hpp"
+#include "marsvin/error_handling/exception.hpp"
 
 namespace marsvin {
 
@@ -292,6 +292,6 @@ class BaseMatrix {
 
 }  // namespace marsvin
 
-#include "marsvin_base_matrix.impl.hpp"
+#include "marsvin/containers/base_matrix.impl.hpp"
 
 #endif  // MARSVIN_CORE_MARSVIN_BASE_MATRIX_HPP_

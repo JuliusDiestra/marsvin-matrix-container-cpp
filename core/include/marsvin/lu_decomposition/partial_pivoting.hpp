@@ -8,8 +8,8 @@
 
 #include <cstdlib>
 
-#include "marsvin_logger.hpp"
-#include "marsvin_matrix.hpp"
+#include "marsvin/containers/matrix.hpp"
+#include "marsvin/tools/logger.hpp"
 
 namespace marsvin {
 namespace lud {

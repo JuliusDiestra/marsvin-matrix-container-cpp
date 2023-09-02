@@ -1,7 +1,7 @@
 
 #include "gtest/gtest.h"
-#include "marsvin_vector.hpp"
-#include "marsvin_logger.hpp"
+#include "marsvin/containers/vector.hpp"
+#include "marsvin/tools/logger.hpp"
 
 TEST(Vector, Test_Constructor_Empty) {
     marsvin::Vector<int> cut_;

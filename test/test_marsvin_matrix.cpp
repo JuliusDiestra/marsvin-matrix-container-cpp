@@ -1,8 +1,8 @@
 
 #include "gtest/gtest.h"
-#include "marsvin_matrix.hpp"
-#include "marsvin_logger.hpp"
-#include "marsvin_tools.hpp"
+#include "marsvin/containers/matrix.hpp"
+#include "marsvin/tools/logger.hpp"
+#include "marsvin/tools/compare_matrix.hpp"
 
 TEST(Matrix, Test_Constructor_Empty) {
     marsvin::Matrix<int> cut_;

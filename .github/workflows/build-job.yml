@@ -42,7 +42,7 @@ jobs:
           sudo apt-get install -y clang-15 clang-format-15
       - name: Run clang-format-15 in source code
         run: |
-          clang-format-15 --Werror --dry-run core/include/* core/src/*
+          clang-format-15 --Werror --dry-run core/include/marsvin/**/**.hpp core/src/*
 
   doxygen-build:
     name: Build Doxygen documentation

@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "marsvin_instance_counter.hpp"
+#include "marsvin/tools/instance_counter.hpp"
 
 class MyTestClass {};
 
