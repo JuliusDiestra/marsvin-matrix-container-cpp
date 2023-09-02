@@ -13,9 +13,9 @@
 #include "marsvin/containers/matrix.impl.hpp"
 #include "marsvin/containers/vector.hpp"
 #include "marsvin/containers/vector.impl.hpp"
-#include "marsvin/error_handling/status_type.hpp"
-#include "marsvin/error_handling/status_code.hpp"
 #include "marsvin/error_handling/exception.hpp"
+#include "marsvin/error_handling/status_code.hpp"
+#include "marsvin/error_handling/status_type.hpp"
 #include "marsvin/tools/logger.hpp"
 
 #endif  // MARSVIN_HPP_
