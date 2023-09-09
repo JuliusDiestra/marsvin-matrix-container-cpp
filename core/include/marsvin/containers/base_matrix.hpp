@@ -115,19 +115,19 @@ class BaseMatrix {
     std::size_t size() const;
 
     /**
-     *  @brief Method to set matrix entry/element.
+     * @brief Method to set matrix entry/element.
      *
-     *  @param row Row index.
-     *  @param column Column index.
+     * @param row Row index.
+     * @param column Column index.
      *
      */
     T& at(std::size_t row, std::size_t column);
 
     /**
-     *  @brief Method to get matrix entry/element.
+     * @brief Method to get matrix entry/element.
      *
-     *  @param row Row index.
-     *  @param column Column index.
+     * @param row Row index.
+     * @param column Column index.
      *
      */
     const T& at(std::size_t row, std::size_t column) const;

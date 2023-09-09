@@ -70,6 +70,22 @@ class Vector : public BaseMatrix<T> {
     void resize(std::size_t size);
 
     /**
+     * @brief Method to set vector entry/element.
+     *
+     * @param index Element index.
+     *
+     */
+    T& at(std::size_t index);
+
+    /**
+     * @brief Method to set vector entry/element.
+     *
+     * @param index Element index.
+     *
+     */
+    const T& at(std::size_t index) const;
+
+    /**
      * @brief Method to get vector instance ID.
      *
      * Each vector instance created has a unique ID.

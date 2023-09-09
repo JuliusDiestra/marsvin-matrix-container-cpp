@@ -30,6 +30,16 @@ void Vector<T>::resize(std::size_t size) {
 }
 
 template<typename T>
+T& Vector<T>::at(std::size_t index) {
+    return BaseMatrix<T>::at(index, 0);
+}
+
+template<typename T>
+const T& Vector<T>::at(std::size_t index) const {
+    return BaseMatrix<T>::at(index, 0);
+}
+
+template<typename T>
 std::size_t Vector<T>::GetId() const {
     return instance_counter.id();
 }
