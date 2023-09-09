@@ -31,6 +31,20 @@ TEST(Vector, resize) {
     EXPECT_TRUE(cut_.size() == kSize_new);
 }
 
+
+TEST(Vector, method_at_ReadAndSet) {
+    constexpr std::size_t kSize = 3;
+    marsvin::Vector<int> cut_(kSize);
+    std::cout << "Vector Rows" << cut_.rows() << std::endl;
+    std::cout << "Vector Columns" << cut_.columns() << std::endl;
+    cut_.at(0) = 0;
+    cut_.at(1)= 1;
+    cut_.at(2)= 2;
+    EXPECT_EQ(cut_.at(0), 0);
+    EXPECT_EQ(cut_.at(1), 1);
+    EXPECT_EQ(cut_.at(2), 2);
+}
+
 TEST(Vector, GetId) {
     marsvin::Vector<int> one_;
     EXPECT_EQ(1, one_.GetId());
