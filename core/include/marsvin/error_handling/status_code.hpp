@@ -35,6 +35,7 @@ class StatusCode {
     static StatusType TypeErrorDoubleInitializerList();
     static StatusType TypeErrorSquareMatrix();
     static StatusType TypeErrorEqualSize();
+    static StatusType TypeErrorSolveLinearEquantionDimensions();
 
   private:
     StatusType status_type_;

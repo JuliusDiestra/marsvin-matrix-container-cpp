@@ -30,7 +30,9 @@ enum class StatusType {
                                   // size.
     kErrorSquareMatrix,  // Error while a function is not applied to an square
                          // matrix.
-    kErrorEqualSize      // Error while same size of matrix/vector is needed.
+    kErrorEqualSize,     // Error while same size of matrix/vector is needed.
+    kErrorSolveLinearEquantionDimensions  // Error while A*x=b, A.columns() or
+                                          // A.rows() != b.size()
 };
 
 }  // namespace marsvin

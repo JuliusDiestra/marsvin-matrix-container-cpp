@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 #include "marsvin/lu_decomposition/partial_pivoting.hpp"
 #include "marsvin/tools/logger.hpp"
-#include "marsvin/tools/compare_matrix.hpp"
+#include "marsvin/tools/compare.hpp"
 
 TEST(PartialPivoting, Algorithm_2x2) {
     marsvin::Logger logger_;
@@ -17,7 +17,7 @@ TEST(PartialPivoting, Algorithm_2x2) {
     std::cout << "L*U :" << "\n";
     logger_ << L*U;
     float tolerance = 0.1;
-    EXPECT_TRUE(marsvin::tools::CompareMatrix(P*A,L*U,tolerance));
+    EXPECT_TRUE(marsvin::tools::compare(P*A,L*U,tolerance));
 }
 
 TEST(PartialPivoting, Algorithm_3x3) {
@@ -29,20 +29,12 @@ TEST(PartialPivoting, Algorithm_3x3) {
     auto L = lud_matrices.at(0);
     auto U = lud_matrices.at(1);
     auto P = lud_matrices.at(2);
-    std::cout << "P :" << "\n";
-    logger_ << P;
-    std::cout << "A :" << "\n";
-    logger_ << A;
-    std::cout << "L :" << "\n";
-    logger_ << L;
-    std::cout << "U :" << "\n";
-    logger_ << U;
     std::cout << "P*A :" << "\n";
     logger_ << P*A;
     std::cout << "L*U :" << "\n";
     logger_ << L*U;
     float tolerance = 0.1;
-    EXPECT_TRUE(marsvin::tools::CompareMatrix(P*A,L*U,tolerance));
+    EXPECT_TRUE(marsvin::tools::compare(P*A,L*U,tolerance));
 }
 
 TEST(PartialPivoting, Algorithm_4x4) {
@@ -55,19 +47,11 @@ TEST(PartialPivoting, Algorithm_4x4) {
     auto L = lud_matrices.at(0);
     auto U = lud_matrices.at(1);
     auto P = lud_matrices.at(2);
-    std::cout << "P :" << "\n";
-    logger_ << P;
-    std::cout << "A :" << "\n";
-    logger_ << A;
-    std::cout << "L :" << "\n";
-    logger_ << L;
-    std::cout << "U :" << "\n";
-    logger_ << U;
     std::cout << "P*A :" << "\n";
     logger_ << P*A;
     std::cout << "L*U :" << "\n";
     logger_ << L*U;
     float tolerance = 0.1;
-    EXPECT_TRUE(marsvin::tools::CompareMatrix(P*A,L*U,tolerance));
+    EXPECT_TRUE(marsvin::tools::compare(P*A,L*U,tolerance));
 }
 
