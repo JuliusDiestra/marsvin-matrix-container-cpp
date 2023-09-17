@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 #include "marsvin/containers/base_matrix.hpp"
 #include "marsvin/tools/logger.hpp"
-#include "marsvin/tools/compare_matrix.hpp"
+#include "marsvin/tools/compare.hpp"
 
 TEST(BaseMatrix, Constructor_empty_matrix) {
     marsvin::BaseMatrix<int> cut_;
@@ -397,6 +397,6 @@ TEST(BaseMatrix, method_base_matrix_multiplication) {
     EXPECT_EQ(m_result.rows(), lhs_kRows);
     EXPECT_EQ(m_result.columns(), rhs_kColumns);
     int tolerance = 0;
-    EXPECT_TRUE(marsvin::tools::CompareMatrix(m_result,m_result_expected,tolerance));
+    EXPECT_TRUE(marsvin::tools::compare(m_result,m_result_expected,tolerance));
 }
 

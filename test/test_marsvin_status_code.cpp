@@ -14,6 +14,7 @@ TEST(StatusCode, StaticMethods) {
     ASSERT_EQ(marsvin::StatusType::kErrorDoubleInitializerList, marsvin::StatusCode::TypeErrorDoubleInitializerList());
     ASSERT_EQ(marsvin::StatusType::kErrorSquareMatrix, marsvin::StatusCode::TypeErrorSquareMatrix());
     ASSERT_EQ(marsvin::StatusType::kErrorEqualSize, marsvin::StatusCode::TypeErrorEqualSize());
+    ASSERT_EQ(marsvin::StatusType::kErrorSolveLinearEquantionDimensions, marsvin::StatusCode::TypeErrorSolveLinearEquantionDimensions());
 }
 
 TEST(StatusCode, Constructor_01) {

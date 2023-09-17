@@ -59,3 +59,9 @@ MarsvinAddTest(
     LINK_LIBRARIES marsvin
 )
 
+MarsvinAddTest(
+    NAME test_marsvin_forward_substitution
+    SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test_marsvin_forward_substitution.cpp
+    INCLUDE_DIR ${PROJECT_SOURCE_DIR}/core/include
+    LINK_LIBRARIES marsvin
+)
