@@ -192,7 +192,7 @@ class BaseMatrix {
     friend BaseMatrix<U> operator+(const U& scalar, const BaseMatrix<U>& m_rhs);
 
     /**
-     * @brief Method to perform substraction of two matrix instances.
+     * @brief Method to perform subtraction of two matrix instances.
      *
      * @param m_lhs Matrix left hand side.
      * @param m_rhs Matrix right hand side.
@@ -202,8 +202,8 @@ class BaseMatrix {
     friend BaseMatrix<U> operator-(const BaseMatrix<U>& m_lhs,
                                    const BaseMatrix<U>& m_rhs);
     /**
-     * @brief Method to perform substraction of one matrix instance and one
-     * scalar. The scalar is substracted to each matrix element.
+     * @brief Method to perform sustraction of one matrix instance and one
+     * scalar. The scalar is subtracted to each matrix element.
      *
      * @param m_lhs Matrix left hand side.
      * @param scalar Scalar value.
@@ -212,8 +212,8 @@ class BaseMatrix {
     template<typename U>
     friend BaseMatrix<U> operator-(const BaseMatrix<U>& m_lhs, const U& scalar);
     /**
-     * @brief Method to perform substraction of one scalar and one matrix
-     * instance. The scalar is substracted to each matrix element.
+     * @brief Method to perform subtraction of one scalar and one matrix
+     * instance. The scalar is subtracted to each matrix element.
      *
      * @param scalar Scalar value.
      * @param m_rhs Matrix right hand side.
