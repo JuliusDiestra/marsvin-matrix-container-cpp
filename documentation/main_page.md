@@ -26,7 +26,7 @@ Header file :
 
     include "base_matrix.hpp"
 
-A **BaseMatrix** container object can be created as,
+A **BaseMatrix** object can be created as,
 
     marsvin::BaseMatrix<T> base_matrix;
 
@@ -57,13 +57,13 @@ Basic operations are provided using overload operators :
 
 ### Matrix
 
-**Matrix** class inherit from **BaseMatrix**.
+**Matrix** class inherits from **BaseMatrix**.
 
 Header file :
 
     include "matrix.hpp"
 
-A **Matrix** container object can be created as,
+A **Matrix** object can be created as,
 
     marsvin::Matrix<T> matrix;
 
@@ -71,13 +71,13 @@ A **Matrix** container object can be created as,
 
 A vector is considered as Nx1 matrix in this library.
 
-**Vector** class inherit from **BaseMatrix**.
+**Vector** class inherits from **BaseMatrix**.
 
 Header file :
 
     include "vector.hpp"
 
-A **Vector** container object can be created as,
+A **Vector** object can be created as,
 
     marsvin::Vector<T> vector;
 
