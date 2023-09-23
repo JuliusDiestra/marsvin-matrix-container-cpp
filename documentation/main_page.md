@@ -32,8 +32,8 @@ A **BaseMatrix** container object can be created as,
 
 **BaseMatrix** is the base class for **Matrix** and **Vector** classes.
 
-In order to read/write a **BaseMatrix** element, a 2D index should be provided
-and you can use the **at(row,column)** method.
+In order to read/write a **BaseMatrix** element, a row and column index should
+be provided and you can use the **at(row,column)** method.
 The row or column index starts at 0.
 
     // Create 2x2 base matrix
@@ -79,7 +79,7 @@ Header file :
 
 A **Vector** container object can be created as,
 
-    marsvin::Vector<T> matrix;
+    marsvin::Vector<T> vector;
 
 ## Linear Algebra
 
