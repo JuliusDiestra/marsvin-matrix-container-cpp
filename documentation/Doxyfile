@@ -830,7 +830,11 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = ./main_page.md  \
-                         ../core/include \
+                         ../core/include/marsvin/containers \
+                         ../core/include/marsvin/error_handling \
+                         ../core/include/marsvin/lu_decomposition \
+                         ../core/include/marsvin/tools \
+                         ../core/include/marsvin/triangular_systems \
                          ../marsvin.hpp
 
 # This tag can be used to specify the character encoding of the source files
