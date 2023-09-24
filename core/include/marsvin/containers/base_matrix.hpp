@@ -1,10 +1,10 @@
 /**
- * @file marsvin_base_matrix.hpp
+ * @file base_matrix.hpp
  *
  */
 
-#ifndef MARSVIN_CORE_MARSVIN_BASE_MATRIX_HPP_
-#define MARSVIN_CORE_MARSVIN_BASE_MATRIX_HPP_
+#ifndef MARSVIN_CONTAINERS_BASE_MATRIX_HPP_
+#define MARSVIN_CONTAINERS_BASE_MATRIX_HPP_
 
 #include <algorithm>
 #include <utility>
@@ -292,6 +292,6 @@ class BaseMatrix {
 
 }  // namespace marsvin
 
-#include "marsvin/containers/base_matrix.impl.hpp"
+#include "marsvin/containers/base_matrix_impl.hpp"
 
-#endif  // MARSVIN_CORE_MARSVIN_BASE_MATRIX_HPP_
+#endif  // MARSVIN_CONTAINERS_BASE_MATRIX_HPP_

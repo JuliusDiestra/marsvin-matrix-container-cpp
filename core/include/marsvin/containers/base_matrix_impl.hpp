@@ -1,6 +1,10 @@
+/**
+ * @file base_matrix_impl.hpp
+ *
+ */
 
-#ifndef MARSVIN_CORE_MARSVIN_BASE_MATRIX_IMPL_HPP_
-#define MARSVIN_CORE_MARSVIN_BASE_MATRIX_IMPL_HPP_
+#ifndef MARSVIN_CONTAINERS_BASE_MATRIX_IMPL_HPP_
+#define MARSVIN_CONTAINERS_BASE_MATRIX_IMPL_HPP_
 
 namespace marsvin {
 /*
@@ -324,4 +328,4 @@ void marsvin::BaseMatrix<T>::CheckIndex(std::size_t row,
 
 }  // namespace marsvin
 
-#endif  // MARSVIN_CORE_MARSVIN_BASE_MATRIX_IMPL_HPP_
+#endif  // MARSVIN_CONTAINERS_BASE_MATRIX_IMPL_HPP_

@@ -1,5 +1,10 @@
-#ifndef MARSVIN_CORE_MARSVIN_VECTOR_IMPL_HPP_
-#define MARSVIN_CORE_MARSVIN_VECTOR_IMPL_HPP_
+/**
+ * @file vector_impl.hpp
+ *
+ */
+
+#ifndef MARSVIN_CONTAINERS_VECTOR_IMPL_HPP_
+#define MARSVIN_CONTAINERS_VECTOR_IMPL_HPP_
 
 namespace marsvin {
 
@@ -51,4 +56,4 @@ std::size_t Vector<T>::GetInstanceCounter() {
 
 }  // namespace marsvin
 
-#endif  // MARSVIN_CORE_MARSVIN_VECTOR_IMPL_HPP_
+#endif  // MARSVIN_CONTAINERS_VECTOR_IMPL_HPP_

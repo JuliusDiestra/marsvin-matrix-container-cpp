@@ -1,10 +1,10 @@
 /**
- * @file marsvin_exception.hpp
+ * @file exception.hpp
  *
  */
 
-#ifndef MARSVIN_CORE_MARSVIN_EXCEPTION_HPP_
-#define MARSVIN_CORE_MARSVIN_EXCEPTION_HPP_
+#ifndef MARSVIN_ERROR_HANDLING_EXCEPTION_HPP_
+#define MARSVIN_ERROR_HANDLING_EXCEPTION_HPP_
 
 #include <stdexcept>
 #include <string>
@@ -26,4 +26,4 @@ class Exception : public std::out_of_range {
 
 }  // namespace marsvin
 
-#endif  // MARSVIN_CORE_MARSVIN_EXCEPTION_HPP_
+#endif  // MARSVIN_ERROR_HANDLING_EXCEPTION_HPP_

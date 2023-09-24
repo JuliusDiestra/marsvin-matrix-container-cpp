@@ -1,6 +1,10 @@
+/**
+ * @file compare.hpp
+ *
+ */
 
-#ifndef MARSVIN_CORE_MARSVIN_TOOLS_HPP_
-#define MARSVIN_CORE_MARSVIN_TOOLS_HPP_
+#ifndef MARSVIN_TOOLS_COMPARE_HPP_
+#define MARSVIN_TOOLS_COMPARE_HPP_
 
 #include "marsvin/containers/base_matrix.hpp"
 
@@ -34,4 +38,4 @@ bool compare(const ::marsvin::BaseMatrix<T>& m_lhs,
 }  // namespace tools
 }  // namespace marsvin
 
-#endif  // MARSVIN_CORE_MARSVIN_TOOLS_HPP_
+#endif  // MARSVIN_TOOLS_COMPARE_HPP_
