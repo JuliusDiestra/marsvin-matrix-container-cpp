@@ -22,7 +22,7 @@ jobs:
       - name: Install Doxygen
         run: |
           sudo apt-get update
-          sudo apt-get install -y doxygen
+          sudo apt-get install -y doxygen doxygen-doc graphviz
       - name: Build documentation
         run: |
           cd documentation
