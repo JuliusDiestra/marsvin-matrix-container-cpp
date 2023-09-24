@@ -30,6 +30,16 @@ Vector<T>::Vector(Vector&& other) :
   instance_counter{std::move(other.instance_counter)} {}
 
 template<typename T>
+Vector<T>& Vector<T>::operator=(const Vector& other) {
+    return this->operator=(other);
+}
+
+template<typename T>
+Vector<T>& Vector<T>::operator=(Vector&& other) {
+    return this->operator=(other);
+}
+
+template<typename T>
 void Vector<T>::resize(std::size_t size) {
     BaseMatrix<T>::resize(size, 1);
 }

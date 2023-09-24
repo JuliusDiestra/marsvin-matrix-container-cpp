@@ -62,6 +62,18 @@ class Vector : public BaseMatrix<T> {
     Vector(Vector&& other);
 
     /**
+     * @brief Copy assignment
+     *
+     */
+    Vector<T>& operator=(const Vector& other);
+
+    /**
+     * @brief Move assignment
+     *
+     */
+    Vector<T>& operator=(Vector&& other);
+
+    /**
      * @brief Method to resize vector container.
      *
      * @param size Number of elements.
