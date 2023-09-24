@@ -1,15 +1,20 @@
 /**
- * @file marsvin_instance_counter.hpp
+ * @file instance_counter.hpp
  *
  */
 
-#ifndef MARSVIN_CORE_INSTANCE_COUNTER_H_
-#define MARSVIN_CORE_INSTANCE_COUNTER_H_
+#ifndef MARSVIN_TOOLS_INSTANCE_COUNTER_H_
+#define MARSVIN_TOOLS_INSTANCE_COUNTER_H_
 
 #include <cstddef>
 
 namespace marsvin {
 
+/**
+ * @class InstanceCounter
+ * @brief Base matrix class with minimum features.
+ *
+ */
 template<typename T>
 class InstanceCounter {
   public:
@@ -64,4 +69,4 @@ std::size_t InstanceCounter<T>::counter_ = 0;
 
 }  // namespace marsvin
 
-#endif  // MARSVIN_CORE_INSTANCE_COUNTER_H_
+#endif  // MARSVIN_TOOLS_INSTANCE_COUNTER_H_

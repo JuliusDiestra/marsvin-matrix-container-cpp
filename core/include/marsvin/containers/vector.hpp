@@ -1,10 +1,10 @@
 /**
- * @file marsvin_vector.hpp
+ * @file vector.hpp
  *
  */
 
-#ifndef MARSVIN_CORE_MARSVIN_VECTOR_HPP_
-#define MARSVIN_CORE_MARSVIN_VECTOR_HPP_
+#ifndef MARSVIN_CONTAINERS_VECTOR_HPP_
+#define MARSVIN_CONTAINERS_VECTOR_HPP_
 
 #include "marsvin/containers/base_matrix.hpp"
 #include "marsvin/tools/instance_counter.hpp"
@@ -105,6 +105,6 @@ class Vector : public BaseMatrix<T> {
 };
 }  // namespace marsvin
 
-#include "marsvin/containers/vector.impl.hpp"
+#include "marsvin/containers/vector_impl.hpp"
 
-#endif  // MARSVIN_CORE_MARSVIN_VECTOR_HPP_
+#endif  // MARSVIN_CONTAINERS_VECTOR_HPP_

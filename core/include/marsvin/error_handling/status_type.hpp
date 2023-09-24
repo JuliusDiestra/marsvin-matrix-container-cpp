@@ -1,10 +1,10 @@
 /**
- * @file marsvin_error_type.hpp
+ * @file status_type.hpp
  *
  */
 
-#ifndef MARSVIN_CORE_MARSVIN_STATUS_TYPE_CODE_HPP_
-#define MARSVIN_CORE_MARSVIN_STATUS_TYPE_CODE_HPP_
+#ifndef MARSVIN_ERROR_HANDLING_STATUS_TYPE_HPP_
+#define MARSVIN_ERROR_HANDLING_STATUS_TYPE_HPP_
 
 namespace marsvin {
 

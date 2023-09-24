@@ -1,10 +1,10 @@
 /**
- * @file marsvin_lud_algorithms.hpp
+ * @file partial_pivoting.hpp
  *
  */
 
-#ifndef MARSVIN_CORE_LUD_ALGORITHMS_HPP_
-#define MARSVIN_CORE_LUD_ALGORITHMS_HPP_
+#ifndef MARSVIN_LU_DECOMPOSITION_PARTIAL_PIVOTING_HPP_
+#define MARSVIN_LU_DECOMPOSITION_PARTIAL_PIVOTING_HPP_
 
 #include <cstdlib>
 
@@ -68,4 +68,4 @@ std::vector<::marsvin::Matrix<T>> partial_pivoting(::marsvin::Matrix<T>& A) {
 }  // namespace lud
 }  // namespace marsvin
 
-#endif  // MARSVIN_CORE_LUD_ALGORITHMS_HPP_
+#endif  // MARSVIN_LU_DECOMPOSITION_PARTIAL_PIVOTING_HPP_

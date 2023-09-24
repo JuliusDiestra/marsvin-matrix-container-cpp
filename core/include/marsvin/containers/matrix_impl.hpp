@@ -1,5 +1,10 @@
-#ifndef MARSVIN_CORE_MARSVIN_MATRIX_IMPL_HPP_
-#define MARSVIN_CORE_MARSVIN_MATRIX_IMPL_HPP_
+/**
+ * @file matrix_impl.hpp
+ *
+ */
+
+#ifndef MARSVIN_CONTAINERS_MATRIX_IMPL_HPP_
+#define MARSVIN_CONTAINERS_MATRIX_IMPL_HPP_
 
 namespace marsvin {
 
@@ -109,4 +114,4 @@ void Matrix<T>::swap_rows(std::size_t lhs_row, std::size_t rhs_row) {
 
 }  // namespace marsvin
 
-#endif  // MARSVIN_CORE_MARSVIN_MATRIX_IMPL_HPP_
+#endif  // MARSVIN_CONTAINERS_MATRIX_IMPL_HPP_
