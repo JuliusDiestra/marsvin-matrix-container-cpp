@@ -90,8 +90,16 @@ class Matrix : public BaseMatrix<T> {
      */
     Matrix(Matrix&& other);
 
+    /**
+     * @brief Copy assignment
+     *
+     */
     Matrix<T>& operator=(const Matrix& other);
 
+    /**
+     * @brief Move assignment
+     *
+     */
     Matrix<T>& operator=(Matrix&& other);
 
     /**
