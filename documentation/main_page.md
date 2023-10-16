@@ -85,7 +85,65 @@ A **Vector** object can be created as,
 
 ### Forward Substitution
 
-TBD
+Reference : Matrix Algorithms, G.W. Stewart. Page 88
+
+For the following equation,
+
+\f$ Lx = b \f$
+
+where,
+
+\f$ L \f$ : Nonsingular lower triangular matrix of order \f$ n \f$.
+
+\f$ b \f$ : Vector or \f$ n \f$ order.
+
+Then \f$ x \f$ can be calculated by,
+
+    for k = 1 to n
+        x[k] = b[k]
+        for j = 1 to k-1
+            x[k] = x[k] - L[k,j]x[j]
+        end for j
+        x[k] = x[k]/L[k,k]
+    end for k
+
+This algorihm is implemented by the function,
+
+    marsvin::Vector<T> forward_substitution(const ::marsvin::Matrix<T>& L, const ::marsvin::Vector<T>& b)
+
+For example,
+
+    // L : Nonsingular lower triangular matrix of nxn size.
+    // b : Vector of n size.
+    marsvin::Vector<T> x;
+    x = marsvin::forward_substitution(L, b);
+
+or,
+
+    // L : Nonsingular lower triangular matrix of nxn size.
+    // b : Vector of n size.
+    marsvin::Vector<T> x;
+    marsvin::forward_substitution(L, b, x);
+
+In order to avoid using memory to allocate \f$ x \f$,
+we can overwrite the solution in vector \f$ b \f$,
+
+    for k = 1 to n
+        for j = 1 to k-1
+            b[k] = b[k] - L[k,j]b[j]
+        end for j
+        b[k] = b[k]/L[k,k]
+    end for k
+
+This algorihm is implemented by the function,
+
+    marsvin::Vector<T> forward_substitution_memory(const ::marsvin::Matrix<T>& L, ::marsvin::Vector<T>& b)
+
+For example,
+
+    // L : Nonsingular lower triangular matrix of nxn size.
+    // b : Vector of n size.
+    marsvin::forward_substitution_memory(L, b);
 
 ### Backward Substitution
 
