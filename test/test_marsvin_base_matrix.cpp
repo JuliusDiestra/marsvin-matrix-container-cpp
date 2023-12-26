@@ -400,3 +400,18 @@ TEST(BaseMatrix, method_base_matrix_multiplication) {
     EXPECT_TRUE(marsvin::tools::compare(m_result,m_result_expected,tolerance));
 }
 
+TEST(BaseMatrix, multiplication_matrix_vector) {
+    constexpr std::size_t lhs_kRows = 5;
+    constexpr std::size_t lhs_kColumns = 5;
+    constexpr std::size_t rhs_kRows = 5;
+    constexpr std::size_t rhs_kColumns = 1;
+    marsvin::BaseMatrix<int> m_lhs(lhs_kRows, lhs_kColumns, {1,2,3,4,5,0,6,7,8,9,0,0,10,11,12,0,0,0,13,14,0,0,0,0,15});
+    marsvin::BaseMatrix<int> m_rhs(rhs_kRows, rhs_kColumns, {1,2,3,4,5});
+    marsvin::BaseMatrix<int> m_result_expected(lhs_kRows, rhs_kColumns, {55,110,134,122,75});
+    auto m_result = m_lhs*m_rhs;
+    EXPECT_EQ(m_result.rows(), lhs_kRows);
+    EXPECT_EQ(m_result.columns(), rhs_kColumns);
+    int tolerance = 0;
+    EXPECT_TRUE(marsvin::tools::compare(m_result, m_result_expected,tolerance));
+}
+

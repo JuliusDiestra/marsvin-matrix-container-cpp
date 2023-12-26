@@ -85,8 +85,6 @@ A **Vector** object can be created as,
 
 ### Forward Substitution
 
-Reference : Matrix Algorithms, G.W. Stewart. Page 88
-
 For the following equation,
 
 \f$ Lx = b \f$
@@ -99,9 +97,9 @@ where,
 
 Then \f$ x \f$ can be calculated by,
 
-    for k = 1 to n
+    for k = 0 to n-1
         x[k] = b[k]
-        for j = 1 to k-1
+        for j = 0 to k-1
             x[k] = x[k] - L[k,j]x[j]
         end for j
         x[k] = x[k]/L[k,k]
@@ -128,8 +126,8 @@ or,
 In order to avoid using memory to allocate \f$ x \f$,
 we can overwrite the solution in vector \f$ b \f$,
 
-    for k = 1 to n
-        for j = 1 to k-1
+    for k = 0 to n-1
+        for j = 0 to k-1
             b[k] = b[k] - L[k,j]b[j]
         end for j
         b[k] = b[k]/L[k,k]
@@ -147,7 +145,63 @@ For example,
 
 ### Backward Substitution
 
-TBD
+For the following equation,
+
+\f$ Ux = b \f$
+
+where,
+
+\f$ U \f$ : Nonsingular upper triangular matrix of order \f$ n \f$.
+
+\f$ b \f$ : Vector or \f$ n \f$ order.
+
+Then \f$ x \f$ can be calculated by,
+
+    for k = n-1 to 0
+        x[k] = b[k]
+        for j = k+1 to n-1
+            x[k] = x[k] - U[k,j]x[j]
+        end for j
+        x[k] = x[k]/U[k,k]
+    end for k
+
+This algorihm is implemented by the function,
+
+    marsvin::Vector<T> backward_substitution(const ::marsvin::Matrix<T>& L, const ::marsvin::Vector<T>& b)
+
+For example,
+
+    // U : Nonsingular upper triangular matrix of nxn size.
+    // b : Vector of n size.
+    marsvin::Vector<T> x;
+    x = marsvin::backward_substitution(L, b);
+
+or,
+
+    // U : Nonsingular upper triangular matrix of nxn size.
+    // b : Vector of n size.
+    marsvin::Vector<T> x;
+    marsvin::backward_substitution(L, b, x);
+
+In order to avoid using memory to allocate \f$ x \f$,
+we can overwrite the solution in vector \f$ b \f$,
+
+    for k = n-1 to 0
+        for j = k+1 to n-1
+            b[k] = b[k] - U[k,j]b[j]
+        end for j
+        b[k] = b[k]/U[k,k]
+    end for k
+
+This algorihm is implemented by the function,
+
+    marsvin::Vector<T> backward_substitution_memory(const ::marsvin::Matrix<T>& U, ::marsvin::Vector<T>& b)
+
+For example,
+
+    // U : Nonsingular upper triangular matrix of nxn size.
+    // b : Vector of n size.
+    marsvin::backward_substitution_memory(L, b);
 
 ### Gauss Elimination
 
