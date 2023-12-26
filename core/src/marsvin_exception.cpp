@@ -56,10 +56,18 @@ std::string Exception::StatusCodeToString(const StatusCode& status_code) {
             break;
         case marsvin::StatusType::kErrorSquareMatrix:
             string_ = "Operation should be applied in an square matrix.";
+            break;
         case marsvin::StatusType::kErrorEqualSize:
             string_ =
                 "Equal size of matrix or vector is required in operation.";
+            break;
+        case marsvin::StatusType::kErrorSolveLinearEquantionDimensions:
+            string_ =
+                "Error solving linear equation A*x=b. "
+                "Matrix number of rows or columns  must be equal to vector size.";
+            break;
         default:
+            string_ = "Unknown error.";
             break;
     }
     return string_;

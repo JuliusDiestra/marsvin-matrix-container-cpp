@@ -34,6 +34,7 @@ void forward_substitution(const ::marsvin::Matrix<T>& L,
         }
     }
     for (std::size_t k = 0; k < L.rows(); ++k) {
+        // TBD : Add check if L.at(k,k) is close to Zero.
         x.at(k) = b.at(k);
         if (k > 0) {
             for (std::size_t j = 0; j <= (k - 1); ++j) {

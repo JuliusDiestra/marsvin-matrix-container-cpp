@@ -77,4 +77,9 @@ StatusType StatusCode::TypeErrorEqualSize() {
 StatusType StatusCode::TypeErrorSolveLinearEquantionDimensions() {
     return StatusType::kErrorSolveLinearEquantionDimensions;
 }
+
+StatusType StatusCode::TypeErrorMatrixDiagonalHasZero() {
+    return StatusType::kErrorMatrixDiagonalHasZero;
+}
+
 }  // namespace marsvin
