@@ -64,7 +64,8 @@ std::string Exception::StatusCodeToString(const StatusCode& status_code) {
         case marsvin::StatusType::kErrorSolveLinearEquantionDimensions:
             string_ =
                 "Error solving linear equation A*x=b. "
-                "Matrix number of rows or columns  must be equal to vector size.";
+                "Matrix number of rows or columns  must be equal to vector "
+                "size.";
             break;
         default:
             string_ = "Unknown error.";
