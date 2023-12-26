@@ -13,8 +13,8 @@ namespace marsvin {
 
 template<typename T>
 void backward_substitution(const ::marsvin::Matrix<T>& U,
-                          const ::marsvin::Vector<T>& b,
-                          ::marsvin::Vector<T>& x) {
+                           const ::marsvin::Vector<T>& b,
+                           ::marsvin::Vector<T>& x) {
     // Check U is square
     if (!U.is_square()) {
         throw marsvin::Exception(marsvin::StatusCode::TypeErrorSquareMatrix());
@@ -36,7 +36,7 @@ void backward_substitution(const ::marsvin::Matrix<T>& U,
         // TBD : Add check if U.at(k,k) is close to Zero.
         x.at(k) = b.at(k);
         if (k >= 0) {
-            for (std::size_t j = k + 1; j <= U.rows() -1 ; ++j) {
+            for (std::size_t j = k + 1; j <= U.rows() - 1; ++j) {
                 x.at(k) = x.at(k) - U.at(k, j) * x.at(j);
             }
         }
