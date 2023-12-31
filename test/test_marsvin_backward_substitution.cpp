@@ -43,3 +43,31 @@ TEST(BackwardSubstitution, Test_x_empty_5x5) {
     EXPECT_TRUE(marsvin::tools::compare(U*x,b));
 }
 
+TEST(BackwardSubstitution, Test_return_x) {
+    marsvin::Logger logger_;
+    marsvin::Matrix<float> U = {{3,2,1,1},
+                                {0,1,2,1},
+                                {0,0,1,1},
+                                {0,0,0,1}};
+    marsvin::Vector<float> b = {14,12,7,4};
+    marsvin::Vector<float> x_real = {1,2,3,4};
+
+    auto x = marsvin::backward_substitution(U, b);
+    EXPECT_EQ(x.size(), b.size());
+    EXPECT_TRUE(marsvin::tools::compare(x,x_real));
+    EXPECT_TRUE(marsvin::tools::compare(U*x,b));
+
+}
+
+TEST(BackwardSubstitution, Test_memory_optimization) {
+    marsvin::Logger logger_;
+    marsvin::Matrix<float> U = {{3,2,1,1},
+                                {0,1,2,1},
+                                {0,0,1,1},
+                                {0,0,0,1}};
+    marsvin::Vector<float> b = {14,12,7,4};
+    marsvin::Vector<float> x_real = {1,2,3,4};
+    marsvin::backward_substitution_memory(U, b);
+    EXPECT_TRUE(marsvin::tools::compare(b,x_real));
+}
+
