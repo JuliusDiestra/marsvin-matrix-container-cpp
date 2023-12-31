@@ -44,6 +44,21 @@ void backward_substitution(const ::marsvin::Matrix<T>& U,
     }
 };
 
+template<typename T>
+marsvin::Vector<T> backward_substitution(const ::marsvin::Matrix<T>& U,
+                                        const ::marsvin::Vector<T>& b) {
+    marsvin::Vector<T> x(b.size());
+    backward_substitution(U, b, x);
+    return x;
+};
+
+template<typename T>
+void backward_substitution_memory(const ::marsvin::Matrix<T>& U,
+                                 ::marsvin::Vector<T>& b) {
+    backward_substitution(U, b, b);
+};
+
+
 }  // namespace marsvin
 
 #endif  // MARSVIN_TRIANGULAR_SYSTEMS_BACKWARD_SUBSTITUTION_HPP_
