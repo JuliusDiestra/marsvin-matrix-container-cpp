@@ -1,10 +1,9 @@
-# Marsvin library contains matrix and vector containers and linear algebra operations
-
-[TOC]
 
 Marsvin library contains matrix and vector containers and linear algebra operations.
 
-## Containers
+[TOC]
+
+# Containers
 
 Three containers are provided in this library:
 
@@ -20,7 +19,7 @@ By default, every **vector** is a column vector.
 **Vector** class includes extra methods useful for vector operation,
 and the **Matrix** class includes extra methods useful for matrix linear algebra.
 
-### BaseMatrix
+## BaseMatrix
 
 Header file :
 
@@ -55,7 +54,7 @@ Basic operations are provided using overload operators :
 * Subtraction       : -
 * Multiplication    : *
 
-### Matrix
+## Matrix
 
 **Matrix** class inherits from **BaseMatrix**.
 
@@ -67,7 +66,7 @@ A **Matrix** object can be created as,
 
     marsvin::Matrix<T> matrix;
 
-### Vector
+## Vector
 
 A vector is considered as Nx1 matrix in this library.
 
@@ -81,9 +80,15 @@ A **Vector** object can be created as,
 
     marsvin::Vector<T> vector;
 
-## Linear Algebra
+# Linear Algebra
 
-### Forward Substitution
+## Triangular Systems
+
+### Lower Triangular Matrix
+
+#### Forward Substitution
+
+Solution of a lower triangular system
 
 For the following equation,
 
@@ -143,7 +148,12 @@ For example,
     // b : Vector of n size.
     marsvin::forward_substitution_memory(L, b);
 
-### Backward Substitution
+#### Inverse
+
+### Upper Triangular Matrix
+#### Backward Substitution
+
+Solution of an upper  triangular system
 
 For the following equation,
 
@@ -203,11 +213,121 @@ For example,
     // b : Vector of n size.
     marsvin::backward_substitution_memory(L, b);
 
-### Gauss Elimination
+#### Inverse
+
+Giving the following equation,
+
+\f[
+
+XU = I
+
+\f]
+
+where,
+
+\f$ X \f$ : Inverse of upper triangular matrix \f$ U \f$ of order \f$ n \f$.
+
+\f$ U \f$ : Nonsingular upper triangular matrix of order \f$ n \f$.
+
+\f$ I \f$ : Identity matrix of order \f$ n \f$.
+
+\f[
+\begin{bmatrix}
+x_{0,0} & x_{0,1}   & x_{0,2}   & \dots     & x_{0,n-2}     & x_{0,n-1} \\
+0       & x_{1,1}   & x_{1,2}   & \dots     & x_{1,n-2}     & x_{1,n-1} \\
+0       & 0         & x_{2,2}   & \dots     & x_{2,n-2}     & x_{2,n-1} \\
+\vdots  & \vdots    & \vdots    & \ddots    & \vdots        & \vdots \\
+0       & 0         & 0         & \dots     & x_{n-2,n-2}   & x_{n-2,n-1} \\
+0       & 0         & 0         & \dots     & 0             & x_{n-1,n-1} \\
+\end{bmatrix}
+\begin{bmatrix}
+u_{0,0} & u_{0,1}   & u_{0,2}   & \dots     & u_{0,n-2}     & u_{0,n-1} \\
+0       & u_{1,1}   & u_{1,2}   & \dots     & u_{1,n-2}     & u_{1,n-1} \\
+0       & 0         & u_{2,2}   & \dots     & u_{2,n-2}     & u_{2,n-1} \\
+\vdots  & \vdots    & \vdots    & \ddots    & \vdots        & \vdots \\
+0       & 0         & 0         & \dots     & u_{n-2,n-2}   & u_{n-2,n-1} \\
+0       & 0         & 0         & \dots     & 0             & u_{n-1,n-1} \\
+\end{bmatrix} =
+\begin{bmatrix}
+1       & 0     & 0     & \dots     & 0     & 0 \\
+0       & 1     & 0     & \dots     & 0     & 0 \\
+0       & 0         & 1   & \dots     & 0     & 0 \\
+\vdots  & \vdots    & \vdots    & \ddots    & \vdots        & \vdots \\
+0       & 0         & 0         & \dots     & 1   & 0 \\
+0       & 0         & 0         & \dots     & 0             & 1 \\
+\end{bmatrix}
+\f]
+
+After multiplying and solving for \f$ x_{i,j} \f$,
+
+\f[
+x_{0,0} = \frac{1}{u_{0,0}}
+\f]
+\f[
+x_{0,1} = - \frac{1}{u_{1,1}} u_{0,1} x_{0,0}
+\f]
+\f[
+x_{0,2} = - \frac{1}{u_{2,2}}  \left[ u_{0,2}x_{0,0} + u_{1,2} x_{0,1} \right]
+\f]
+\f[
+\vdots
+\f]
+\f[
+x_{0,n-1} = - \frac{1}{u_{n-1,n-1}}  \left[ u_{0,n-1}x_{0,0} + u_{1,n-1}x_{0,1} + \dots  + u_{n-2,n-1} x_{0,n-2} \right]
+\f]
+
+\f[
+x_{1,1} = \frac{1}{u_{1,1}}
+\f]
+\f[
+x_{1,2} = - \frac{1}{u_{2,2}} u_{1,2} x_{1,1}
+\f]
+\f[
+x_{1,3} = - \frac{1}{u_{3,3}}  \left[ u_{1,3}x_{1,1} + u_{2,3} x_{1,2} \right]
+\f]
+\f[
+\vdots
+\f]
+\f[
+x_{1,n-1} = - \frac{1}{u_{n-1,n-1}}  \left[ u_{1,n-1}x_{1,1} + u_{2,n-1}x_{1,2} + \dots  + u_{n-2,n-1} x_{1,n-2} \right]
+\f]
+
+A general expression can be written as,
+\f[
+x_{k,j} =
+\begin{cases}
+\frac{1}{u_{i,j}} & i = j \\
+- \frac{1}{u_{j,j}}  \sum_{i = k}^{j-1}  u_{i,j}x_{k,i}  & k < j \\
+0 & k > j
+\end{cases}  \\
+
+\f]
+
+Then, the Following algorithm can be formulated,
+
+    for k = 0 to n-1
+        for j = 0 to n-1
+            if k==j
+                X[k,j] = 1/U[k,j]
+            else if k < j
+                sum = 0
+                for i = k to j -1
+                    sum = sum + U[i,j]X[k,i]
+                end for i
+                X[k,j] = 1/U[j,j] * sum
+            else
+                X[k,j] = 0
+            end if
+        end for j
+    end for k
+
+
+
+## Gauss Elimination
 
 TBD
 
-#### Partial Pivoting
+### Partial Pivoting
 
 TBD
 
