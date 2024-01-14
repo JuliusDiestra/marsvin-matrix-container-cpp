@@ -21,24 +21,24 @@ void upper_inverse(const ::marsvin::Matrix<T>& U, ::marsvin::Matrix<T>& X) {
     if (X.empty()) {
         X.resize(U.rows(), U.columns());
     } else {
-        if ( (U.rows() != X.rows()) || (U.columns() != U.columns()) ) {
+        if ((U.rows() != X.rows()) || (U.columns() != U.columns())) {
             throw marsvin::Exception(marsvin::StatusCode::TypeErrorEqualSize());
         }
     }
     std::size_t n{U.rows()};
     T sum;
-    for (std::size_t k = 0; k <= (n-1); ++k) {
-        for (std::size_t j = 0; j <= (n-1); ++j) {
-            if (k==j) {
-                X.at(k,j) = 1/U.at(k,j);
+    for (std::size_t k = 0; k <= (n - 1); ++k) {
+        for (std::size_t j = 0; j <= (n - 1); ++j) {
+            if (k == j) {
+                X.at(k, j) = 1 / U.at(k, j);
             } else if (k < j) {
                 sum = 0;
-                for (std::size_t i = k; i <= j-1; ++i) {
-                    sum = sum + U.at(i,j)*X.at(k,i);
+                for (std::size_t i = k; i <= j - 1; ++i) {
+                    sum = sum + U.at(i, j) * X.at(k, i);
                 }
-                X.at(k,j) = -sum/U.at(j,j);
+                X.at(k, j) = -sum / U.at(j, j);
             } else {
-                X.at(k,j) = 0;
+                X.at(k, j) = 0;
             }
         }
     }
