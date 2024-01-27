@@ -23,7 +23,7 @@ and the **Matrix** class includes extra methods useful for matrix linear algebra
 
 Header file :
 
-    include "base_matrix.hpp"
+    #include "marsvin/containers/base_matrix.hpp"
 
 A **BaseMatrix** object can be created as,
 
@@ -60,7 +60,7 @@ Basic operations are provided using overload operators :
 
 Header file :
 
-    include "matrix.hpp"
+    #include "marsvin/containers/matrix.hpp"
 
 A **Matrix** object can be created as,
 
@@ -74,7 +74,7 @@ A vector is considered as Nx1 matrix in this library.
 
 Header file :
 
-    include "vector.hpp"
+    #include "marsvin/containers/vector.hpp"
 
 A **Vector** object can be created as,
 
@@ -88,9 +88,11 @@ A **Vector** object can be created as,
 
 #### Forward Substitution
 
-Solution of a lower triangular system
+Header file :
 
-For the following equation,
+    #include "marsvin/triangular_systems/forward_substitution.hpp"
+
+The algorithm provides a solution for the following equation,
 
 \f$ Lx = b \f$
 
@@ -149,6 +151,10 @@ For example,
     marsvin::forward_substitution_memory(L, b);
 
 #### Inverse
+
+Header file :
+
+    #include "marsvin/triangular_system/lower_inverse.hpp"
 
 ### Upper Triangular Matrix
 #### Backward Substitution
@@ -214,6 +220,10 @@ For example,
     marsvin::backward_substitution_memory(L, b);
 
 #### Inverse
+
+Header file :
+
+    #include "marsvin/triangular_system/upper_inverse.hpp"
 
 Giving the following equation,
 
@@ -323,11 +333,30 @@ Then, the Following algorithm can be formulated,
 
 
 
-## Gauss Elimination
 
-TBD
+## LU Decomposition
+
+Given a \f$ n \times n \f$ matrix defined as \f$A\f$.
+A general expression for factorization can be written as,
+
+\f[
+PAQ = LU
+\f]
+
+where,
+
+\f$A\f$ : Matrix to be factorized. Dimension : \f$ n \times n \f$.
+
+\f$P\f$ : Permutation matrix to re-order rows of A. Dimension : \f$ n \times n \f$.
+
+\f$Q\f$ : Permutation matrix to re-order columns of A. Dimension : \f$ n \times n \f$.
+
+\f$L\f$ : Lower triangular matrix. Dimension : \f$ n \times n \f$.
+
+\f$U\f$ : Upper triangular matrix. Dimension : \f$ n \times n \f$.
 
 ### Partial Pivoting
 
-TBD
+TBD : Addingle pseudo code for algorithm.
+
 

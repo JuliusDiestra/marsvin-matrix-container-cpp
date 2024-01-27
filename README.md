@@ -1,5 +1,7 @@
 # Marsvin library : Matrix, vectors and linear algebra
 
+Documentation : [Link](https://juliusdiestra.github.io/marsvin-matrix-container-cpp/)
+
 Repository that contains the **MARSVIN** library that contains usefull containers and operations for linear algebra.
 
 Contains :
@@ -8,9 +10,11 @@ Contains :
 * Vector container.
 * Forward substitution.
 * Backward substitution.
-* Gauss elimination.
-* Matrix inverse calculation.
-* Solution of A\*x = b.
+* Triangular matrix inverse.
+* Solution of triangular systems. L\*x = b and U\*x = b
+* LU Decomposition : Partial Pivoting.
+* Matrix inverse calculation.   -> TBD
+* Solution of A\*x = b.         -> TBD
 
 ## How to build library
 
