@@ -10,12 +10,13 @@
 
 #include "marsvin/containers/matrix.hpp"
 #include "marsvin/tools/logger.hpp"
+#include "marsvin/lu_decomposition/result_types.hpp"
 
 namespace marsvin {
 namespace lud {
 
 template<typename T>
-std::vector<::marsvin::Matrix<T>> partial_pivoting(::marsvin::Matrix<T>& A) {
+result<T> partial_pivoting(::marsvin::Matrix<T>& A) {
     marsvin::Logger logger_;
     // Initial conditions
     std::size_t n = A.rows();
@@ -24,6 +25,7 @@ std::vector<::marsvin::Matrix<T>> partial_pivoting(::marsvin::Matrix<T>& A) {
     ::marsvin::Matrix<T> U{A};
     ::marsvin::Matrix<T> P(n);
     P.set_diagonal(1);
+    ::marsvin::Matrix<T> Q;
 
     std::size_t i;
     for (std::size_t k = 0; k <= (n - 2); ++k) {
@@ -57,12 +59,13 @@ std::vector<::marsvin::Matrix<T>> partial_pivoting(::marsvin::Matrix<T>& A) {
         }
     }
     // Results
-    std::vector<::marsvin::Matrix<T>> result_matrices;
-    result_matrices.reserve(3);
-    result_matrices.push_back(std::move(L));
-    result_matrices.push_back(std::move(U));
-    result_matrices.push_back(std::move(P));
-    return result_matrices;
+    ::marsvin::lud::result<T> result_(std::move(L),std::move(U),std::move(P),std::move(Q));
+    /*
+    result_.L = std::move(L);
+    result_.U = std::move(U);
+    result_.P = std::move(P);
+    */
+    return result_;
 }
 
 }  // namespace lud
