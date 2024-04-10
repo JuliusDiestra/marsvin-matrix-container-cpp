@@ -9,7 +9,7 @@
 namespace marsvin {
 namespace lud {
 
-template <typename T>
+template<typename T>
 class result {
   public:
     result(::marsvin::Matrix<T> L,
@@ -34,6 +34,7 @@ class result {
     ::marsvin::Matrix<T> Q() {
         return result_.at(3);
     }
+
   private:
     std::vector<::marsvin::Matrix<T>> result_;
 };
@@ -42,4 +43,3 @@ class result {
 }  // namespace marsvin
 
 #endif  // MARSVIN_LU_DECOMPOSITION_RESULT_TYPES_HPP_
-

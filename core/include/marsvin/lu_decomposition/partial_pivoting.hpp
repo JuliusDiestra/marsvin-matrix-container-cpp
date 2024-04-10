@@ -9,8 +9,8 @@
 #include <cstdlib>
 
 #include "marsvin/containers/matrix.hpp"
-#include "marsvin/tools/logger.hpp"
 #include "marsvin/lu_decomposition/result_types.hpp"
+#include "marsvin/tools/logger.hpp"
 
 namespace marsvin {
 namespace lud {
@@ -59,7 +59,8 @@ result<T> partial_pivoting(::marsvin::Matrix<T>& A) {
         }
     }
     // Results
-    ::marsvin::lud::result<T> result_(std::move(L),std::move(U),std::move(P),std::move(Q));
+    ::marsvin::lud::result<T> result_(
+        std::move(L), std::move(U), std::move(P), std::move(Q));
     /*
     result_.L = std::move(L);
     result_.U = std::move(U);
