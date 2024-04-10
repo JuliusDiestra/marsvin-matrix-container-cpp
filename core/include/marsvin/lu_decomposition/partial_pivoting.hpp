@@ -61,11 +61,6 @@ result<T> partial_pivoting(::marsvin::Matrix<T>& A) {
     // Results
     ::marsvin::lud::result<T> result_(
         std::move(L), std::move(U), std::move(P), std::move(Q));
-    /*
-    result_.L = std::move(L);
-    result_.U = std::move(U);
-    result_.P = std::move(P);
-    */
     return result_;
 }
 
